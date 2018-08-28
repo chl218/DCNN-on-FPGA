@@ -11,7 +11,14 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog/>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('kernel_V_load_2', deconvo-algo/deconv-algo.cpp:25) on array 'kernel_V' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'kernel_V'." projectName="deconvo-algo" solutionName="solution2-opt1" date="2018-08-27T22:32:47.170-0700" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop." projectName="deconvo-algo" solutionName="solution2-opt1" date="2018-08-27T22:32:46.898-0700" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'IFEAT_ROW_LOOP' (deconvo-algo/deconv-algo.cpp:16:60) in function 'deconvolution' : " projectName="deconvo-algo" solutionName="solution2-opt1" date="2018-08-27T22:32:46.887-0700" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop." projectName="deconvo-algo" solutionName="solution2-opt1" date="2018-08-27T22:32:46.876-0700" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'IFEAT_COL_LOOP' (deconvo-algo/deconv-algo.cpp:17:61) in function 'deconvolution' : " projectName="deconvo-algo" solutionName="solution2-opt1" date="2018-08-27T22:32:46.863-0700" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] No C:/Users/Jack/workspace/deconvo-algo/solution1/solution1.aps file found." projectName="deconvo-algo" solutionName="solution2-opt1" date="2018-08-27T22:32:36.483-0700" type="Warning"/>
+      </synLog>
       <simLog/>
       <mgLog/>
       <packageLog/>
