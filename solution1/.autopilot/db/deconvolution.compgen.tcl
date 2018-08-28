@@ -12,16 +12,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 0 \
-    name kernel \
+    name kernel_V \
     reset_level 1 \
     sync_rst true \
     dir I \
-    corename kernel \
+    corename kernel_V \
     op interface \
-    ports { kernel_address0 { O 11 vector } kernel_ce0 { O 1 bit } kernel_q0 { I 32 vector } } \
+    ports { kernel_V_address0 { O 11 vector } kernel_V_ce0 { O 1 bit } kernel_V_q0 { I 8 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'kernel'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'kernel_V'"
 }
 }
 
@@ -31,16 +31,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 1 \
-    name ifeat \
+    name ifeat_V \
     reset_level 1 \
     sync_rst true \
     dir I \
-    corename ifeat \
+    corename ifeat_V \
     op interface \
-    ports { ifeat_address0 { O 11 vector } ifeat_ce0 { O 1 bit } ifeat_q0 { I 32 vector } } \
+    ports { ifeat_V_address0 { O 11 vector } ifeat_V_ce0 { O 1 bit } ifeat_V_q0 { I 8 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ifeat'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ifeat_V'"
 }
 }
 
@@ -50,16 +50,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 2 \
-    name ofeat \
+    name ofeat_V \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename ofeat \
+    corename ofeat_V \
     op interface \
-    ports { ofeat_address0 { O 13 vector } ofeat_ce0 { O 1 bit } ofeat_we0 { O 1 bit } ofeat_d0 { O 32 vector } } \
+    ports { ofeat_V_address0 { O 13 vector } ofeat_V_ce0 { O 1 bit } ofeat_V_we0 { O 1 bit } ofeat_V_d0 { O 8 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ofeat'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ofeat_V'"
 }
 }
 

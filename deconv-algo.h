@@ -23,8 +23,8 @@
 #define OFEAT_COL STRIDE_LEN * (IFEAT_COL - 1) + KERNEL_COL
 #define OFEAT_DEP KERNEL_AMT
 
-
-typedef int DTYPE;
+#include "ap_int.h"
+typedef ap_uint<8> DTYPE;
 
 void deconvolution(
 	DTYPE kernel[KERNEL_AMT][KERNEL_DEP][KERNEL_ROW][KERNEL_COL],

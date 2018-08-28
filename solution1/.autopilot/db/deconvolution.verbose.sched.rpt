@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'deconvolution'
 ================================================================
-* Date:           Mon Aug 27 18:55:06 2018
+* Date:           Mon Aug 27 22:16:36 2018
 
 * Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
 * Project:        deconvo-algo
@@ -20,31 +20,34 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      8.51|        1.25|
+    |ap_clk  |  10.00|      7.42|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+---------+
-    |  Latency  |  Interval | Pipeline|
-    | min | max | min | max |   Type  |
-    +-----+-----+-----+-----+---------+
-    |    ?|    ?|    ?|    ?|   none  |
-    +-----+-----+-----+-----+---------+
+    +---------+---------+---------+---------+---------+
+    |      Latency      |      Interval     | Pipeline|
+    |   min   |   max   |   min   |   max   |   Type  |
+    +---------+---------+---------+---------+---------+
+    |  1151249|  1151249|  1151250|  1151250|   none  |
+    +---------+---------+---------+---------+---------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        +-----------------+-----+-----+----------+-----------+-----------+------+----------+
-        |                 |  Latency  | Iteration|  Initiation Interval  | Trip |          |
-        |    Loop Name    | min | max |  Latency |  achieved |   target  | Count| Pipelined|
-        +-----------------+-----+-----+----------+-----------+-----------+------+----------+
-        |- Loop 1         |    ?|    ?|        44|          -|          -|  inf |    no    |
-        | + Loop 1.1      |   42|   42|        14|          -|          -|     3|    no    |
-        |  ++ Loop 1.1.1  |   12|   12|         4|          -|          -|     3|    no    |
-        +-----------------+-----+-----+----------+-----------+-----------+------+----------+
+        +-----------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                             |      Latency      | Iteration|  Initiation Interval  | Trip |          |
+        |          Loop Name          |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop 1                     |  1151248|  1151248|    143906|          -|          -|     8|    no    |
+        | + Loop 1.1                  |   143904|   143904|      8994|          -|          -|    16|    no    |
+        |  ++ Loop 1.1.1              |     8992|     8992|       562|          -|          -|    16|    no    |
+        |   +++ Loop 1.1.1.1          |      560|      560|        35|          -|          -|    16|    no    |
+        |    ++++ Loop 1.1.1.1.1      |       33|       33|        11|          -|          -|     3|    no    |
+        |     +++++ Loop 1.1.1.1.1.1  |        9|        9|         3|          -|          -|     3|    no    |
+        +-----------------------------+---------+---------+----------+-----------+-----------+------+----------+
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -58,7 +61,7 @@ IsTopModel: 1
 ResetActiveHigh: 1
 IsCombinational: 0
 IsDatapathOnly: 0
-HasWiredReturn: 0
+HasWiredReturn: 1
 HasMFsm: 0
 HasVarLatency: 1
 IsPipeline: 0
@@ -72,7 +75,7 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 7
+* Number of FSM states: 9
 * Pipeline: 0
 * Dataflow Pipeline: 0
 
@@ -80,198 +83,341 @@ IsGatedGlobalClock: 0
 1 --> 
 	2  / true
 2 --> 
-	3  / true
+	3  / (!tmp)
 3 --> 
-	4  / (!tmp_2)
-	2  / (tmp_2)
+	4  / (!tmp_1)
+	2  / (tmp_1)
 4 --> 
-	5  / (!tmp_4)
-	3  / (tmp_4)
+	5  / (!tmp_3)
+	3  / (tmp_3)
 5 --> 
-	6  / true
+	6  / (!tmp_5)
+	4  / (tmp_5)
 6 --> 
-	7  / true
+	7  / (!tmp_7)
+	5  / (tmp_7)
 7 --> 
-	4  / true
+	8  / (!tmp_9)
+	6  / (tmp_9)
+8 --> 
+	9  / true
+9 --> 
+	7  / true
 * FSM state operations: 
 
  <State 1>: 1.77ns
-ST_1: ifeat_addr (4)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader6.preheader:0  %ifeat_addr = getelementptr [2048 x i32]* %ifeat, i32 0, i32 0
+ST_1: StgValue_10 (4)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap([1152 x i8]* %kernel_V), !map !37
 
-ST_1: StgValue_9 (5)  [1/1] 0.00ns
-.preheader6.preheader:1  call void (...)* @_ssdm_op_SpecBitsMap([1152 x i32]* %kernel) nounwind, !map !7
+ST_1: StgValue_11 (5)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap([2048 x i8]* %ifeat_V), !map !45
 
-ST_1: StgValue_10 (6)  [1/1] 0.00ns
-.preheader6.preheader:2  call void (...)* @_ssdm_op_SpecBitsMap([2048 x i32]* %ifeat) nounwind, !map !15
+ST_1: StgValue_12 (6)  [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap([5184 x i8]* %ofeat_V), !map !50
 
-ST_1: StgValue_11 (7)  [1/1] 0.00ns
-.preheader6.preheader:3  call void (...)* @_ssdm_op_SpecBitsMap([5184 x i32]* %ofeat) nounwind, !map !20
+ST_1: StgValue_13 (7)  [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecTopModule([14 x i8]* @deconvolution_str) nounwind
 
-ST_1: StgValue_12 (8)  [1/1] 0.00ns
-.preheader6.preheader:4  call void (...)* @_ssdm_op_SpecTopModule([14 x i8]* @deconvolution_str) nounwind
-
-ST_1: StgValue_13 (9)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:18
-.preheader6.preheader:5  br label %.preheader3.preheader
+ST_1: StgValue_14 (8)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:15
+:4  br label %.loopexit
 
 
- <State 2>: 2.55ns
-ST_2: oc (11)  [1/1] 0.00ns
-.preheader3.preheader:0  %oc = phi i32 [ 0, %.preheader6.preheader ], [ %oc_1, %.preheader3.preheader.loopexit ]
+ <State 2>: 1.77ns
+ST_2: id (10)  [1/1] 0.00ns
+.loopexit:0  %id = phi i4 [ 0, %0 ], [ %id_1, %.loopexit.loopexit ]
 
-ST_2: tmp (12)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23 (grouped into LUT with out node tmp_3)
-.preheader3.preheader:1  %tmp = shl i32 %oc, 5
+ST_2: id_cast8_cast (11)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:15
+.loopexit:1  %id_cast8_cast = zext i4 %id to i9
 
-ST_2: tmp_1 (13)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23 (grouped into LUT with out node tmp_3)
-.preheader3.preheader:2  %tmp_1 = shl i32 %oc, 3
+ST_2: tmp_2 (12)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:15
+.loopexit:2  %tmp_2 = call i8 @_ssdm_op_BitConcatenate.i8.i4.i4(i4 %id, i4 0)
 
-ST_2: tmp_3 (14)  [1/1] 2.55ns  loc: deconvo-algo/deconv-algo.cpp:23 (out node of the LUT)
-.preheader3.preheader:3  %tmp_3 = sub i32 %tmp, %tmp_1
+ST_2: tmp_4_cast (13)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:15
+.loopexit:3  %tmp_4_cast = zext i8 %tmp_2 to i9
 
-ST_2: tmp_5 (15)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23 (grouped into LUT with out node tmp_8)
-.preheader3.preheader:4  %tmp_5 = shl i32 %oc, 4
+ST_2: tmp (14)  [1/1] 1.30ns  loc: deconvo-algo/deconv-algo.cpp:15
+.loopexit:4  %tmp = icmp eq i4 %id, -8
 
-ST_2: tmp_7 (16)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23 (grouped into LUT with out node tmp_8)
-.preheader3.preheader:5  %tmp_7 = shl i32 %oc, 1
+ST_2: empty (15)  [1/1] 0.00ns
+.loopexit:5  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8)
 
-ST_2: tmp_8 (17)  [1/1] 2.55ns  loc: deconvo-algo/deconv-algo.cpp:23 (out node of the LUT)
-.preheader3.preheader:6  %tmp_8 = add i32 %tmp_7, %tmp_5
+ST_2: id_1 (16)  [1/1] 1.74ns  loc: deconvo-algo/deconv-algo.cpp:15
+.loopexit:6  %id_1 = add i4 %id, 1
 
-ST_2: oc_1 (18)  [1/1] 2.55ns  loc: deconvo-algo/deconv-algo.cpp:18
-.preheader3.preheader:7  %oc_1 = add i32 1, %oc
+ST_2: StgValue_22 (17)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:15
+.loopexit:7  br i1 %tmp, label %2, label %.preheader32.preheader
 
-ST_2: StgValue_22 (19)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:19
-.preheader3.preheader:8  br label %.preheader3
+ST_2: StgValue_23 (19)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader32.preheader:0  br label %.preheader32
 
-
- <State 3>: 4.59ns
-ST_3: p_or (21)  [1/1] 0.00ns
-.preheader3:0  %p_or = phi i2 [ 0, %.preheader3.preheader ], [ %kr, %.preheader3.loopexit ]
-
-ST_3: p_or_cast2 (22)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:19
-.preheader3:1  %p_or_cast2 = zext i2 %p_or to i32
-
-ST_3: tmp_9 (23)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:2  %tmp_9 = call i10 @_ssdm_op_PartSelect.i10.i32.i32.i32(i32 %tmp_3, i32 2, i32 11)
-
-ST_3: tmp_12_cast (24)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:3  %tmp_12_cast = call i12 @_ssdm_op_BitConcatenate.i12.i10.i2(i10 %tmp_9, i2 %p_or)
-
-ST_3: tmp_10 (25)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:4  %tmp_10 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %tmp_3, i32 2, i32 9)
-
-ST_3: p_shl6_cast (26)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:5  %p_shl6_cast = call i12 @_ssdm_op_BitConcatenate.i12.i8.i2.i2(i8 %tmp_10, i2 %p_or, i2 0)
-
-ST_3: tmp_s (27)  [1/1] 2.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:6  %tmp_s = sub i12 %p_shl6_cast, %tmp_12_cast
-
-ST_3: tmp_11 (28)  [1/1] 2.55ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:7  %tmp_11 = add i32 %tmp_8, %p_or_cast2
-
-ST_3: tmp_12 (29)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:8  %tmp_12 = trunc i32 %tmp_11 to i10
-
-ST_3: p_shl4_cast (30)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:9  %p_shl4_cast = call i14 @_ssdm_op_BitConcatenate.i14.i10.i4(i10 %tmp_12, i4 0)
-
-ST_3: tmp_13 (31)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:10  %tmp_13 = trunc i32 %tmp_11 to i13
-
-ST_3: p_shl5_cast (32)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:11  %p_shl5_cast = call i14 @_ssdm_op_BitConcatenate.i14.i13.i1(i13 %tmp_13, i1 false)
-
-ST_3: tmp_14 (33)  [1/1] 2.04ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader3:12  %tmp_14 = add i14 %p_shl5_cast, %p_shl4_cast
-
-ST_3: tmp_2 (34)  [1/1] 0.96ns  loc: deconvo-algo/deconv-algo.cpp:19
-.preheader3:13  %tmp_2 = icmp eq i2 %p_or, -1
-
-ST_3: empty (35)  [1/1] 0.00ns
-.preheader3:14  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 3, i64 3, i64 3) nounwind
-
-ST_3: kr (36)  [1/1] 1.56ns  loc: deconvo-algo/deconv-algo.cpp:19
-.preheader3:15  %kr = add i2 1, %p_or
-
-ST_3: StgValue_39 (37)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:19
-.preheader3:16  br i1 %tmp_2, label %.preheader3.preheader.loopexit, label %.preheader.preheader
-
-ST_3: StgValue_40 (39)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader.preheader:0  br label %.preheader
-
-ST_3: StgValue_41 (63)  [1/1] 0.00ns
-.preheader3.preheader.loopexit:0  br label %.preheader3.preheader
+ST_2: StgValue_24 (118)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:30
+:0  ret void
 
 
- <State 4>: 5.25ns
-ST_4: p_oc (41)  [1/1] 0.00ns
-.preheader:0  %p_oc = phi i2 [ %kc, %0 ], [ 0, %.preheader.preheader ]
+ <State 3>: 1.92ns
+ST_3: ir (21)  [1/1] 0.00ns
+.preheader32:0  %ir = phi i5 [ %ir_1, %.preheader32.loopexit ], [ 0, %.preheader32.preheader ]
 
-ST_4: p_oc_cast1_cast7 (42)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:1  %p_oc_cast1_cast7 = zext i2 %p_oc to i14
+ST_3: ir_cast7_cast (22)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader32:1  %ir_cast7_cast = zext i5 %ir to i9
 
-ST_4: p_oc_cast1_cast (43)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:2  %p_oc_cast1_cast = zext i2 %p_oc to i12
+ST_3: tmp_6 (23)  [1/1] 1.92ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader32:2  %tmp_6 = add i9 %ir_cast7_cast, %tmp_4_cast
 
-ST_4: tmp_15 (44)  [1/1] 2.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:3  %tmp_15 = add i12 %tmp_s, %p_oc_cast1_cast
+ST_3: tmp_10_cast (24)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:16
+.preheader32:3  %tmp_10_cast = call i13 @_ssdm_op_BitConcatenate.i13.i9.i4(i9 %tmp_6, i4 0)
 
-ST_4: tmp_19_cast (45)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:4  %tmp_19_cast = zext i12 %tmp_15 to i32
+ST_3: tmp_1 (25)  [1/1] 1.36ns  loc: deconvo-algo/deconv-algo.cpp:16
+.preheader32:4  %tmp_1 = icmp eq i5 %ir, -16
 
-ST_4: kernel_addr (46)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:5  %kernel_addr = getelementptr [1152 x i32]* %kernel, i32 0, i32 %tmp_19_cast
+ST_3: empty_2 (26)  [1/1] 0.00ns
+.preheader32:5  %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
 
-ST_4: tmp_16 (47)  [1/1] 2.04ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:6  %tmp_16 = add i14 %tmp_14, %p_oc_cast1_cast7
+ST_3: ir_1 (27)  [1/1] 1.78ns  loc: deconvo-algo/deconv-algo.cpp:16
+.preheader32:6  %ir_1 = add i5 %ir, 1
 
-ST_4: tmp_20_cast (48)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:7  %tmp_20_cast = zext i14 %tmp_16 to i32
+ST_3: StgValue_32 (28)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:16
+.preheader32:7  br i1 %tmp_1, label %.loopexit.loopexit, label %.preheader31.preheader
 
-ST_4: ofeat_addr (49)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
-.preheader:8  %ofeat_addr = getelementptr [5184 x i32]* %ofeat, i32 0, i32 %tmp_20_cast
+ST_3: StgValue_33 (30)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader31.preheader:0  br label %.preheader31
 
-ST_4: tmp_4 (50)  [1/1] 0.96ns  loc: deconvo-algo/deconv-algo.cpp:20
-.preheader:9  %tmp_4 = icmp eq i2 %p_oc, -1
-
-ST_4: empty_4 (51)  [1/1] 0.00ns
-.preheader:10  %empty_4 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 3, i64 3, i64 3) nounwind
-
-ST_4: kc (52)  [1/1] 1.56ns  loc: deconvo-algo/deconv-algo.cpp:20
-.preheader:11  %kc = add i2 %p_oc, 1
-
-ST_4: StgValue_54 (53)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:20
-.preheader:12  br i1 %tmp_4, label %.preheader3.loopexit, label %0
-
-ST_4: ifeat_load (55)  [2/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
-:0  %ifeat_load = load i32* %ifeat_addr, align 4
-
-ST_4: kernel_load (56)  [2/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
-:1  %kernel_load = load i32* %kernel_addr, align 4
-
-ST_4: StgValue_57 (61)  [1/1] 0.00ns
-.preheader3.loopexit:0  br label %.preheader3
+ST_3: StgValue_34 (116)  [1/1] 0.00ns
+.loopexit.loopexit:0  br label %.loopexit
 
 
- <State 5>: 3.25ns
-ST_5: ifeat_load (55)  [1/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
-:0  %ifeat_load = load i32* %ifeat_addr, align 4
+ <State 4>: 2.02ns
+ST_4: ic (32)  [1/1] 0.00ns
+.preheader31:0  %ic = phi i5 [ %ic_1, %.preheader31.loopexit ], [ 0, %.preheader31.preheader ]
 
-ST_5: kernel_load (56)  [1/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
-:1  %kernel_load = load i32* %kernel_addr, align 4
+ST_4: ic_cast6_cast (33)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader31:1  %ic_cast6_cast = zext i5 %ic to i13
+
+ST_4: tmp_4 (34)  [1/1] 2.02ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader31:2  %tmp_4 = add i13 %tmp_10_cast, %ic_cast6_cast
+
+ST_4: tmp_11_cast (35)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader31:3  %tmp_11_cast = zext i13 %tmp_4 to i32
+
+ST_4: ifeat_V_addr (36)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader31:4  %ifeat_V_addr = getelementptr [2048 x i8]* %ifeat_V, i32 0, i32 %tmp_11_cast
+
+ST_4: tmp_3 (37)  [1/1] 1.36ns  loc: deconvo-algo/deconv-algo.cpp:17
+.preheader31:5  %tmp_3 = icmp eq i5 %ic, -16
+
+ST_4: empty_3 (38)  [1/1] 0.00ns
+.preheader31:6  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
+
+ST_4: ic_1 (39)  [1/1] 1.78ns  loc: deconvo-algo/deconv-algo.cpp:17
+.preheader31:7  %ic_1 = add i5 %ic, 1
+
+ST_4: StgValue_43 (40)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:17
+.preheader31:8  br i1 %tmp_3, label %.preheader32.loopexit, label %.preheader30.preheader
+
+ST_4: StgValue_44 (42)  [1/1] 1.77ns
+.preheader30.preheader:0  br label %.preheader30
+
+ST_4: StgValue_45 (114)  [1/1] 0.00ns
+.preheader32.loopexit:0  br label %.preheader32
 
 
- <State 6>: 8.51ns
-ST_6: tmp_6 (57)  [1/1] 8.51ns  loc: deconvo-algo/deconv-algo.cpp:23
-:2  %tmp_6 = mul nsw i32 %kernel_load, %ifeat_load
+ <State 5>: 3.89ns
+ST_5: oc (44)  [1/1] 0.00ns
+.preheader30:0  %oc = phi i5 [ %oc_1, %.preheader30.loopexit ], [ 0, %.preheader30.preheader ]
+
+ST_5: tmp_8 (45)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:1  %tmp_8 = call i8 @_ssdm_op_BitConcatenate.i8.i5.i3(i5 %oc, i3 0)
+
+ST_5: tmp_13_cast (46)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:2  %tmp_13_cast = zext i8 %tmp_8 to i9
+
+ST_5: tmp_10 (47)  [1/1] 1.92ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:3  %tmp_10 = add i9 %tmp_13_cast, %id_cast8_cast
+
+ST_5: tmp_14_cast (48)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:4  %tmp_14_cast = zext i9 %tmp_10 to i32
+
+ST_5: tmp_11 (49)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:5  %tmp_11 = call i11 @_ssdm_op_BitConcatenate.i11.i9.i2(i9 %tmp_10, i2 0)
+
+ST_5: p_shl2 (50)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:6  %p_shl2 = zext i11 %tmp_11 to i32
+
+ST_5: tmp_12 (51)  [1/1] 1.98ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:7  %tmp_12 = sub i32 %p_shl2, %tmp_14_cast
+
+ST_5: tmp_13 (52)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:8  %tmp_13 = call i9 @_ssdm_op_BitConcatenate.i9.i5.i4(i5 %oc, i4 0)
+
+ST_5: p_shl_cast (53)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:9  %p_shl_cast = zext i9 %tmp_13 to i10
+
+ST_5: tmp_14 (54)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:10  %tmp_14 = call i6 @_ssdm_op_BitConcatenate.i6.i5.i1(i5 %oc, i1 false)
+
+ST_5: p_shl1_cast (55)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:11  %p_shl1_cast = zext i6 %tmp_14 to i10
+
+ST_5: tmp_15 (56)  [1/1] 1.94ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader30:12  %tmp_15 = add i10 %p_shl1_cast, %p_shl_cast
+
+ST_5: tmp_5 (57)  [1/1] 1.36ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:13  %tmp_5 = icmp eq i5 %oc, -16
+
+ST_5: empty_4 (58)  [1/1] 0.00ns
+.preheader30:14  %empty_4 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
+
+ST_5: oc_1 (59)  [1/1] 1.78ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:15  %oc_1 = add i5 %oc, 1
+
+ST_5: StgValue_62 (60)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:18
+.preheader30:16  br i1 %tmp_5, label %.preheader31.loopexit, label %.preheader29.preheader
+
+ST_5: StgValue_63 (62)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:19
+.preheader29.preheader:0  br label %.preheader29
+
+ST_5: StgValue_64 (112)  [1/1] 0.00ns
+.preheader31.loopexit:0  br label %.preheader31
 
 
- <State 7>: 3.25ns
-ST_7: StgValue_61 (58)  [1/1] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
-:3  store i32 %tmp_6, i32* %ofeat_addr, align 4
+ <State 6>: 5.77ns
+ST_6: kr (64)  [1/1] 0.00ns
+.preheader29:0  %kr = phi i2 [ %kr_1, %.preheader29.loopexit ], [ 0, %.preheader29.preheader ]
 
-ST_7: StgValue_62 (59)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:20
-:4  br label %.preheader
+ST_6: kr_cast4 (65)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:19
+.preheader29:1  %kr_cast4 = zext i2 %kr to i5
+
+ST_6: kr_cast3 (66)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:19
+.preheader29:2  %kr_cast3 = zext i2 %kr to i32
+
+ST_6: tmp_16 (67)  [1/1] 2.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader29:3  %tmp_16 = add i32 %tmp_12, %kr_cast3
+
+ST_6: tmp_17 (68)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader29:4  %tmp_17 = trunc i32 %tmp_16 to i12
+
+ST_6: tmp_18 (69)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader29:5  %tmp_18 = trunc i32 %tmp_16 to i10
+
+ST_6: p_shl3_cast (70)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader29:6  %p_shl3_cast = call i12 @_ssdm_op_BitConcatenate.i12.i10.i2(i10 %tmp_18, i2 0)
+
+ST_6: tmp_19 (71)  [1/1] 2.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader29:7  %tmp_19 = sub i12 %p_shl3_cast, %tmp_17
+
+ST_6: tmp_7 (72)  [1/1] 0.96ns  loc: deconvo-algo/deconv-algo.cpp:19
+.preheader29:8  %tmp_7 = icmp eq i2 %kr, -1
+
+ST_6: empty_5 (73)  [1/1] 0.00ns
+.preheader29:9  %empty_5 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 3, i64 3, i64 3)
+
+ST_6: kr_1 (74)  [1/1] 1.56ns  loc: deconvo-algo/deconv-algo.cpp:19
+.preheader29:10  %kr_1 = add i2 1, %kr
+
+ST_6: StgValue_76 (75)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:19
+.preheader29:11  br i1 %tmp_7, label %.preheader30.loopexit, label %.preheader.preheader
+
+ST_6: p_or (77)  [1/1] 1.78ns  loc: deconvo-algo/deconv-algo.cpp:21
+.preheader.preheader:0  %p_or = add i5 %kr_cast4, %ir
+
+ST_6: p_or_cast_cast (78)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader.preheader:1  %p_or_cast_cast = zext i5 %p_or to i10
+
+ST_6: tmp_20 (79)  [1/1] 1.96ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader.preheader:2  %tmp_20 = add i10 %p_or_cast_cast, %tmp_15
+
+ST_6: p_shl4_cast (80)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader.preheader:3  %p_shl4_cast = call i14 @_ssdm_op_BitConcatenate.i14.i10.i4(i10 %tmp_20, i4 0)
+
+ST_6: tmp_21 (81)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader.preheader:4  %tmp_21 = call i11 @_ssdm_op_BitConcatenate.i11.i10.i1(i10 %tmp_20, i1 false)
+
+ST_6: p_shl5_cast (82)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader.preheader:5  %p_shl5_cast = zext i11 %tmp_21 to i14
+
+ST_6: tmp_22 (83)  [1/1] 2.04ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader.preheader:6  %tmp_22 = add i14 %p_shl4_cast, %p_shl5_cast
+
+ST_6: StgValue_84 (84)  [1/1] 1.77ns  loc: deconvo-algo/deconv-algo.cpp:20
+.preheader.preheader:7  br label %.preheader
+
+ST_6: StgValue_85 (110)  [1/1] 0.00ns
+.preheader30.loopexit:0  br label %.preheader30
+
+
+ <State 7>: 5.25ns
+ST_7: kc (86)  [1/1] 0.00ns
+.preheader:0  %kc = phi i2 [ %kc_1, %1 ], [ 0, %.preheader.preheader ]
+
+ST_7: kc_cast2 (87)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:20
+.preheader:1  %kc_cast2 = zext i2 %kc to i5
+
+ST_7: kc_cast1_cast (88)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader:2  %kc_cast1_cast = zext i2 %kc to i12
+
+ST_7: tmp_23 (89)  [1/1] 2.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader:3  %tmp_23 = add i12 %tmp_19, %kc_cast1_cast
+
+ST_7: tmp_27_cast (90)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader:4  %tmp_27_cast = zext i12 %tmp_23 to i32
+
+ST_7: kernel_V_addr (91)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+.preheader:5  %kernel_V_addr = getelementptr [1152 x i8]* %kernel_V, i32 0, i32 %tmp_27_cast
+
+ST_7: tmp_9 (92)  [1/1] 0.96ns  loc: deconvo-algo/deconv-algo.cpp:20
+.preheader:6  %tmp_9 = icmp eq i2 %kc, -1
+
+ST_7: empty_6 (93)  [1/1] 0.00ns
+.preheader:7  %empty_6 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 3, i64 3, i64 3)
+
+ST_7: kc_1 (94)  [1/1] 1.56ns  loc: deconvo-algo/deconv-algo.cpp:20
+.preheader:8  %kc_1 = add i2 %kc, 1
+
+ST_7: StgValue_95 (95)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:20
+.preheader:9  br i1 %tmp_9, label %.preheader29.loopexit, label %1
+
+ST_7: p_oc (97)  [1/1] 1.78ns  loc: deconvo-algo/deconv-algo.cpp:22
+:0  %p_oc = add i5 %ic, %kc_cast2
+
+ST_7: p_oc_cast_cast (98)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+:1  %p_oc_cast_cast = zext i5 %p_oc to i14
+
+ST_7: tmp_24 (99)  [1/1] 2.04ns  loc: deconvo-algo/deconv-algo.cpp:23
+:2  %tmp_24 = add i14 %tmp_22, %p_oc_cast_cast
+
+ST_7: ifeat_V_load (102)  [2/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
+:5  %ifeat_V_load = load i8* %ifeat_V_addr, align 1
+
+ST_7: kernel_V_load (103)  [2/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
+:6  %kernel_V_load = load i8* %kernel_V_addr, align 1
+
+ST_7: StgValue_101 (108)  [1/1] 0.00ns
+.preheader29.loopexit:0  br label %.preheader29
+
+
+ <State 8>: 7.42ns
+ST_8: ifeat_V_load (102)  [1/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
+:5  %ifeat_V_load = load i8* %ifeat_V_addr, align 1
+
+ST_8: kernel_V_load (103)  [1/2] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
+:6  %kernel_V_load = load i8* %kernel_V_addr, align 1
+
+ST_8: tmp_s (104)  [1/1] 4.17ns  loc: deconvo-algo/deconv-algo.cpp:23
+:7  %tmp_s = mul i8 %ifeat_V_load, %kernel_V_load
+
+
+ <State 9>: 3.25ns
+ST_9: tmp_28_cast (100)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+:3  %tmp_28_cast = zext i14 %tmp_24 to i32
+
+ST_9: ofeat_V_addr (101)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:23
+:4  %ofeat_V_addr = getelementptr [5184 x i8]* %ofeat_V, i32 0, i32 %tmp_28_cast
+
+ST_9: StgValue_107 (105)  [1/1] 3.25ns  loc: deconvo-algo/deconv-algo.cpp:23
+:8  store i8 %tmp_s, i8* %ofeat_V_addr, align 1
+
+ST_9: StgValue_108 (106)  [1/1] 0.00ns  loc: deconvo-algo/deconv-algo.cpp:20
+:9  br label %.preheader
 
 
 
@@ -282,38 +428,51 @@ Target clock period: 10ns, clock uncertainty: 1.25ns.
 
  <State 1>: 1.77ns
 The critical path consists of the following:
-	multiplexor before 'phi' operation ('oc') with incoming values : ('oc', deconvo-algo/deconv-algo.cpp:18) [11]  (1.77 ns)
+	multiplexor before 'phi' operation ('id') with incoming values : ('id', deconvo-algo/deconv-algo.cpp:15) [10]  (1.77 ns)
 
- <State 2>: 2.55ns
+ <State 2>: 1.77ns
 The critical path consists of the following:
-	'phi' operation ('oc') with incoming values : ('oc', deconvo-algo/deconv-algo.cpp:18) [11]  (0 ns)
-	'shl' operation ('tmp_5', deconvo-algo/deconv-algo.cpp:23) [15]  (0 ns)
-	'add' operation ('tmp_8', deconvo-algo/deconv-algo.cpp:23) [17]  (2.55 ns)
+	multiplexor before 'phi' operation ('ir') with incoming values : ('ir', deconvo-algo/deconv-algo.cpp:16) [21]  (1.77 ns)
 
- <State 3>: 4.59ns
+ <State 3>: 1.92ns
 The critical path consists of the following:
-	'phi' operation ('kr') with incoming values : ('kr', deconvo-algo/deconv-algo.cpp:19) [21]  (0 ns)
-	'add' operation ('tmp_11', deconvo-algo/deconv-algo.cpp:23) [28]  (2.55 ns)
-	'add' operation ('tmp_14', deconvo-algo/deconv-algo.cpp:23) [33]  (2.04 ns)
+	'phi' operation ('ir') with incoming values : ('ir', deconvo-algo/deconv-algo.cpp:16) [21]  (0 ns)
+	'add' operation ('tmp_6', deconvo-algo/deconv-algo.cpp:23) [23]  (1.92 ns)
 
- <State 4>: 5.25ns
+ <State 4>: 2.02ns
 The critical path consists of the following:
-	'phi' operation ('kc') with incoming values : ('kc', deconvo-algo/deconv-algo.cpp:20) [41]  (0 ns)
-	'add' operation ('tmp_15', deconvo-algo/deconv-algo.cpp:23) [44]  (2 ns)
-	'getelementptr' operation ('kernel_addr', deconvo-algo/deconv-algo.cpp:23) [46]  (0 ns)
-	'load' operation ('kernel_load', deconvo-algo/deconv-algo.cpp:23) on array 'kernel' [56]  (3.25 ns)
+	'phi' operation ('ic') with incoming values : ('ic', deconvo-algo/deconv-algo.cpp:17) [32]  (0 ns)
+	'add' operation ('tmp_4', deconvo-algo/deconv-algo.cpp:23) [34]  (2.02 ns)
 
- <State 5>: 3.25ns
+ <State 5>: 3.89ns
 The critical path consists of the following:
-	'load' operation ('ifeat_load', deconvo-algo/deconv-algo.cpp:23) on array 'ifeat' [55]  (3.25 ns)
+	'phi' operation ('oc') with incoming values : ('oc', deconvo-algo/deconv-algo.cpp:18) [44]  (0 ns)
+	'add' operation ('tmp_10', deconvo-algo/deconv-algo.cpp:23) [47]  (1.92 ns)
+	'sub' operation ('tmp_12', deconvo-algo/deconv-algo.cpp:23) [51]  (1.98 ns)
 
- <State 6>: 8.51ns
+ <State 6>: 5.77ns
 The critical path consists of the following:
-	'mul' operation ('tmp_6', deconvo-algo/deconv-algo.cpp:23) [57]  (8.51 ns)
+	'phi' operation ('kr') with incoming values : ('kr', deconvo-algo/deconv-algo.cpp:19) [64]  (0 ns)
+	'add' operation ('_or', deconvo-algo/deconv-algo.cpp:21) [77]  (1.78 ns)
+	'add' operation ('tmp_20', deconvo-algo/deconv-algo.cpp:23) [79]  (1.96 ns)
+	'add' operation ('tmp_22', deconvo-algo/deconv-algo.cpp:23) [83]  (2.04 ns)
 
- <State 7>: 3.25ns
+ <State 7>: 5.25ns
 The critical path consists of the following:
-	'store' operation (deconvo-algo/deconv-algo.cpp:23) of variable 'tmp_6', deconvo-algo/deconv-algo.cpp:23 on array 'ofeat' [58]  (3.25 ns)
+	'phi' operation ('kc') with incoming values : ('kc', deconvo-algo/deconv-algo.cpp:20) [86]  (0 ns)
+	'add' operation ('tmp_23', deconvo-algo/deconv-algo.cpp:23) [89]  (2 ns)
+	'getelementptr' operation ('kernel_V_addr', deconvo-algo/deconv-algo.cpp:23) [91]  (0 ns)
+	'load' operation ('kernel_V_load', deconvo-algo/deconv-algo.cpp:23) on array 'kernel_V' [103]  (3.25 ns)
+
+ <State 8>: 7.42ns
+The critical path consists of the following:
+	'load' operation ('ifeat_V_load', deconvo-algo/deconv-algo.cpp:23) on array 'ifeat_V' [102]  (3.25 ns)
+	'mul' operation ('tmp_s', deconvo-algo/deconv-algo.cpp:23) [104]  (4.17 ns)
+
+ <State 9>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('ofeat_V_addr', deconvo-algo/deconv-algo.cpp:23) [101]  (0 ns)
+	'store' operation (deconvo-algo/deconv-algo.cpp:23) of variable 'tmp_s', deconvo-algo/deconv-algo.cpp:23 on array 'ofeat_V' [105]  (3.25 ns)
 
 
 ============================================================
@@ -331,6 +490,8 @@ N/A
 	State 5
 	State 6
 	State 7
+	State 8
+	State 9
 
 
 ============================================================

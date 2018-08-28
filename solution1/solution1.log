@@ -7,18 +7,16 @@ Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Analyzing design file 'deconvo-algo/deconv-algo.cpp' ... 
 INFO: [HLS 200-10] Validating synthesis directives ...
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 95.375 ; gain = 45.883
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 95.395 ; gain = 45.902
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:02 ; elapsed = 00:00:14 . Memory (MB): peak = 96.008 ; gain = 46.391
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:02 ; elapsed = 00:00:15 . Memory (MB): peak = 96.027 ; gain = 46.410
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 97.004 ; gain = 47.512
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:15 . Memory (MB): peak = 102.520 ; gain = 52.902
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 97.227 ; gain = 47.734
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 119.059 ; gain = 69.566
-WARNING: [XFORM 203-561] 'Loop-1' (deconvo-algo/deconv-algo.cpp:19:29) in function 'deconvolution' is an infinite loop.
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 119.059 ; gain = 69.566
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:15 . Memory (MB): peak = 106.039 ; gain = 56.422
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:15 . Memory (MB): peak = 131.641 ; gain = 82.023
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:15 . Memory (MB): peak = 133.660 ; gain = 84.043
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'deconvolution' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -26,24 +24,24 @@ INFO: [HLS 200-42] -- Implementing module 'deconvolution'
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 3.361 seconds; current allocated memory: 72.990 MB.
+INFO: [HLS 200-111]  Elapsed time: 15.446 seconds; current allocated memory: 86.643 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.055 seconds; current allocated memory: 73.192 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.106 seconds; current allocated memory: 86.985 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'deconvolution' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'deconvolution/kernel' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'deconvolution/ifeat' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'deconvolution/ofeat' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'deconvolution/kernel_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'deconvolution/ifeat_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'deconvolution/ofeat_V' to 'ap_memory'.
 INFO: [RTGEN 206-500] Setting interface mode on function 'deconvolution' to 'ap_ctrl_hs'.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'deconvolution'.
-INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 73.590 MB.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:01 ; elapsed = 00:00:04 . Memory (MB): peak = 119.059 ; gain = 69.566
+INFO: [HLS 200-111]  Elapsed time: 0.148 seconds; current allocated memory: 87.489 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:04 ; elapsed = 00:00:16 . Memory (MB): peak = 133.660 ; gain = 84.043
 INFO: [SYSC 207-301] Generating SystemC RTL for deconvolution.
 INFO: [VHDL 208-304] Generating VHDL RTL for deconvolution.
 INFO: [VLOG 209-307] Generating Verilog RTL for deconvolution.
-INFO: [HLS 200-112] Total elapsed time: 3.96 seconds; peak allocated memory: 73.590 MB.
+INFO: [HLS 200-112] Total elapsed time: 16.493 seconds; peak allocated memory: 87.489 MB.
