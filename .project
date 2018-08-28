@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>deconvolution-in-cpu</name>
+	<name>deconvo-algo</name>
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<triggers>clean,full,incremental,</triggers>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -18,10 +19,57 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.xilinx.sdsoc.core.sdsocnature</nature>
+		<nature>com.autoesl.autopilot.ui.AutopilotNature</nature>
 		<nature>org.eclipse.cdt.core.cnature</nature>
-		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.core.ccnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>source</name>
+			<type>2</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/.apc/.src</location>
+		</link>
+		<link>
+			<name>testbench</name>
+			<type>2</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/.apc/.tb</location>
+		</link>
+		<link>
+			<name>solution1/constraints</name>
+			<type>2</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/solution1/.tcls</location>
+		</link>
+		<link>
+			<name>source/deconv-algo.cpp</name>
+			<type>1</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/deconv-algo.cpp</location>
+		</link>
+		<link>
+			<name>source/deconv-algo.h</name>
+			<type>1</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/deconv-algo.h</location>
+		</link>
+		<link>
+			<name>testbench/deconv-tb.cpp</name>
+			<type>1</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/deconv-tb.cpp</location>
+		</link>
+		<link>
+			<name>solution1/constraints/.xml.directive</name>
+			<type>1</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/solution1/solution1.directive</location>
+		</link>
+		<link>
+			<name>solution1/constraints/directives.tcl</name>
+			<type>1</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/solution1/directives.tcl</location>
+		</link>
+		<link>
+			<name>solution1/constraints/script.tcl</name>
+			<type>1</type>
+			<location>C:/Users/Jack/workspace/deconvo-algo/solution1/script.tcl</location>
+		</link>
+	</linkedResources>
 </projectDescription>

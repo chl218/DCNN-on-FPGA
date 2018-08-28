@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<sdsproject:SDSProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdsproject="http://www.xilinx.com/sdsproject" name="deconvolution-in-cpu" location="C:/Users/Jack/workspace/deconvolution-in-cpu" platform="zed" sysConfig="linux" runtime="C/C++" cpu="a9_0" os="linux" ConfigType="Debug">
-  <configuration name="Debug" id="com.xilinx.sdsoc.managedbuild.project.debug.744152139">
-    <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" genbitstream="true" gensdcard="true" dmclkid="1" enableHwSwTrace="false" traceApplication="false"/>
-  </configuration>
-  <configuration name="Release" id="com.xilinx.sdsoc.managedbuild.project.release.2065080157">
-    <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" genbitstream="true" gensdcard="true" dmclkid="1" enableHwSwTrace="false" traceApplication="false"/>
-  </configuration>
-</sdsproject:SDSProject>

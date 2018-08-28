@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="deconv-algo.cpp" path="C:\Users\Jack\workspace\deconvo-algo\deconv-algo.cpp"/>
+    <originFiles name="deconv-algo.h" path="C:\Users\Jack\workspace\deconvo-algo\deconv-algo.h"/>
+  </source>
+  <testbench>
+    <originFiles name="deconv-tb.cpp" path="C:\Users\Jack\workspace\deconvo-algo\deconv-tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

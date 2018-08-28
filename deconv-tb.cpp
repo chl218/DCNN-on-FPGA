@@ -99,7 +99,7 @@ void write_to_file(std::string filename, int which,
 				}
 				out << '\n';
 			}
-	}
+	} // end-switch
 
 	out.close();
 }
