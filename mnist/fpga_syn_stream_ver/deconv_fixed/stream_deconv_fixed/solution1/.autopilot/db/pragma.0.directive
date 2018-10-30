@@ -1,0 +1,186 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="_extend_stream_1" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="buffer"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_1" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="in_buf"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_1" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_wt_kernel_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_2" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="buffer"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_extend_stream_2" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="layer2_kernel"/>
+<option name="cyclic" positionalBoolean="type" value=""/>
+<option name="factor" value="16"/>
+<option name="dim" value="3"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="layer2_matrix"/>
+<option name="cyclic" positionalBoolean="type" value=""/>
+<option name="factor" value="16"/>
+<option name="dim" value="3"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="layer2_bias"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="in_buf"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_2" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="_wt_kernel_3" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_3" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="in_buf"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_3" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_3" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream_deconv_3" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="deconv" label="">
+<pragma name="DATAFLOW"/>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

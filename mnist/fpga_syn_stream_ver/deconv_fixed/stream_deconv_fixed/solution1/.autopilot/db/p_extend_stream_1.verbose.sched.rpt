@@ -1,0 +1,1080 @@
+
+
+================================================================
+== Vivado HLS Report for 'p_extend_stream_1'
+================================================================
+* Date:           Thu Oct 18 23:39:48 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        stream_deconv_fixed
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      2.32|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  548|  548|  548|  548|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- L_RD    |   32|   32|         2|          1|          1|    32|    yes   |
+        |- L_REP   |  512|  512|        33|         32|          1|    16|    yes   |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+  * Pipeline-1: initiation interval (II) = 32, depth = 33
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 38
+* Pipeline: 2
+  Pipeline-0: II = 1, D = 2, States = { 2 3 }
+  Pipeline-1: II = 32, D = 33, States = { 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	4  / (exitcond)
+	3  / (!exitcond)
+3 --> 
+	2  / true
+4 --> 
+	5  / true
+5 --> 
+	38  / (exitcond3)
+	6  / (!exitcond3)
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	22  / true
+22 --> 
+	23  / true
+23 --> 
+	24  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+	27  / true
+27 --> 
+	28  / true
+28 --> 
+	29  / true
+29 --> 
+	30  / true
+30 --> 
+	31  / true
+31 --> 
+	32  / true
+32 --> 
+	33  / true
+33 --> 
+	34  / true
+34 --> 
+	35  / true
+35 --> 
+	36  / true
+36 --> 
+	37  / true
+37 --> 
+	5  / true
+38 --> 
+* FSM state operations: 
+
+ <State 1>: 1.77ns
+ST_1: tmp_V (3)  [1/1] 0.00ns
+:0  %tmp_V = alloca i18
+
+ST_1: tmp_V_154 (4)  [1/1] 0.00ns
+:1  %tmp_V_154 = alloca i18
+
+ST_1: tmp_V_153 (5)  [1/1] 0.00ns
+:2  %tmp_V_153 = alloca i18
+
+ST_1: tmp_V_152 (6)  [1/1] 0.00ns
+:3  %tmp_V_152 = alloca i18
+
+ST_1: tmp_V_151 (7)  [1/1] 0.00ns
+:4  %tmp_V_151 = alloca i18
+
+ST_1: tmp_V_150 (8)  [1/1] 0.00ns
+:5  %tmp_V_150 = alloca i18
+
+ST_1: tmp_V_149 (9)  [1/1] 0.00ns
+:6  %tmp_V_149 = alloca i18
+
+ST_1: tmp_V_148 (10)  [1/1] 0.00ns
+:7  %tmp_V_148 = alloca i18
+
+ST_1: tmp_V_147 (11)  [1/1] 0.00ns
+:8  %tmp_V_147 = alloca i18
+
+ST_1: tmp_V_146 (12)  [1/1] 0.00ns
+:9  %tmp_V_146 = alloca i18
+
+ST_1: tmp_V_145 (13)  [1/1] 0.00ns
+:10  %tmp_V_145 = alloca i18
+
+ST_1: tmp_V_144 (14)  [1/1] 0.00ns
+:11  %tmp_V_144 = alloca i18
+
+ST_1: tmp_V_143 (15)  [1/1] 0.00ns
+:12  %tmp_V_143 = alloca i18
+
+ST_1: tmp_V_142 (16)  [1/1] 0.00ns
+:13  %tmp_V_142 = alloca i18
+
+ST_1: tmp_V_141 (17)  [1/1] 0.00ns
+:14  %tmp_V_141 = alloca i18
+
+ST_1: tmp_V_140 (18)  [1/1] 0.00ns
+:15  %tmp_V_140 = alloca i18
+
+ST_1: tmp_V_139 (19)  [1/1] 0.00ns
+:16  %tmp_V_139 = alloca i18
+
+ST_1: tmp_V_138 (20)  [1/1] 0.00ns
+:17  %tmp_V_138 = alloca i18
+
+ST_1: tmp_V_137 (21)  [1/1] 0.00ns
+:18  %tmp_V_137 = alloca i18
+
+ST_1: tmp_V_136 (22)  [1/1] 0.00ns
+:19  %tmp_V_136 = alloca i18
+
+ST_1: tmp_V_135 (23)  [1/1] 0.00ns
+:20  %tmp_V_135 = alloca i18
+
+ST_1: tmp_V_134 (24)  [1/1] 0.00ns
+:21  %tmp_V_134 = alloca i18
+
+ST_1: tmp_V_133 (25)  [1/1] 0.00ns
+:22  %tmp_V_133 = alloca i18
+
+ST_1: tmp_V_132 (26)  [1/1] 0.00ns
+:23  %tmp_V_132 = alloca i18
+
+ST_1: tmp_V_131 (27)  [1/1] 0.00ns
+:24  %tmp_V_131 = alloca i18
+
+ST_1: tmp_V_130 (28)  [1/1] 0.00ns
+:25  %tmp_V_130 = alloca i18
+
+ST_1: tmp_V_129 (29)  [1/1] 0.00ns
+:26  %tmp_V_129 = alloca i18
+
+ST_1: tmp_V_128 (30)  [1/1] 0.00ns
+:27  %tmp_V_128 = alloca i18
+
+ST_1: tmp_V_127 (31)  [1/1] 0.00ns
+:28  %tmp_V_127 = alloca i18
+
+ST_1: tmp_V_126 (32)  [1/1] 0.00ns
+:29  %tmp_V_126 = alloca i18
+
+ST_1: tmp_V_125 (33)  [1/1] 0.00ns
+:30  %tmp_V_125 = alloca i18
+
+ST_1: tmp_V_155 (34)  [1/1] 0.00ns
+:31  %tmp_V_155 = alloca i18
+
+ST_1: empty (35)  [1/1] 0.00ns
+:32  %empty = call i32 (...)* @_ssdm_op_SpecInterface(i18* %stream_o_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)
+
+ST_1: empty_160 (36)  [1/1] 0.00ns
+:33  %empty_160 = call i32 (...)* @_ssdm_op_SpecInterface(i18* %stream_i_0_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)
+
+ST_1: StgValue_73 (37)  [1/1] 1.77ns  loc: stream_deconv_fixed.cpp:41
+:34  br label %1
+
+
+ <State 2>: 1.83ns
+ST_2: p_3 (39)  [1/1] 0.00ns
+:0  %p_3 = phi i6 [ 0, %0 ], [ %oc_V, %branch0 ]
+
+ST_2: exitcond (40)  [1/1] 1.43ns  loc: stream_deconv_fixed.cpp:41
+:1  %exitcond = icmp eq i6 %p_3, -32
+
+ST_2: oc_V (41)  [1/1] 1.83ns  loc: stream_deconv_fixed.cpp:41
+:2  %oc_V = add i6 %p_3, 1
+
+ST_2: StgValue_77 (42)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:41
+:3  br i1 %exitcond, label %.preheader.preheader, label %2
+
+ST_2: tmp_223 (49)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:41
+:5  %tmp_223 = trunc i6 %p_3 to i5
+
+ST_2: StgValue_79 (50)  [1/1] 1.49ns  loc: stream_deconv_fixed.cpp:43
+:6  switch i5 %tmp_223, label %branch31 [
+    i5 0, label %branch0.pre
+    i5 1, label %branch1
+    i5 2, label %branch2
+    i5 3, label %branch3
+    i5 4, label %branch4
+    i5 5, label %branch5
+    i5 6, label %branch6
+    i5 7, label %branch7
+    i5 8, label %branch8
+    i5 9, label %branch9
+    i5 10, label %branch10
+    i5 11, label %branch11
+    i5 12, label %branch12
+    i5 13, label %branch13
+    i5 14, label %branch14
+    i5 15, label %branch15
+    i5 -16, label %branch16
+    i5 -15, label %branch17
+    i5 -14, label %branch18
+    i5 -13, label %branch19
+    i5 -12, label %branch20
+    i5 -11, label %branch21
+    i5 -10, label %branch22
+    i5 -9, label %branch23
+    i5 -8, label %branch24
+    i5 -7, label %branch25
+    i5 -6, label %branch26
+    i5 -5, label %branch27
+    i5 -4, label %branch28
+    i5 -3, label %branch29
+    i5 -2, label %branch30
+  ]
+
+ST_2: StgValue_80 (53)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch30:1  br label %branch0
+
+ST_2: StgValue_81 (56)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch29:1  br label %branch0
+
+ST_2: StgValue_82 (59)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch28:1  br label %branch0
+
+ST_2: StgValue_83 (62)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch27:1  br label %branch0
+
+ST_2: StgValue_84 (65)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch26:1  br label %branch0
+
+ST_2: StgValue_85 (68)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch25:1  br label %branch0
+
+ST_2: StgValue_86 (71)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch24:1  br label %branch0
+
+ST_2: StgValue_87 (74)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch23:1  br label %branch0
+
+ST_2: StgValue_88 (77)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch22:1  br label %branch0
+
+ST_2: StgValue_89 (80)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch21:1  br label %branch0
+
+ST_2: StgValue_90 (83)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch20:1  br label %branch0
+
+ST_2: StgValue_91 (86)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch19:1  br label %branch0
+
+ST_2: StgValue_92 (89)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch18:1  br label %branch0
+
+ST_2: StgValue_93 (92)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch17:1  br label %branch0
+
+ST_2: StgValue_94 (95)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch16:1  br label %branch0
+
+ST_2: StgValue_95 (98)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch15:1  br label %branch0
+
+ST_2: StgValue_96 (101)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch14:1  br label %branch0
+
+ST_2: StgValue_97 (104)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch13:1  br label %branch0
+
+ST_2: StgValue_98 (107)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch12:1  br label %branch0
+
+ST_2: StgValue_99 (110)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch11:1  br label %branch0
+
+ST_2: StgValue_100 (113)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch10:1  br label %branch0
+
+ST_2: StgValue_101 (116)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch9:1  br label %branch0
+
+ST_2: StgValue_102 (119)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch8:1  br label %branch0
+
+ST_2: StgValue_103 (122)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch7:1  br label %branch0
+
+ST_2: StgValue_104 (125)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch6:1  br label %branch0
+
+ST_2: StgValue_105 (128)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch5:1  br label %branch0
+
+ST_2: StgValue_106 (131)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch4:1  br label %branch0
+
+ST_2: StgValue_107 (134)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch3:1  br label %branch0
+
+ST_2: StgValue_108 (137)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch2:1  br label %branch0
+
+ST_2: StgValue_109 (140)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch1:1  br label %branch0
+
+ST_2: StgValue_110 (143)  [1/1] 0.00ns
+branch0.pre:1  br label %branch0
+
+ST_2: StgValue_111 (146)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch31:1  br label %branch0
+
+
+ <State 3>: 2.32ns
+ST_3: empty_161 (44)  [1/1] 0.00ns
+:0  %empty_161 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 32, i64 32, i64 32)
+
+ST_3: StgValue_113 (45)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:41
+:1  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str31) nounwind
+
+ST_3: tmp (46)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:41
+:2  %tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str31)
+
+ST_3: StgValue_115 (47)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:42
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_3: tmp_V_157 (48)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:43
+:4  %tmp_V_157 = call i18 @_ssdm_op_Read.ap_fifo.volatile.i18P(i18* %stream_i_0_V_V)
+
+ST_3: StgValue_117 (52)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch30:0  store i18 %tmp_V_157, i18* %tmp_V_125
+
+ST_3: StgValue_118 (55)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch29:0  store i18 %tmp_V_157, i18* %tmp_V_126
+
+ST_3: StgValue_119 (58)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch28:0  store i18 %tmp_V_157, i18* %tmp_V_127
+
+ST_3: StgValue_120 (61)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch27:0  store i18 %tmp_V_157, i18* %tmp_V_128
+
+ST_3: StgValue_121 (64)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch26:0  store i18 %tmp_V_157, i18* %tmp_V_129
+
+ST_3: StgValue_122 (67)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch25:0  store i18 %tmp_V_157, i18* %tmp_V_130
+
+ST_3: StgValue_123 (70)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch24:0  store i18 %tmp_V_157, i18* %tmp_V_131
+
+ST_3: StgValue_124 (73)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch23:0  store i18 %tmp_V_157, i18* %tmp_V_132
+
+ST_3: StgValue_125 (76)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch22:0  store i18 %tmp_V_157, i18* %tmp_V_133
+
+ST_3: StgValue_126 (79)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch21:0  store i18 %tmp_V_157, i18* %tmp_V_134
+
+ST_3: StgValue_127 (82)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch20:0  store i18 %tmp_V_157, i18* %tmp_V_135
+
+ST_3: StgValue_128 (85)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch19:0  store i18 %tmp_V_157, i18* %tmp_V_136
+
+ST_3: StgValue_129 (88)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch18:0  store i18 %tmp_V_157, i18* %tmp_V_137
+
+ST_3: StgValue_130 (91)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch17:0  store i18 %tmp_V_157, i18* %tmp_V_138
+
+ST_3: StgValue_131 (94)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch16:0  store i18 %tmp_V_157, i18* %tmp_V_139
+
+ST_3: StgValue_132 (97)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch15:0  store i18 %tmp_V_157, i18* %tmp_V_140
+
+ST_3: StgValue_133 (100)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch14:0  store i18 %tmp_V_157, i18* %tmp_V_141
+
+ST_3: StgValue_134 (103)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch13:0  store i18 %tmp_V_157, i18* %tmp_V_142
+
+ST_3: StgValue_135 (106)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch12:0  store i18 %tmp_V_157, i18* %tmp_V_143
+
+ST_3: StgValue_136 (109)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch11:0  store i18 %tmp_V_157, i18* %tmp_V_144
+
+ST_3: StgValue_137 (112)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch10:0  store i18 %tmp_V_157, i18* %tmp_V_145
+
+ST_3: StgValue_138 (115)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch9:0  store i18 %tmp_V_157, i18* %tmp_V_146
+
+ST_3: StgValue_139 (118)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch8:0  store i18 %tmp_V_157, i18* %tmp_V_147
+
+ST_3: StgValue_140 (121)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch7:0  store i18 %tmp_V_157, i18* %tmp_V_148
+
+ST_3: StgValue_141 (124)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch6:0  store i18 %tmp_V_157, i18* %tmp_V_149
+
+ST_3: StgValue_142 (127)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch5:0  store i18 %tmp_V_157, i18* %tmp_V_150
+
+ST_3: StgValue_143 (130)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch4:0  store i18 %tmp_V_157, i18* %tmp_V_151
+
+ST_3: StgValue_144 (133)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch3:0  store i18 %tmp_V_157, i18* %tmp_V_152
+
+ST_3: StgValue_145 (136)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch2:0  store i18 %tmp_V_157, i18* %tmp_V_153
+
+ST_3: StgValue_146 (139)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch1:0  store i18 %tmp_V_157, i18* %tmp_V_154
+
+ST_3: StgValue_147 (142)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch0.pre:0  store i18 %tmp_V_157, i18* %tmp_V
+
+ST_3: StgValue_148 (145)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:43
+branch31:0  store i18 %tmp_V_157, i18* %tmp_V_155
+
+ST_3: empty_162 (148)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:44
+branch0:0  %empty_162 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str31, i32 %tmp)
+
+ST_3: StgValue_150 (149)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:41
+branch0:1  br label %1
+
+
+ <State 4>: 1.77ns
+ST_4: StgValue_151 (151)  [1/1] 1.77ns  loc: stream_deconv_fixed.cpp:46
+.preheader.preheader:0  br label %.preheader
+
+
+ <State 5>: 1.78ns
+ST_5: p_s (153)  [1/1] 0.00ns
+.preheader:0  %p_s = phi i5 [ %rep_amt_V, %3 ], [ 0, %.preheader.preheader ]
+
+ST_5: exitcond3 (154)  [1/1] 1.36ns  loc: stream_deconv_fixed.cpp:46
+.preheader:1  %exitcond3 = icmp eq i5 %p_s, -16
+
+ST_5: rep_amt_V (155)  [1/1] 1.78ns  loc: stream_deconv_fixed.cpp:46
+.preheader:2  %rep_amt_V = add i5 %p_s, 1
+
+ST_5: StgValue_155 (156)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:46
+.preheader:3  br i1 %exitcond3, label %4, label %3
+
+
+ <State 6>: 2.32ns
+ST_6: tmp_V_load (158)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:0  %tmp_V_load = load i18* %tmp_V
+
+ST_6: StgValue_157 (194)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:36  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_load)
+
+
+ <State 7>: 2.32ns
+ST_7: tmp_V_154_load (159)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:1  %tmp_V_154_load = load i18* %tmp_V_154
+
+ST_7: StgValue_159 (195)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:37  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_154_load)
+
+
+ <State 8>: 2.32ns
+ST_8: tmp_V_153_load (160)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:2  %tmp_V_153_load = load i18* %tmp_V_153
+
+ST_8: StgValue_161 (196)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:38  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_153_load)
+
+
+ <State 9>: 2.32ns
+ST_9: tmp_V_152_load (161)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:3  %tmp_V_152_load = load i18* %tmp_V_152
+
+ST_9: StgValue_163 (197)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:39  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_152_load)
+
+
+ <State 10>: 2.32ns
+ST_10: tmp_V_151_load (162)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:4  %tmp_V_151_load = load i18* %tmp_V_151
+
+ST_10: StgValue_165 (198)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:40  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_151_load)
+
+
+ <State 11>: 2.32ns
+ST_11: tmp_V_150_load (163)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:5  %tmp_V_150_load = load i18* %tmp_V_150
+
+ST_11: StgValue_167 (199)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:41  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_150_load)
+
+
+ <State 12>: 2.32ns
+ST_12: tmp_V_149_load (164)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:6  %tmp_V_149_load = load i18* %tmp_V_149
+
+ST_12: StgValue_169 (200)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:42  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_149_load)
+
+
+ <State 13>: 2.32ns
+ST_13: tmp_V_148_load (165)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:7  %tmp_V_148_load = load i18* %tmp_V_148
+
+ST_13: StgValue_171 (201)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:43  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_148_load)
+
+
+ <State 14>: 2.32ns
+ST_14: tmp_V_147_load (166)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:8  %tmp_V_147_load = load i18* %tmp_V_147
+
+ST_14: StgValue_173 (202)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:44  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_147_load)
+
+
+ <State 15>: 2.32ns
+ST_15: tmp_V_146_load (167)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:9  %tmp_V_146_load = load i18* %tmp_V_146
+
+ST_15: StgValue_175 (203)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:45  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_146_load)
+
+
+ <State 16>: 2.32ns
+ST_16: tmp_V_145_load (168)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:10  %tmp_V_145_load = load i18* %tmp_V_145
+
+ST_16: StgValue_177 (204)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:46  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_145_load)
+
+
+ <State 17>: 2.32ns
+ST_17: tmp_V_144_load (169)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:11  %tmp_V_144_load = load i18* %tmp_V_144
+
+ST_17: StgValue_179 (205)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:47  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_144_load)
+
+
+ <State 18>: 2.32ns
+ST_18: tmp_V_143_load (170)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:12  %tmp_V_143_load = load i18* %tmp_V_143
+
+ST_18: StgValue_181 (206)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:48  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_143_load)
+
+
+ <State 19>: 2.32ns
+ST_19: tmp_V_142_load (171)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:13  %tmp_V_142_load = load i18* %tmp_V_142
+
+ST_19: StgValue_183 (207)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:49  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_142_load)
+
+
+ <State 20>: 2.32ns
+ST_20: tmp_V_141_load (172)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:14  %tmp_V_141_load = load i18* %tmp_V_141
+
+ST_20: StgValue_185 (208)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:50  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_141_load)
+
+
+ <State 21>: 2.32ns
+ST_21: tmp_V_140_load (173)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:15  %tmp_V_140_load = load i18* %tmp_V_140
+
+ST_21: StgValue_187 (209)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:51  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_140_load)
+
+
+ <State 22>: 2.32ns
+ST_22: tmp_V_139_load (174)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:16  %tmp_V_139_load = load i18* %tmp_V_139
+
+ST_22: StgValue_189 (210)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:52  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_139_load)
+
+
+ <State 23>: 2.32ns
+ST_23: tmp_V_138_load (175)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:17  %tmp_V_138_load = load i18* %tmp_V_138
+
+ST_23: StgValue_191 (211)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:53  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_138_load)
+
+
+ <State 24>: 2.32ns
+ST_24: tmp_V_137_load (176)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:18  %tmp_V_137_load = load i18* %tmp_V_137
+
+ST_24: StgValue_193 (212)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:54  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_137_load)
+
+
+ <State 25>: 2.32ns
+ST_25: tmp_V_136_load (177)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:19  %tmp_V_136_load = load i18* %tmp_V_136
+
+ST_25: StgValue_195 (213)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:55  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_136_load)
+
+
+ <State 26>: 2.32ns
+ST_26: tmp_V_135_load (178)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:20  %tmp_V_135_load = load i18* %tmp_V_135
+
+ST_26: StgValue_197 (214)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:56  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_135_load)
+
+
+ <State 27>: 2.32ns
+ST_27: tmp_V_134_load (179)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:21  %tmp_V_134_load = load i18* %tmp_V_134
+
+ST_27: StgValue_199 (215)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:57  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_134_load)
+
+
+ <State 28>: 2.32ns
+ST_28: tmp_V_133_load (180)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:22  %tmp_V_133_load = load i18* %tmp_V_133
+
+ST_28: StgValue_201 (216)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:58  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_133_load)
+
+
+ <State 29>: 2.32ns
+ST_29: tmp_V_132_load (181)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:23  %tmp_V_132_load = load i18* %tmp_V_132
+
+ST_29: StgValue_203 (217)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:59  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_132_load)
+
+
+ <State 30>: 2.32ns
+ST_30: tmp_V_131_load (182)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:24  %tmp_V_131_load = load i18* %tmp_V_131
+
+ST_30: StgValue_205 (218)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:60  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_131_load)
+
+
+ <State 31>: 2.32ns
+ST_31: tmp_V_130_load (183)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:25  %tmp_V_130_load = load i18* %tmp_V_130
+
+ST_31: StgValue_207 (219)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:61  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_130_load)
+
+
+ <State 32>: 2.32ns
+ST_32: tmp_V_129_load (184)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:26  %tmp_V_129_load = load i18* %tmp_V_129
+
+ST_32: StgValue_209 (220)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:62  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_129_load)
+
+
+ <State 33>: 2.32ns
+ST_33: tmp_V_128_load (185)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:27  %tmp_V_128_load = load i18* %tmp_V_128
+
+ST_33: StgValue_211 (221)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:63  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_128_load)
+
+
+ <State 34>: 2.32ns
+ST_34: tmp_V_127_load (186)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:28  %tmp_V_127_load = load i18* %tmp_V_127
+
+ST_34: StgValue_213 (222)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:64  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_127_load)
+
+
+ <State 35>: 2.32ns
+ST_35: tmp_V_126_load (187)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:29  %tmp_V_126_load = load i18* %tmp_V_126
+
+ST_35: StgValue_215 (223)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:65  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_126_load)
+
+
+ <State 36>: 2.32ns
+ST_36: tmp_V_125_load (188)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:30  %tmp_V_125_load = load i18* %tmp_V_125
+
+ST_36: StgValue_217 (224)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:66  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_125_load)
+
+
+ <State 37>: 2.32ns
+ST_37: tmp_V_155_load (189)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:50
+:31  %tmp_V_155_load = load i18* %tmp_V_155
+
+ST_37: empty_163 (190)  [1/1] 0.00ns
+:32  %empty_163 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
+
+ST_37: StgValue_220 (191)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:46
+:33  call void (...)* @_ssdm_op_SpecLoopName([6 x i8]* @p_str32) nounwind
+
+ST_37: tmp_s (192)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:46
+:34  %tmp_s = call i32 (...)* @_ssdm_op_SpecRegionBegin([6 x i8]* @p_str32)
+
+ST_37: StgValue_222 (193)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:47
+:35  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_37: StgValue_223 (225)  [1/1] 2.32ns  loc: stream_deconv_fixed.cpp:50
+:67  call void @_ssdm_op_Write.ap_fifo.volatile.i18P(i18* %stream_o_V_V, i18 %tmp_V_155_load)
+
+ST_37: empty_164 (226)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:52
+:68  %empty_164 = call i32 (...)* @_ssdm_op_SpecRegionEnd([6 x i8]* @p_str32, i32 %tmp_s)
+
+ST_37: StgValue_225 (227)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:46
+:69  br label %.preheader
+
+
+ <State 38>: 0.00ns
+ST_38: StgValue_226 (229)  [1/1] 0.00ns  loc: stream_deconv_fixed.cpp:53
+:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('oc.V') with incoming values : ('oc.V', stream_deconv_fixed.cpp:41) [39]  (1.77 ns)
+
+ <State 2>: 1.83ns
+The critical path consists of the following:
+	'phi' operation ('oc.V') with incoming values : ('oc.V', stream_deconv_fixed.cpp:41) [39]  (0 ns)
+	'add' operation ('oc.V', stream_deconv_fixed.cpp:41) [41]  (1.83 ns)
+
+ <State 3>: 2.32ns
+The critical path consists of the following:
+	fifo read on port 'stream_i_0_V_V' (stream_deconv_fixed.cpp:43) [48]  (2.32 ns)
+	'store' operation (stream_deconv_fixed.cpp:43) of variable 'tmp.V', stream_deconv_fixed.cpp:43 on local variable 'tmp.V' [55]  (0 ns)
+
+ <State 4>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('rep_amt.V') with incoming values : ('rep_amt.V', stream_deconv_fixed.cpp:46) [153]  (1.77 ns)
+
+ <State 5>: 1.78ns
+The critical path consists of the following:
+	'phi' operation ('rep_amt.V') with incoming values : ('rep_amt.V', stream_deconv_fixed.cpp:46) [153]  (0 ns)
+	'add' operation ('rep_amt.V', stream_deconv_fixed.cpp:46) [155]  (1.78 ns)
+
+ <State 6>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [158]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [194]  (2.32 ns)
+
+ <State 7>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_154_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [159]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [195]  (2.32 ns)
+
+ <State 8>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_153_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [160]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [196]  (2.32 ns)
+
+ <State 9>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_152_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [161]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [197]  (2.32 ns)
+
+ <State 10>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_151_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [162]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [198]  (2.32 ns)
+
+ <State 11>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_150_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [163]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [199]  (2.32 ns)
+
+ <State 12>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_149_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [164]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [200]  (2.32 ns)
+
+ <State 13>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_148_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [165]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [201]  (2.32 ns)
+
+ <State 14>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_147_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [166]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [202]  (2.32 ns)
+
+ <State 15>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_146_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [167]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [203]  (2.32 ns)
+
+ <State 16>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_145_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [168]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [204]  (2.32 ns)
+
+ <State 17>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_144_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [169]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [205]  (2.32 ns)
+
+ <State 18>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_143_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [170]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [206]  (2.32 ns)
+
+ <State 19>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_142_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [171]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [207]  (2.32 ns)
+
+ <State 20>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_141_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [172]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [208]  (2.32 ns)
+
+ <State 21>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_140_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [173]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [209]  (2.32 ns)
+
+ <State 22>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_139_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [174]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [210]  (2.32 ns)
+
+ <State 23>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_138_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [175]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [211]  (2.32 ns)
+
+ <State 24>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_137_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [176]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [212]  (2.32 ns)
+
+ <State 25>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_136_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [177]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [213]  (2.32 ns)
+
+ <State 26>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_135_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [178]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [214]  (2.32 ns)
+
+ <State 27>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_134_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [179]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [215]  (2.32 ns)
+
+ <State 28>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_133_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [180]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [216]  (2.32 ns)
+
+ <State 29>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_132_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [181]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [217]  (2.32 ns)
+
+ <State 30>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_131_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [182]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [218]  (2.32 ns)
+
+ <State 31>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_130_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [183]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [219]  (2.32 ns)
+
+ <State 32>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_129_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [184]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [220]  (2.32 ns)
+
+ <State 33>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_128_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [185]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [221]  (2.32 ns)
+
+ <State 34>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_127_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [186]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [222]  (2.32 ns)
+
+ <State 35>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_126_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [187]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [223]  (2.32 ns)
+
+ <State 36>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_125_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [188]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [224]  (2.32 ns)
+
+ <State 37>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('tmp_V_155_load', stream_deconv_fixed.cpp:50) on local variable 'tmp.V' [189]  (0 ns)
+	fifo write on port 'stream_o_V_V' (stream_deconv_fixed.cpp:50) [225]  (2.32 ns)
+
+ <State 38>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

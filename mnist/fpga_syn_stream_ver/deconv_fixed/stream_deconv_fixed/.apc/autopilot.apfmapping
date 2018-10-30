@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="util.h" path="C:\Users\Jack\Desktop\FPGA_DeconvAcc\mnist\STDD\fpga_syn_stream_ver\deconv_fixed\util.h"/>
+    <originFiles name="stream_deconv_fixed.cpp" path="C:\Users\Jack\Desktop\FPGA_DeconvAcc\mnist\STDD\fpga_syn_stream_ver\deconv_fixed\stream_deconv_fixed.cpp"/>
+    <originFiles name="stream_deconv.h" path="C:\Users\Jack\Desktop\FPGA_DeconvAcc\mnist\STDD\fpga_syn_stream_ver\deconv_fixed\stream_deconv.h"/>
+  </source>
+  <testbench>
+    <originFiles name="stream_deconv_tb.cpp" path="C:\Users\Jack\Desktop\FPGA_DeconvAcc\mnist\STDD\fpga_syn_stream_ver\deconv_fixed\stream_deconv_tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

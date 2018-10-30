@@ -1,0 +1,56 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'deconv'" level="0">
+<item name = "Date">Thu Oct 18 23:41:41 2018
+</item>
+<item name = "Version">2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)</item>
+<item name = "Project">stream_deconv_fixed</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020clg484-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00, 16.57, 1.25</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">158920, 158920, 122054, 122054, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_stream_deconv_286_fu_242">stream_deconv_286, 122053, 122053, 122053, 122053, none</column>
+<column name="grp_stream_deconv_1_fu_284">stream_deconv_1, 7879, 7879, 7879, 7879, none</column>
+<column name="grp_stream_deconv_387_fu_296">stream_deconv_387, 70788, 70788, 70788, 70788, none</column>
+<column name="grp_p_wt_kernel_282_fu_368">p_wt_kernel_282, 36866, 36866, 36866, 36866, none</column>
+<column name="grp_p_extend_stream_283_fu_406">p_extend_stream_283, 4644, 4644, 4644, 4644, none</column>
+<column name="grp_p_extend_stream_284_fu_413">p_extend_stream_284, 4644, 4644, 4644, 4644, none</column>
+<column name="grp_p_extend_stream_1_1_fu_420">p_extend_stream_1_1, 548, 548, 548, 548, none</column>
+<column name="grp_p_extend_stream_181_fu_427">p_extend_stream_181, 548, 548, 548, 548, none</column>
+<column name="grp_p_extend_stream_1_fu_434">p_extend_stream_1, 548, 548, 548, 548, none</column>
+<column name="grp_p_wt_kernel_385_fu_441">p_wt_kernel_385, 1154, 1154, 1154, 1154, none</column>
+<column name="StgValue_35_Block_proc102_fu_511">Block_proc102, 0, 0, 0, 0, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>
