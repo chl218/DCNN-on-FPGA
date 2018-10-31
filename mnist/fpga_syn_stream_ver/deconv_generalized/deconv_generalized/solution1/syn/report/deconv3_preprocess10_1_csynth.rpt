@@ -1,0 +1,204 @@
+
+
+================================================================
+== Vivado HLS Report for 'deconv3_preprocess10_1'
+================================================================
+* Date:           Tue Oct 30 18:51:26 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        deconv_generalized
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.75|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +--------+--------+--------+--------+----------+
+    |     Latency     |     Interval    | Pipeline |
+    |   min  |   max  |   min  |   max  |   Type   |
+    +--------+--------+--------+--------+----------+
+    |  375950|  879331|  339083|  879331| dataflow |
+    +--------+--------+--------+--------+----------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------+----------------------+--------+--------+--------+--------+---------+
+        |                         |                      |     Latency     |     Interval    | Pipeline|
+        |         Instance        |        Module        |   min  |   max  |   min  |   max  |   Type  |
+        +-------------------------+----------------------+--------+--------+--------+--------+---------+
+        |stream_deconv3111_U0     |stream_deconv3111     |  339082|  339082|  339082|  339082|   none  |
+        |p_expand109_U0           |p_expand109           |      74|  879330|      74|  879330|   none  |
+        |p_wt_kernel_33110_U0     |p_wt_kernel_33110     |   36867|   36867|   36867|   36867|   none  |
+        |deconv3_preprocess10_U0  |deconv3_preprocess10  |       0|       0|       0|       0|   none  |
+        +-------------------------+----------------------+--------+--------+--------+--------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|    124|
+|FIFO             |        0|      -|       0|      6|
+|Instance         |        1|      4|     670|   2370|
+|Memory           |       72|      -|       0|      0|
+|Multiplexer      |        -|      -|       -|     54|
+|Register         |        -|      -|       9|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |       73|      4|     679|   2554|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |       26|      1|   ~0   |      4|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    +-------------------------+----------------------+---------+-------+-----+------+
+    |         Instance        |        Module        | BRAM_18K| DSP48E|  FF |  LUT |
+    +-------------------------+----------------------+---------+-------+-----+------+
+    |deconv3_preprocess10_U0  |deconv3_preprocess10  |        0|      0|    2|   107|
+    |p_expand109_U0           |p_expand109           |        0|      3|  239|   588|
+    |p_wt_kernel_33110_U0     |p_wt_kernel_33110     |        0|      0|  106|   552|
+    |stream_deconv3111_U0     |stream_deconv3111     |        1|      1|  323|  1123|
+    +-------------------------+----------------------+---------+-------+-----+------+
+    |Total                    |                      |        1|      4|  670|  2370|
+    +-------------------------+----------------------+---------+-------+-----+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    +-------------------+----------------------+---------+---+----+-------+-----+------+-------------+
+    |       Memory      |        Module        | BRAM_18K| FF| LUT| Words | Bits| Banks| W*Bits*Banks|
+    +-------------------+----------------------+---------+---+----+-------+-----+------+-------------+
+    |layer3_kernel_V_U  |deconv3_preprocessc4  |       72|  0|   0|  36864|   18|     2|      1327104|
+    +-------------------+----------------------+---------+---+----+-------+-----+------+-------------+
+    |Total              |                      |       72|  0|   0|  36864|   18|     2|      1327104|
+    +-------------------+----------------------+---------+---+----+-------+-----+------+-------------+
+
+    * FIFO: 
+    +-------------------------+---------+---+----+------+-----+---------+
+    |           Name          | BRAM_18K| FF| LUT| Depth| Bits| Size:D*B|
+    +-------------------------+---------+---+----+------+-----+---------+
+    |expanded_istream_V_V_U   |        0|  0|   1|     1|   18|       18|
+    |param2_I_c_V_reload_s_U  |        0|  0|   1|     1|    6|        6|
+    |param2_I_h_V_reload_s_U  |        0|  0|   1|     1|    6|        6|
+    |param2_I_w_V_reload_s_U  |        0|  0|   1|     1|    6|        6|
+    |param2_S_V_reload_c_s_U  |        0|  0|   1|     1|    6|        6|
+    |tmp_V_load_reload_c_s_U  |        0|  0|   1|     2|   18|       36|
+    +-------------------------+---------+---+----+------+-----+---------+
+    |Total                    |        0|  0|   6|     7|   60|       78|
+    +-------------------------+---------+---+----+------+-----+---------+
+
+    * Expression: 
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+    |               Variable Name              | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+    |deconv3_preprocess10_U0_ap_ready_count    |     +    |      0|  0|  10|           2|           1|
+    |p_expand109_U0_ap_ready_count             |     +    |      0|  0|  10|           2|           1|
+    |p_wt_kernel_33110_U0_ap_ready_count       |     +    |      0|  0|  10|           2|           1|
+    |deconv3_preprocess10_U0_ap_ready_count    |     -    |      0|  0|  10|           2|           1|
+    |p_expand109_U0_ap_ready_count             |     -    |      0|  0|  10|           2|           1|
+    |p_wt_kernel_33110_U0_ap_ready_count       |     -    |      0|  0|  10|           2|           1|
+    |ap_idle                                   |    and   |      0|  0|   8|           1|           1|
+    |ap_sync_ready                             |    and   |      0|  0|   8|           1|           1|
+    |deconv3_preprocess10_U0_ap_start          |    and   |      0|  0|   8|           1|           1|
+    |p_expand109_U0_ap_start                   |    and   |      0|  0|   8|           1|           1|
+    |p_wt_kernel_33110_U0_ap_start             |    and   |      0|  0|   8|           1|           1|
+    |ap_sync_deconv3_preprocess10_U0_ap_ready  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_p_expand109_U0_ap_ready           |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_p_wt_kernel_33110_U0_ap_ready     |    or    |      0|  0|   8|           1|           1|
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+    |Total                                     |          |      0|  0| 124|          20|          14|
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |                     Name                     | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_deconv3_preprocess10_U0_ap_ready  |   9|          2|    1|          2|
+    |ap_sync_reg_p_expand109_U0_ap_ready           |   9|          2|    1|          2|
+    |ap_sync_reg_p_wt_kernel_33110_U0_ap_ready     |   9|          2|    1|          2|
+    |deconv3_preprocess10_U0_ap_ready_count        |   9|          2|    2|          4|
+    |p_expand109_U0_ap_ready_count                 |   9|          2|    2|          4|
+    |p_wt_kernel_33110_U0_ap_ready_count           |   9|          2|    2|          4|
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |Total                                         |  54|         12|    9|         18|
+    +----------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------+---+----+-----+-----------+
+    |                     Name                     | FF| LUT| Bits| Const Bits|
+    +----------------------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_deconv3_preprocess10_U0_ap_ready  |  1|   0|    1|          0|
+    |ap_sync_reg_p_expand109_U0_ap_ready           |  1|   0|    1|          0|
+    |ap_sync_reg_p_wt_kernel_33110_U0_ap_ready     |  1|   0|    1|          0|
+    |deconv3_preprocess10_U0_ap_ready_count        |  2|   0|    2|          0|
+    |p_expand109_U0_ap_ready_count                 |  2|   0|    2|          0|
+    |p_wt_kernel_33110_U0_ap_ready_count           |  2|   0|    2|          0|
+    +----------------------------------------------+---+----+-----+-----------+
+    |Total                                         |  9|   0|    9|          0|
+    +----------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+------------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |      Source Object     |    C Type    |
++--------------------------+-----+-----+------------+------------------------+--------------+
+|param2_I_h_V_loc_dout     |  in |    6|   ap_fifo  |    param2_I_h_V_loc    |    pointer   |
+|param2_I_h_V_loc_empty_n  |  in |    1|   ap_fifo  |    param2_I_h_V_loc    |    pointer   |
+|param2_I_h_V_loc_read     | out |    1|   ap_fifo  |    param2_I_h_V_loc    |    pointer   |
+|param2_I_w_V_loc_dout     |  in |    6|   ap_fifo  |    param2_I_w_V_loc    |    pointer   |
+|param2_I_w_V_loc_empty_n  |  in |    1|   ap_fifo  |    param2_I_w_V_loc    |    pointer   |
+|param2_I_w_V_loc_read     | out |    1|   ap_fifo  |    param2_I_w_V_loc    |    pointer   |
+|param2_I_c_V_loc_dout     |  in |    6|   ap_fifo  |    param2_I_c_V_loc    |    pointer   |
+|param2_I_c_V_loc_empty_n  |  in |    1|   ap_fifo  |    param2_I_c_V_loc    |    pointer   |
+|param2_I_c_V_loc_read     | out |    1|   ap_fifo  |    param2_I_c_V_loc    |    pointer   |
+|param2_S_V_loc_dout       |  in |    6|   ap_fifo  |     param2_S_V_loc     |    pointer   |
+|param2_S_V_loc_empty_n    |  in |    1|   ap_fifo  |     param2_S_V_loc     |    pointer   |
+|param2_S_V_loc_read       | out |    1|   ap_fifo  |     param2_S_V_loc     |    pointer   |
+|stream_res_1_V_V_dout     |  in |   18|   ap_fifo  |    stream_res_1_V_V    |    pointer   |
+|stream_res_1_V_V_empty_n  |  in |    1|   ap_fifo  |    stream_res_1_V_V    |    pointer   |
+|stream_res_1_V_V_read     | out |    1|   ap_fifo  |    stream_res_1_V_V    |    pointer   |
+|kernel_2_V_V_dout         |  in |   18|   ap_fifo  |      kernel_2_V_V      |    pointer   |
+|kernel_2_V_V_empty_n      |  in |    1|   ap_fifo  |      kernel_2_V_V      |    pointer   |
+|kernel_2_V_V_read         | out |    1|   ap_fifo  |      kernel_2_V_V      |    pointer   |
+|tmp_V_load_loc_dout       |  in |   18|   ap_fifo  |     tmp_V_load_loc     |    pointer   |
+|tmp_V_load_loc_empty_n    |  in |    1|   ap_fifo  |     tmp_V_load_loc     |    pointer   |
+|tmp_V_load_loc_read       | out |    1|   ap_fifo  |     tmp_V_load_loc     |    pointer   |
+|stream_o_V_V_din          | out |   18|   ap_fifo  |      stream_o_V_V      |    pointer   |
+|stream_o_V_V_full_n       |  in |    1|   ap_fifo  |      stream_o_V_V      |    pointer   |
+|stream_o_V_V_write        | out |    1|   ap_fifo  |      stream_o_V_V      |    pointer   |
+|ap_clk                    |  in |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
+|ap_rst                    |  in |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
+|ap_done                   | out |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
+|ap_start                  |  in |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
+|ap_ready                  | out |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
+|ap_idle                   | out |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
+|ap_continue               |  in |    1| ap_ctrl_hs | deconv3_preprocess10.1 | return value |
++--------------------------+-----+-----+------------+------------------------+--------------+
+

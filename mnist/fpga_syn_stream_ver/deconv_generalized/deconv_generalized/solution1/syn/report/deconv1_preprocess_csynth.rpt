@@ -1,0 +1,197 @@
+
+
+================================================================
+== Vivado HLS Report for 'deconv1_preprocess'
+================================================================
+* Date:           Tue Oct 30 18:51:19 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        deconv_generalized
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.74|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+-------+-------+-------+----------+
+    |    Latency    |    Interval   | Pipeline |
+    |  min  |  max  |  min  |  max  |   Type   |
+    +-------+-------+-------+-------+----------+
+    |  24578|  24578|  24078|  24078| dataflow |
+    +-------+-------+-------+-------+----------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------+--------------------+-------+-------+-------+-------+---------+
+        |                       |                    |    Latency    |    Interval   | Pipeline|
+        |        Instance       |       Module       |  min  |  max  |  min  |  max  |   Type  |
+        +-----------------------+--------------------+-------+-------+-------+-------+---------+
+        |stream_deconv1_U0      |stream_deconv1      |  24077|  24077|  24077|  24077|   none  |
+        |p_extend_stream1_1_U0  |p_extend_stream1_1  |    548|    548|    548|    548|   none  |
+        |p_extend_stream199_U0  |p_extend_stream199  |    548|    548|    548|    548|   none  |
+        |p_extend_stream1_U0    |p_extend_stream1    |    548|    548|    548|    548|   none  |
+        +-----------------------+--------------------+-------+-------+-------+-------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|    160|
+|FIFO             |        0|      -|       0|      3|
+|Instance         |        0|      1|    2607|   3069|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|     72|
+|Register         |        -|      -|      12|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      1|    2619|   3304|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|   ~0  |       2|      6|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    +-----------------------+--------------------+---------+-------+------+------+
+    |        Instance       |       Module       | BRAM_18K| DSP48E|  FF  |  LUT |
+    +-----------------------+--------------------+---------+-------+------+------+
+    |p_extend_stream1_U0    |p_extend_stream1    |        0|      0|    76|   310|
+    |p_extend_stream199_U0  |p_extend_stream199  |        0|      0|    76|   310|
+    |p_extend_stream1_1_U0  |p_extend_stream1_1  |        0|      0|    76|   310|
+    |stream_deconv1_U0      |stream_deconv1      |        0|      1|  2379|  2139|
+    +-----------------------+--------------------+---------+-------+------+------+
+    |Total                  |                    |        0|      1|  2607|  3069|
+    +-----------------------+--------------------+---------+-------+------+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +---------------------+---------+---+----+------+-----+---------+
+    |         Name        | BRAM_18K| FF| LUT| Depth| Bits| Size:D*B|
+    +---------------------+---------+---+----+------+-----+---------+
+    |extended_bias_V_V_U  |        0|  0|   1|     1|   18|       18|
+    |extended_mean_V_V_U  |        0|  0|   1|     1|   18|       18|
+    |extended_std_V_V_U   |        0|  0|   1|     1|   18|       18|
+    +---------------------+---------+---+----+------+-----+---------+
+    |Total                |        0|  0|   3|     3|   54|       54|
+    +---------------------+---------+---+----+------+-----+---------+
+
+    * Expression: 
+    +----------------------------------------+----------+-------+---+----+------------+------------+
+    |              Variable Name             | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------------+----------+-------+---+----+------------+------------+
+    |p_extend_stream199_U0_ap_ready_count    |     +    |      0|  0|  10|           2|           1|
+    |p_extend_stream1_1_U0_ap_ready_count    |     +    |      0|  0|  10|           2|           1|
+    |p_extend_stream1_U0_ap_ready_count      |     +    |      0|  0|  10|           2|           1|
+    |stream_deconv1_U0_ap_ready_count        |     +    |      0|  0|  10|           2|           1|
+    |p_extend_stream199_U0_ap_ready_count    |     -    |      0|  0|  10|           2|           1|
+    |p_extend_stream1_1_U0_ap_ready_count    |     -    |      0|  0|  10|           2|           1|
+    |p_extend_stream1_U0_ap_ready_count      |     -    |      0|  0|  10|           2|           1|
+    |stream_deconv1_U0_ap_ready_count        |     -    |      0|  0|  10|           2|           1|
+    |ap_idle                                 |    and   |      0|  0|   8|           1|           1|
+    |ap_sync_ready                           |    and   |      0|  0|   8|           1|           1|
+    |p_extend_stream199_U0_ap_start          |    and   |      0|  0|   8|           1|           1|
+    |p_extend_stream1_1_U0_ap_start          |    and   |      0|  0|   8|           1|           1|
+    |p_extend_stream1_U0_ap_start            |    and   |      0|  0|   8|           1|           1|
+    |stream_deconv1_U0_ap_start              |    and   |      0|  0|   8|           1|           1|
+    |ap_sync_p_extend_stream199_U0_ap_ready  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_p_extend_stream1_1_U0_ap_ready  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_p_extend_stream1_U0_ap_ready    |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_stream_deconv1_U0_ap_ready      |    or    |      0|  0|   8|           1|           1|
+    +----------------------------------------+----------+-------+---+----+------------+------------+
+    |Total                                   |          |      0|  0| 160|          26|          18|
+    +----------------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------------+----+-----------+-----+-----------+
+    |                    Name                    | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_p_extend_stream199_U0_ap_ready  |   9|          2|    1|          2|
+    |ap_sync_reg_p_extend_stream1_1_U0_ap_ready  |   9|          2|    1|          2|
+    |ap_sync_reg_p_extend_stream1_U0_ap_ready    |   9|          2|    1|          2|
+    |ap_sync_reg_stream_deconv1_U0_ap_ready      |   9|          2|    1|          2|
+    |p_extend_stream199_U0_ap_ready_count        |   9|          2|    2|          4|
+    |p_extend_stream1_1_U0_ap_ready_count        |   9|          2|    2|          4|
+    |p_extend_stream1_U0_ap_ready_count          |   9|          2|    2|          4|
+    |stream_deconv1_U0_ap_ready_count            |   9|          2|    2|          4|
+    +--------------------------------------------+----+-----------+-----+-----------+
+    |Total                                       |  72|         16|   12|         24|
+    +--------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------+---+----+-----+-----------+
+    |                    Name                    | FF| LUT| Bits| Const Bits|
+    +--------------------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_p_extend_stream199_U0_ap_ready  |  1|   0|    1|          0|
+    |ap_sync_reg_p_extend_stream1_1_U0_ap_ready  |  1|   0|    1|          0|
+    |ap_sync_reg_p_extend_stream1_U0_ap_ready    |  1|   0|    1|          0|
+    |ap_sync_reg_stream_deconv1_U0_ap_ready      |  1|   0|    1|          0|
+    |p_extend_stream199_U0_ap_ready_count        |  2|   0|    2|          0|
+    |p_extend_stream1_1_U0_ap_ready_count        |  2|   0|    2|          0|
+    |p_extend_stream1_U0_ap_ready_count          |  2|   0|    2|          0|
+    |stream_deconv1_U0_ap_ready_count            |  2|   0|    2|          0|
+    +--------------------------------------------+---+----+-----+-----------+
+    |Total                                       | 12|   0|   12|          0|
+    +--------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++-----------------------+-----+-----+------------+--------------------+--------------+
+|stream_i_V_V_dout      |  in |   18|   ap_fifo  |    stream_i_V_V    |    pointer   |
+|stream_i_V_V_empty_n   |  in |    1|   ap_fifo  |    stream_i_V_V    |    pointer   |
+|stream_i_V_V_read      | out |    1|   ap_fifo  |    stream_i_V_V    |    pointer   |
+|kernel_0_V_V_dout      |  in |   18|   ap_fifo  |    kernel_0_V_V    |    pointer   |
+|kernel_0_V_V_empty_n   |  in |    1|   ap_fifo  |    kernel_0_V_V    |    pointer   |
+|kernel_0_V_V_read      | out |    1|   ap_fifo  |    kernel_0_V_V    |    pointer   |
+|bias_0_V_V_dout        |  in |   18|   ap_fifo  |     bias_0_V_V     |    pointer   |
+|bias_0_V_V_empty_n     |  in |    1|   ap_fifo  |     bias_0_V_V     |    pointer   |
+|bias_0_V_V_read        | out |    1|   ap_fifo  |     bias_0_V_V     |    pointer   |
+|mean_0_V_V_dout        |  in |   18|   ap_fifo  |     mean_0_V_V     |    pointer   |
+|mean_0_V_V_empty_n     |  in |    1|   ap_fifo  |     mean_0_V_V     |    pointer   |
+|mean_0_V_V_read        | out |    1|   ap_fifo  |     mean_0_V_V     |    pointer   |
+|std_0_V_V_dout         |  in |   18|   ap_fifo  |      std_0_V_V     |    pointer   |
+|std_0_V_V_empty_n      |  in |    1|   ap_fifo  |      std_0_V_V     |    pointer   |
+|std_0_V_V_read         | out |    1|   ap_fifo  |      std_0_V_V     |    pointer   |
+|stream_o_0_V_V_din     | out |   18|   ap_fifo  |   stream_o_0_V_V   |    pointer   |
+|stream_o_0_V_V_full_n  |  in |    1|   ap_fifo  |   stream_o_0_V_V   |    pointer   |
+|stream_o_0_V_V_write   | out |    1|   ap_fifo  |   stream_o_0_V_V   |    pointer   |
+|ap_clk                 |  in |    1| ap_ctrl_hs | deconv1_preprocess | return value |
+|ap_rst                 |  in |    1| ap_ctrl_hs | deconv1_preprocess | return value |
+|ap_done                | out |    1| ap_ctrl_hs | deconv1_preprocess | return value |
+|ap_start               |  in |    1| ap_ctrl_hs | deconv1_preprocess | return value |
+|ap_ready               | out |    1| ap_ctrl_hs | deconv1_preprocess | return value |
+|ap_idle                | out |    1| ap_ctrl_hs | deconv1_preprocess | return value |
+|ap_continue            |  in |    1| ap_ctrl_hs | deconv1_preprocess | return value |
++-----------------------+-----+-----+------------+--------------------+--------------+
+

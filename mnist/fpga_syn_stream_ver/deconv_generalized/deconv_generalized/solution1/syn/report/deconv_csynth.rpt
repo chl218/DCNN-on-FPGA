@@ -1,0 +1,324 @@
+
+
+================================================================
+== Vivado HLS Report for 'deconv'
+================================================================
+* Date:           Tue Oct 30 18:51:27 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        deconv_generalized
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.75|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +--------+--------+--------+--------+----------+
+    |     Latency     |     Interval    | Pipeline |
+    |   min  |   max  |   min  |   max  |   Type   |
+    +--------+--------+--------+--------+----------+
+    |  376015|  879396|  339083|  879331| dataflow |
+    +--------+--------+--------+--------+----------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------+------------------------+--------+--------+--------+--------+----------+
+        |                           |                        |     Latency     |     Interval    | Pipeline |
+        |          Instance         |         Module         |   min  |   max  |   min  |   max  |   Type   |
+        +---------------------------+------------------------+--------+--------+--------+--------+----------+
+        |deconv2_preprocess10_1_U0  |deconv2_preprocess10_1  |  343723|  879332|  306856|  879331| dataflow |
+        |deconv1_preprocess_U0      |deconv1_preprocess      |   24578|   24578|   24078|   24078| dataflow |
+        |deconv3_preprocess10_1_U0  |deconv3_preprocess10_1  |  375950|  879331|  339083|  879331| dataflow |
+        |Block_proc_U0              |Block_proc              |       1|       1|       1|       1|   none   |
+        |Block_proc130_U0           |Block_proc130           |       0|       0|       0|       0|   none   |
+        +---------------------------+------------------------+--------+--------+--------+--------+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|    268|
+|FIFO             |        0|      -|       0|     11|
+|Instance         |      154|     40|    8779|  12965|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|    126|
+|Register         |        -|      -|      19|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |      154|     40|    8798|  13370|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |       55|     18|       8|     25|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+------------------------+---------+-------+------+------+
+    |          Instance         |         Module         | BRAM_18K| DSP48E|  FF  |  LUT |
+    +---------------------------+------------------------+---------+-------+------+------+
+    |Block_proc_U0              |Block_proc              |        0|      0|     3|    76|
+    |Block_proc130_U0           |Block_proc130           |        0|      0|     2|    35|
+    |deconv1_preprocess_U0      |deconv1_preprocess      |        0|      1|  2619|  3304|
+    |deconv2_preprocess10_1_U0  |deconv2_preprocess10_1  |       81|     35|  5476|  6996|
+    |deconv3_preprocess10_1_U0  |deconv3_preprocess10_1  |       73|      4|   679|  2554|
+    +---------------------------+------------------------+---------+-------+------+------+
+    |Total                      |                        |      154|     40|  8779| 12965|
+    +---------------------------+------------------------+---------+-------+------+------+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +------------------------+---------+---+----+------+-----+---------+
+    |          Name          | BRAM_18K| FF| LUT| Depth| Bits| Size:D*B|
+    +------------------------+---------+---+----+------+-----+---------+
+    |param1_I_c_V_loc_cha_U  |        0|  0|   1|     2|    6|       12|
+    |param1_I_h_V_loc_cha_U  |        0|  0|   1|     2|    6|       12|
+    |param1_I_w_V_loc_cha_U  |        0|  0|   1|     2|    6|       12|
+    |param1_S_V_loc_chann_U  |        0|  0|   1|     2|    6|       12|
+    |param2_I_c_V_loc_c_U    |        0|  0|   1|     2|    6|       12|
+    |param2_I_h_V_loc_c_U    |        0|  0|   1|     2|    6|       12|
+    |param2_I_w_V_loc_c_U    |        0|  0|   1|     2|    6|       12|
+    |param2_S_V_loc_c_U      |        0|  0|   1|     2|    6|       12|
+    |stream_res_0_V_V_U      |        0|  0|   1|     1|   18|       18|
+    |stream_res_1_V_V_U      |        0|  0|   1|     1|   18|       18|
+    |tmp_V_load_loc_c_U      |        0|  0|   1|     2|   18|       36|
+    +------------------------+---------+---+----+------+-----+---------+
+    |Total                   |        0|  0|  11|    20|  102|      168|
+    +------------------------+---------+---+----+------+-----+---------+
+
+    * Expression: 
+    +--------------------------------------------+----------+-------+---+----+------------+------------+
+    |                Variable Name               | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------------------+----------+-------+---+----+------------+------------+
+    |Block_proc130_U0_ap_ready_count             |     +    |      0|  0|  10|           2|           1|
+    |Block_proc_U0_ap_ready_count                |     +    |      0|  0|  10|           2|           1|
+    |deconv1_preprocess_U0_ap_ready_count        |     +    |      0|  0|  10|           2|           1|
+    |deconv2_preprocess10_1_U0_ap_ready_count    |     +    |      0|  0|  10|           2|           1|
+    |deconv3_preprocess10_1_U0_ap_ready_count    |     +    |      0|  0|  10|           2|           1|
+    |Block_proc130_U0_ap_ready_count             |     -    |      0|  0|  10|           2|           1|
+    |Block_proc_U0_ap_ready_count                |     -    |      0|  0|  10|           2|           1|
+    |deconv1_preprocess_U0_ap_ready_count        |     -    |      0|  0|  10|           2|           1|
+    |deconv2_preprocess10_1_U0_ap_ready_count    |     -    |      0|  0|  10|           2|           1|
+    |deconv3_preprocess10_1_U0_ap_ready_count    |     -    |      0|  0|  10|           2|           1|
+    |Block_proc130_U0_ap_start                   |    and   |      0|  0|   8|           1|           1|
+    |Block_proc_U0_ap_continue                   |    and   |      0|  0|   8|           1|           1|
+    |Block_proc_U0_ap_start                      |    and   |      0|  0|   8|           1|           1|
+    |ap_channel_done_param1_I_c_V_loc_cha        |    and   |      0|  0|   8|           1|           1|
+    |ap_channel_done_param1_I_h_V_loc_cha        |    and   |      0|  0|   8|           1|           1|
+    |ap_channel_done_param1_I_w_V_loc_cha        |    and   |      0|  0|   8|           1|           1|
+    |ap_channel_done_param1_S_V_loc_chann        |    and   |      0|  0|   8|           1|           1|
+    |ap_idle                                     |    and   |      0|  0|   8|           1|           1|
+    |ap_sync_ready                               |    and   |      0|  0|   8|           1|           1|
+    |deconv1_preprocess_U0_ap_start              |    and   |      0|  0|   8|           1|           1|
+    |deconv2_preprocess10_1_U0_ap_start          |    and   |      0|  0|   8|           1|           1|
+    |deconv3_preprocess10_1_U0_ap_start          |    and   |      0|  0|   8|           1|           1|
+    |ap_sync_Block_proc130_U0_ap_ready           |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_Block_proc_U0_ap_ready              |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_channel_write_param1_I_c_V_loc_cha  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_channel_write_param1_I_h_V_loc_cha  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_channel_write_param1_I_w_V_loc_cha  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_channel_write_param1_S_V_loc_chann  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_deconv1_preprocess_U0_ap_ready      |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_deconv2_preprocess10_1_U0_ap_ready  |    or    |      0|  0|   8|           1|           1|
+    |ap_sync_deconv3_preprocess10_1_U0_ap_ready  |    or    |      0|  0|   8|           1|           1|
+    +--------------------------------------------+----------+-------+---+----+------------+------------+
+    |Total                                       |          |      0|  0| 268|          41|          31|
+    +--------------------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------------------+----+-----------+-----+-----------+
+    |                      Name                      | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------------------+----+-----------+-----+-----------+
+    |Block_proc130_U0_ap_ready_count                 |   9|          2|    2|          4|
+    |Block_proc_U0_ap_ready_count                    |   9|          2|    2|          4|
+    |ap_sync_reg_Block_proc130_U0_ap_ready           |   9|          2|    1|          2|
+    |ap_sync_reg_Block_proc_U0_ap_ready              |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_param1_I_c_V_loc_cha  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_param1_I_h_V_loc_cha  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_param1_I_w_V_loc_cha  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_param1_S_V_loc_chann  |   9|          2|    1|          2|
+    |ap_sync_reg_deconv1_preprocess_U0_ap_ready      |   9|          2|    1|          2|
+    |ap_sync_reg_deconv2_preprocess10_1_U0_ap_ready  |   9|          2|    1|          2|
+    |ap_sync_reg_deconv3_preprocess10_1_U0_ap_ready  |   9|          2|    1|          2|
+    |deconv1_preprocess_U0_ap_ready_count            |   9|          2|    2|          4|
+    |deconv2_preprocess10_1_U0_ap_ready_count        |   9|          2|    2|          4|
+    |deconv3_preprocess10_1_U0_ap_ready_count        |   9|          2|    2|          4|
+    +------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                           | 126|         28|   19|         38|
+    +------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------+---+----+-----+-----------+
+    |                      Name                      | FF| LUT| Bits| Const Bits|
+    +------------------------------------------------+---+----+-----+-----------+
+    |Block_proc130_U0_ap_ready_count                 |  2|   0|    2|          0|
+    |Block_proc_U0_ap_ready_count                    |  2|   0|    2|          0|
+    |ap_sync_reg_Block_proc130_U0_ap_ready           |  1|   0|    1|          0|
+    |ap_sync_reg_Block_proc_U0_ap_ready              |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_param1_I_c_V_loc_cha  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_param1_I_h_V_loc_cha  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_param1_I_w_V_loc_cha  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_param1_S_V_loc_chann  |  1|   0|    1|          0|
+    |ap_sync_reg_deconv1_preprocess_U0_ap_ready      |  1|   0|    1|          0|
+    |ap_sync_reg_deconv2_preprocess10_1_U0_ap_ready  |  1|   0|    1|          0|
+    |ap_sync_reg_deconv3_preprocess10_1_U0_ap_ready  |  1|   0|    1|          0|
+    |deconv1_preprocess_U0_ap_ready_count            |  2|   0|    2|          0|
+    |deconv2_preprocess10_1_U0_ap_ready_count        |  2|   0|    2|          0|
+    |deconv3_preprocess10_1_U0_ap_ready_count        |  2|   0|    2|          0|
+    +------------------------------------------------+---+----+-----+-----------+
+    |Total                                           | 19|   0|   19|          0|
+    +------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------------+-----+-----+------------+--------------+--------------+
+|param_I_h_V_address0   | out |    2|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_ce0        | out |    1|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_d0         | out |    6|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_q0         |  in |    6|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_we0        | out |    1|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_address1   | out |    2|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_ce1        | out |    1|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_d1         | out |    6|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_q1         |  in |    6|  ap_memory |  param_I_h_V |     array    |
+|param_I_h_V_we1        | out |    1|  ap_memory |  param_I_h_V |     array    |
+|param_I_w_V_address0   | out |    2|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_ce0        | out |    1|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_d0         | out |    6|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_q0         |  in |    6|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_we0        | out |    1|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_address1   | out |    2|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_ce1        | out |    1|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_d1         | out |    6|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_q1         |  in |    6|  ap_memory |  param_I_w_V |     array    |
+|param_I_w_V_we1        | out |    1|  ap_memory |  param_I_w_V |     array    |
+|param_I_c_V_address0   | out |    2|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_ce0        | out |    1|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_d0         | out |    6|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_q0         |  in |    6|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_we0        | out |    1|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_address1   | out |    2|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_ce1        | out |    1|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_d1         | out |    6|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_q1         |  in |    6|  ap_memory |  param_I_c_V |     array    |
+|param_I_c_V_we1        | out |    1|  ap_memory |  param_I_c_V |     array    |
+|param_O_h_V_address0   | out |    2|  ap_memory |  param_O_h_V |     array    |
+|param_O_h_V_ce0        | out |    1|  ap_memory |  param_O_h_V |     array    |
+|param_O_h_V_d0         | out |    6|  ap_memory |  param_O_h_V |     array    |
+|param_O_h_V_q0         |  in |    6|  ap_memory |  param_O_h_V |     array    |
+|param_O_h_V_we0        | out |    1|  ap_memory |  param_O_h_V |     array    |
+|param_O_w_V_address0   | out |    2|  ap_memory |  param_O_w_V |     array    |
+|param_O_w_V_ce0        | out |    1|  ap_memory |  param_O_w_V |     array    |
+|param_O_w_V_d0         | out |    6|  ap_memory |  param_O_w_V |     array    |
+|param_O_w_V_q0         |  in |    6|  ap_memory |  param_O_w_V |     array    |
+|param_O_w_V_we0        | out |    1|  ap_memory |  param_O_w_V |     array    |
+|param_O_c_V_address0   | out |    2|  ap_memory |  param_O_c_V |     array    |
+|param_O_c_V_ce0        | out |    1|  ap_memory |  param_O_c_V |     array    |
+|param_O_c_V_d0         | out |    6|  ap_memory |  param_O_c_V |     array    |
+|param_O_c_V_q0         |  in |    6|  ap_memory |  param_O_c_V |     array    |
+|param_O_c_V_we0        | out |    1|  ap_memory |  param_O_c_V |     array    |
+|param_K_V_address0     | out |    2|  ap_memory |   param_K_V  |     array    |
+|param_K_V_ce0          | out |    1|  ap_memory |   param_K_V  |     array    |
+|param_K_V_d0           | out |    6|  ap_memory |   param_K_V  |     array    |
+|param_K_V_q0           |  in |    6|  ap_memory |   param_K_V  |     array    |
+|param_K_V_we0          | out |    1|  ap_memory |   param_K_V  |     array    |
+|param_S_V_address0     | out |    2|  ap_memory |   param_S_V  |     array    |
+|param_S_V_ce0          | out |    1|  ap_memory |   param_S_V  |     array    |
+|param_S_V_d0           | out |    6|  ap_memory |   param_S_V  |     array    |
+|param_S_V_q0           |  in |    6|  ap_memory |   param_S_V  |     array    |
+|param_S_V_we0          | out |    1|  ap_memory |   param_S_V  |     array    |
+|param_S_V_address1     | out |    2|  ap_memory |   param_S_V  |     array    |
+|param_S_V_ce1          | out |    1|  ap_memory |   param_S_V  |     array    |
+|param_S_V_d1           | out |    6|  ap_memory |   param_S_V  |     array    |
+|param_S_V_q1           |  in |    6|  ap_memory |   param_S_V  |     array    |
+|param_S_V_we1          | out |    1|  ap_memory |   param_S_V  |     array    |
+|param_P_V_address0     | out |    2|  ap_memory |   param_P_V  |     array    |
+|param_P_V_ce0          | out |    1|  ap_memory |   param_P_V  |     array    |
+|param_P_V_d0           | out |    6|  ap_memory |   param_P_V  |     array    |
+|param_P_V_q0           |  in |    6|  ap_memory |   param_P_V  |     array    |
+|param_P_V_we0          | out |    1|  ap_memory |   param_P_V  |     array    |
+|param_norm_V_address0  | out |    2|  ap_memory | param_norm_V |     array    |
+|param_norm_V_ce0       | out |    1|  ap_memory | param_norm_V |     array    |
+|param_norm_V_d0        | out |    1|  ap_memory | param_norm_V |     array    |
+|param_norm_V_q0        |  in |    1|  ap_memory | param_norm_V |     array    |
+|param_norm_V_we0       | out |    1|  ap_memory | param_norm_V |     array    |
+|param_sig_V_address0   | out |    2|  ap_memory |  param_sig_V |     array    |
+|param_sig_V_ce0        | out |    1|  ap_memory |  param_sig_V |     array    |
+|param_sig_V_d0         | out |    1|  ap_memory |  param_sig_V |     array    |
+|param_sig_V_q0         |  in |    1|  ap_memory |  param_sig_V |     array    |
+|param_sig_V_we0        | out |    1|  ap_memory |  param_sig_V |     array    |
+|stream_i_V_V_dout      |  in |   18|   ap_fifo  | stream_i_V_V |    pointer   |
+|stream_i_V_V_empty_n   |  in |    1|   ap_fifo  | stream_i_V_V |    pointer   |
+|stream_i_V_V_read      | out |    1|   ap_fifo  | stream_i_V_V |    pointer   |
+|kernel_0_V_V_dout      |  in |   18|   ap_fifo  | kernel_0_V_V |    pointer   |
+|kernel_0_V_V_empty_n   |  in |    1|   ap_fifo  | kernel_0_V_V |    pointer   |
+|kernel_0_V_V_read      | out |    1|   ap_fifo  | kernel_0_V_V |    pointer   |
+|kernel_1_V_V_dout      |  in |   18|   ap_fifo  | kernel_1_V_V |    pointer   |
+|kernel_1_V_V_empty_n   |  in |    1|   ap_fifo  | kernel_1_V_V |    pointer   |
+|kernel_1_V_V_read      | out |    1|   ap_fifo  | kernel_1_V_V |    pointer   |
+|kernel_2_V_V_dout      |  in |   18|   ap_fifo  | kernel_2_V_V |    pointer   |
+|kernel_2_V_V_empty_n   |  in |    1|   ap_fifo  | kernel_2_V_V |    pointer   |
+|kernel_2_V_V_read      | out |    1|   ap_fifo  | kernel_2_V_V |    pointer   |
+|bias_0_V_V_dout        |  in |   18|   ap_fifo  |  bias_0_V_V  |    pointer   |
+|bias_0_V_V_empty_n     |  in |    1|   ap_fifo  |  bias_0_V_V  |    pointer   |
+|bias_0_V_V_read        | out |    1|   ap_fifo  |  bias_0_V_V  |    pointer   |
+|bias_1_V_V_dout        |  in |   18|   ap_fifo  |  bias_1_V_V  |    pointer   |
+|bias_1_V_V_empty_n     |  in |    1|   ap_fifo  |  bias_1_V_V  |    pointer   |
+|bias_1_V_V_read        | out |    1|   ap_fifo  |  bias_1_V_V  |    pointer   |
+|bias_2_V_V_dout        |  in |   18|   ap_fifo  |  bias_2_V_V  |    pointer   |
+|bias_2_V_V_empty_n     |  in |    1|   ap_fifo  |  bias_2_V_V  |    pointer   |
+|bias_2_V_V_read        | out |    1|   ap_fifo  |  bias_2_V_V  |    pointer   |
+|mean_0_V_V_dout        |  in |   18|   ap_fifo  |  mean_0_V_V  |    pointer   |
+|mean_0_V_V_empty_n     |  in |    1|   ap_fifo  |  mean_0_V_V  |    pointer   |
+|mean_0_V_V_read        | out |    1|   ap_fifo  |  mean_0_V_V  |    pointer   |
+|mean_1_V_V_dout        |  in |   18|   ap_fifo  |  mean_1_V_V  |    pointer   |
+|mean_1_V_V_empty_n     |  in |    1|   ap_fifo  |  mean_1_V_V  |    pointer   |
+|mean_1_V_V_read        | out |    1|   ap_fifo  |  mean_1_V_V  |    pointer   |
+|std_0_V_V_dout         |  in |   18|   ap_fifo  |   std_0_V_V  |    pointer   |
+|std_0_V_V_empty_n      |  in |    1|   ap_fifo  |   std_0_V_V  |    pointer   |
+|std_0_V_V_read         | out |    1|   ap_fifo  |   std_0_V_V  |    pointer   |
+|std_1_V_V_dout         |  in |   18|   ap_fifo  |   std_1_V_V  |    pointer   |
+|std_1_V_V_empty_n      |  in |    1|   ap_fifo  |   std_1_V_V  |    pointer   |
+|std_1_V_V_read         | out |    1|   ap_fifo  |   std_1_V_V  |    pointer   |
+|stream_o_V_V_din       | out |   18|   ap_fifo  | stream_o_V_V |    pointer   |
+|stream_o_V_V_full_n    |  in |    1|   ap_fifo  | stream_o_V_V |    pointer   |
+|stream_o_V_V_write     | out |    1|   ap_fifo  | stream_o_V_V |    pointer   |
+|ap_clk                 |  in |    1| ap_ctrl_hs |    deconv    | return value |
+|ap_rst                 |  in |    1| ap_ctrl_hs |    deconv    | return value |
+|ap_done                | out |    1| ap_ctrl_hs |    deconv    | return value |
+|ap_start               |  in |    1| ap_ctrl_hs |    deconv    | return value |
+|ap_ready               | out |    1| ap_ctrl_hs |    deconv    | return value |
+|ap_idle                | out |    1| ap_ctrl_hs |    deconv    | return value |
++-----------------------+-----+-----+------------+--------------+--------------+
+

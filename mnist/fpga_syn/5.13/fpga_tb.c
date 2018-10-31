@@ -35,8 +35,7 @@ int main(void) {
 	d_int deconv3[output.O_h][output.O_w][output.O_c];
 	d_int rand_[input.O_h][input.O_w][input.O_c];
 
-	printf("\nGenerating 10 images...");
-	rand_size = 3;
+	rand_size = 25;
 	//scanf("%d",&rand_size);
 
 	printf("\nSaving in out.csv... ");
@@ -56,7 +55,7 @@ int main(void) {
 		initialize_layer(hidden2,deconv2);
 		initialize_layer(output,deconv3);
 
-		set_random(input,rand_,r);
+		set_random(input,rand_,r+10);
 
 		deconv_(hidden1,rand_,deconv1,hidden1_weights,hidden1_biases,hidden1_mean,hidden1_std);
 		save_images(hidden1, deconv1, r, f_layer1);

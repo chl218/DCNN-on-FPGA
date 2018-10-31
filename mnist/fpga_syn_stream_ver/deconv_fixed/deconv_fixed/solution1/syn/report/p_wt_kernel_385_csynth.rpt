@@ -1,0 +1,324 @@
+
+
+================================================================
+== Vivado HLS Report for 'p_wt_kernel_385'
+================================================================
+* Date:           Tue Oct 30 18:59:06 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        deconv_fixed
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      5.90|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  1154|  1154|  1154|  1154|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |          |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |  1152|  1152|        33|         32|          1|    36|    yes   |
+        +----------+------+------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|    135|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|      -|       -|      -|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|    244|
+|Register         |        -|      -|     623|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      0|     623|    379|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0  |
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name           | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+    |indvar_flatten_next_fu_544_p2      |     +    |      0|  0|  15|           6|           1|
+    |kh_V_fu_550_p2                     |     +    |      0|  0|  12|           3|           1|
+    |kw_V_fu_578_p2                     |     +    |      0|  0|  12|           3|           1|
+    |tmp_209_fu_614_p2                  |     +    |      0|  0|  11|           7|           7|
+    |tmp_208_fu_605_p2                  |     -    |      0|  0|  11|           7|           7|
+    |ap_block_pp0_stage0_11001          |    and   |      0|  0|   8|           1|           1|
+    |ap_block_pp0_stage10_11001         |    and   |      0|  0|   8|           1|           1|
+    |ap_block_state10_pp0_stage8_iter0  |    and   |      0|  0|   8|           1|           1|
+    |exitcond19_i_fu_556_p2             |   icmp   |      0|  0|   9|           3|           3|
+    |exitcond_flatten_fu_538_p2         |   icmp   |      0|  0|  11|           6|           6|
+    |ap_block_state1                    |    or    |      0|  0|   8|           1|           1|
+    |p_i_mid2_fu_562_p3                 |  select  |      0|  0|   3|           1|           1|
+    |tmp_i_mid2_v_fu_570_p3             |  select  |      0|  0|   3|           1|           3|
+    |ap_enable_pp0                      |    xor   |      0|  0|   8|           1|           2|
+    |ap_enable_reg_pp0_iter1            |    xor   |      0|  0|   8|           1|           2|
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                              |          |      0|  0| 135|          43|          38|
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+-----+-----------+-----+-----------+
+    |             Name             | LUT | Input Size| Bits| Total Bits|
+    +------------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm                     |  157|         35|    1|         35|
+    |ap_done                       |    9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1       |   15|          3|    1|          3|
+    |indvar_flatten_phi_fu_509_p4  |    9|          2|    6|         12|
+    |indvar_flatten_reg_505        |    9|          2|    6|         12|
+    |kernel_i_V_V2_blk_n           |    9|          2|    1|          2|
+    |p_02_i_phi_fu_520_p4          |    9|          2|    3|          6|
+    |p_02_i_reg_516                |    9|          2|    3|          6|
+    |p_i_phi_fu_531_p4             |    9|          2|    3|          6|
+    |p_i_reg_527                   |    9|          2|    3|          6|
+    +------------------------------+-----+-----------+-----+-----------+
+    |Total                         |  244|         54|   28|         90|
+    +------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------+----+----+-----+-----------+
+    |             Name            | FF | LUT| Bits| Const Bits|
+    +-----------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                    |  34|   0|   34|          0|
+    |ap_done_reg                  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1      |   1|   0|    1|          0|
+    |exitcond_flatten_reg_656     |   1|   0|    1|          0|
+    |indvar_flatten_next_reg_660  |   6|   0|    6|          0|
+    |indvar_flatten_reg_505       |   6|   0|    6|          0|
+    |kw_V_reg_833                 |   3|   0|    3|          0|
+    |p_02_i_reg_516               |   3|   0|    3|          0|
+    |p_i_mid2_reg_665             |   3|   0|    3|          0|
+    |p_i_reg_527                  |   3|   0|    3|          0|
+    |tmp_V_57_reg_683             |  18|   0|   18|          0|
+    |tmp_V_58_reg_688             |  18|   0|   18|          0|
+    |tmp_V_59_reg_693             |  18|   0|   18|          0|
+    |tmp_V_60_reg_698             |  18|   0|   18|          0|
+    |tmp_V_61_reg_703             |  18|   0|   18|          0|
+    |tmp_V_62_reg_708             |  18|   0|   18|          0|
+    |tmp_V_63_reg_713             |  18|   0|   18|          0|
+    |tmp_V_64_reg_718             |  18|   0|   18|          0|
+    |tmp_V_65_reg_723             |  18|   0|   18|          0|
+    |tmp_V_66_reg_728             |  18|   0|   18|          0|
+    |tmp_V_67_reg_733             |  18|   0|   18|          0|
+    |tmp_V_68_reg_738             |  18|   0|   18|          0|
+    |tmp_V_69_reg_743             |  18|   0|   18|          0|
+    |tmp_V_70_reg_748             |  18|   0|   18|          0|
+    |tmp_V_71_reg_753             |  18|   0|   18|          0|
+    |tmp_V_72_reg_758             |  18|   0|   18|          0|
+    |tmp_V_73_reg_763             |  18|   0|   18|          0|
+    |tmp_V_74_reg_768             |  18|   0|   18|          0|
+    |tmp_V_75_reg_773             |  18|   0|   18|          0|
+    |tmp_V_76_reg_778             |  18|   0|   18|          0|
+    |tmp_V_77_reg_783             |  18|   0|   18|          0|
+    |tmp_V_78_reg_788             |  18|   0|   18|          0|
+    |tmp_V_79_reg_793             |  18|   0|   18|          0|
+    |tmp_V_80_reg_798             |  18|   0|   18|          0|
+    |tmp_V_81_reg_803             |  18|   0|   18|          0|
+    |tmp_V_82_reg_808             |  18|   0|   18|          0|
+    |tmp_V_83_reg_813             |  18|   0|   18|          0|
+    |tmp_V_84_reg_818             |  18|   0|   18|          0|
+    |tmp_V_85_reg_823             |  18|   0|   18|          0|
+    |tmp_V_86_reg_828             |  18|   0|   18|          0|
+    |tmp_V_reg_678                |  18|   0|   18|          0|
+    |tmp_i_mid2_v_reg_671         |   3|   0|    3|          0|
+    +-----------------------------+----+----+-----+-----------+
+    |Total                        | 623|   0|  623|          0|
+    +-----------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+--------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++-----------------------------+-----+-----+------------+--------------------+--------------+
+|ap_clk                       |  in |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|ap_rst                       |  in |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|ap_start                     |  in |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|ap_done                      | out |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|ap_continue                  |  in |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|ap_idle                      | out |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|ap_ready                     | out |    1| ap_ctrl_hs |   _wt_kernel_385   | return value |
+|kernel_i_V_V2_dout           |  in |   18|   ap_fifo  |    kernel_i_V_V2   |    pointer   |
+|kernel_i_V_V2_empty_n        |  in |    1|   ap_fifo  |    kernel_i_V_V2   |    pointer   |
+|kernel_i_V_V2_read           | out |    1|   ap_fifo  |    kernel_i_V_V2   |    pointer   |
+|layer3_kernel_V_0_address0   | out |    6|  ap_memory |  layer3_kernel_V_0 |     array    |
+|layer3_kernel_V_0_ce0        | out |    1|  ap_memory |  layer3_kernel_V_0 |     array    |
+|layer3_kernel_V_0_we0        | out |    1|  ap_memory |  layer3_kernel_V_0 |     array    |
+|layer3_kernel_V_0_d0         | out |   18|  ap_memory |  layer3_kernel_V_0 |     array    |
+|layer3_kernel_V_1_address0   | out |    6|  ap_memory |  layer3_kernel_V_1 |     array    |
+|layer3_kernel_V_1_ce0        | out |    1|  ap_memory |  layer3_kernel_V_1 |     array    |
+|layer3_kernel_V_1_we0        | out |    1|  ap_memory |  layer3_kernel_V_1 |     array    |
+|layer3_kernel_V_1_d0         | out |   18|  ap_memory |  layer3_kernel_V_1 |     array    |
+|layer3_kernel_V_10_address0  | out |    6|  ap_memory | layer3_kernel_V_10 |     array    |
+|layer3_kernel_V_10_ce0       | out |    1|  ap_memory | layer3_kernel_V_10 |     array    |
+|layer3_kernel_V_10_we0       | out |    1|  ap_memory | layer3_kernel_V_10 |     array    |
+|layer3_kernel_V_10_d0        | out |   18|  ap_memory | layer3_kernel_V_10 |     array    |
+|layer3_kernel_V_11_address0  | out |    6|  ap_memory | layer3_kernel_V_11 |     array    |
+|layer3_kernel_V_11_ce0       | out |    1|  ap_memory | layer3_kernel_V_11 |     array    |
+|layer3_kernel_V_11_we0       | out |    1|  ap_memory | layer3_kernel_V_11 |     array    |
+|layer3_kernel_V_11_d0        | out |   18|  ap_memory | layer3_kernel_V_11 |     array    |
+|layer3_kernel_V_12_address0  | out |    6|  ap_memory | layer3_kernel_V_12 |     array    |
+|layer3_kernel_V_12_ce0       | out |    1|  ap_memory | layer3_kernel_V_12 |     array    |
+|layer3_kernel_V_12_we0       | out |    1|  ap_memory | layer3_kernel_V_12 |     array    |
+|layer3_kernel_V_12_d0        | out |   18|  ap_memory | layer3_kernel_V_12 |     array    |
+|layer3_kernel_V_13_address0  | out |    6|  ap_memory | layer3_kernel_V_13 |     array    |
+|layer3_kernel_V_13_ce0       | out |    1|  ap_memory | layer3_kernel_V_13 |     array    |
+|layer3_kernel_V_13_we0       | out |    1|  ap_memory | layer3_kernel_V_13 |     array    |
+|layer3_kernel_V_13_d0        | out |   18|  ap_memory | layer3_kernel_V_13 |     array    |
+|layer3_kernel_V_14_address0  | out |    6|  ap_memory | layer3_kernel_V_14 |     array    |
+|layer3_kernel_V_14_ce0       | out |    1|  ap_memory | layer3_kernel_V_14 |     array    |
+|layer3_kernel_V_14_we0       | out |    1|  ap_memory | layer3_kernel_V_14 |     array    |
+|layer3_kernel_V_14_d0        | out |   18|  ap_memory | layer3_kernel_V_14 |     array    |
+|layer3_kernel_V_15_address0  | out |    6|  ap_memory | layer3_kernel_V_15 |     array    |
+|layer3_kernel_V_15_ce0       | out |    1|  ap_memory | layer3_kernel_V_15 |     array    |
+|layer3_kernel_V_15_we0       | out |    1|  ap_memory | layer3_kernel_V_15 |     array    |
+|layer3_kernel_V_15_d0        | out |   18|  ap_memory | layer3_kernel_V_15 |     array    |
+|layer3_kernel_V_16_address0  | out |    6|  ap_memory | layer3_kernel_V_16 |     array    |
+|layer3_kernel_V_16_ce0       | out |    1|  ap_memory | layer3_kernel_V_16 |     array    |
+|layer3_kernel_V_16_we0       | out |    1|  ap_memory | layer3_kernel_V_16 |     array    |
+|layer3_kernel_V_16_d0        | out |   18|  ap_memory | layer3_kernel_V_16 |     array    |
+|layer3_kernel_V_17_address0  | out |    6|  ap_memory | layer3_kernel_V_17 |     array    |
+|layer3_kernel_V_17_ce0       | out |    1|  ap_memory | layer3_kernel_V_17 |     array    |
+|layer3_kernel_V_17_we0       | out |    1|  ap_memory | layer3_kernel_V_17 |     array    |
+|layer3_kernel_V_17_d0        | out |   18|  ap_memory | layer3_kernel_V_17 |     array    |
+|layer3_kernel_V_18_address0  | out |    6|  ap_memory | layer3_kernel_V_18 |     array    |
+|layer3_kernel_V_18_ce0       | out |    1|  ap_memory | layer3_kernel_V_18 |     array    |
+|layer3_kernel_V_18_we0       | out |    1|  ap_memory | layer3_kernel_V_18 |     array    |
+|layer3_kernel_V_18_d0        | out |   18|  ap_memory | layer3_kernel_V_18 |     array    |
+|layer3_kernel_V_19_address0  | out |    6|  ap_memory | layer3_kernel_V_19 |     array    |
+|layer3_kernel_V_19_ce0       | out |    1|  ap_memory | layer3_kernel_V_19 |     array    |
+|layer3_kernel_V_19_we0       | out |    1|  ap_memory | layer3_kernel_V_19 |     array    |
+|layer3_kernel_V_19_d0        | out |   18|  ap_memory | layer3_kernel_V_19 |     array    |
+|layer3_kernel_V_2_address0   | out |    6|  ap_memory |  layer3_kernel_V_2 |     array    |
+|layer3_kernel_V_2_ce0        | out |    1|  ap_memory |  layer3_kernel_V_2 |     array    |
+|layer3_kernel_V_2_we0        | out |    1|  ap_memory |  layer3_kernel_V_2 |     array    |
+|layer3_kernel_V_2_d0         | out |   18|  ap_memory |  layer3_kernel_V_2 |     array    |
+|layer3_kernel_V_20_address0  | out |    6|  ap_memory | layer3_kernel_V_20 |     array    |
+|layer3_kernel_V_20_ce0       | out |    1|  ap_memory | layer3_kernel_V_20 |     array    |
+|layer3_kernel_V_20_we0       | out |    1|  ap_memory | layer3_kernel_V_20 |     array    |
+|layer3_kernel_V_20_d0        | out |   18|  ap_memory | layer3_kernel_V_20 |     array    |
+|layer3_kernel_V_21_address0  | out |    6|  ap_memory | layer3_kernel_V_21 |     array    |
+|layer3_kernel_V_21_ce0       | out |    1|  ap_memory | layer3_kernel_V_21 |     array    |
+|layer3_kernel_V_21_we0       | out |    1|  ap_memory | layer3_kernel_V_21 |     array    |
+|layer3_kernel_V_21_d0        | out |   18|  ap_memory | layer3_kernel_V_21 |     array    |
+|layer3_kernel_V_22_address0  | out |    6|  ap_memory | layer3_kernel_V_22 |     array    |
+|layer3_kernel_V_22_ce0       | out |    1|  ap_memory | layer3_kernel_V_22 |     array    |
+|layer3_kernel_V_22_we0       | out |    1|  ap_memory | layer3_kernel_V_22 |     array    |
+|layer3_kernel_V_22_d0        | out |   18|  ap_memory | layer3_kernel_V_22 |     array    |
+|layer3_kernel_V_23_address0  | out |    6|  ap_memory | layer3_kernel_V_23 |     array    |
+|layer3_kernel_V_23_ce0       | out |    1|  ap_memory | layer3_kernel_V_23 |     array    |
+|layer3_kernel_V_23_we0       | out |    1|  ap_memory | layer3_kernel_V_23 |     array    |
+|layer3_kernel_V_23_d0        | out |   18|  ap_memory | layer3_kernel_V_23 |     array    |
+|layer3_kernel_V_24_address0  | out |    6|  ap_memory | layer3_kernel_V_24 |     array    |
+|layer3_kernel_V_24_ce0       | out |    1|  ap_memory | layer3_kernel_V_24 |     array    |
+|layer3_kernel_V_24_we0       | out |    1|  ap_memory | layer3_kernel_V_24 |     array    |
+|layer3_kernel_V_24_d0        | out |   18|  ap_memory | layer3_kernel_V_24 |     array    |
+|layer3_kernel_V_25_address0  | out |    6|  ap_memory | layer3_kernel_V_25 |     array    |
+|layer3_kernel_V_25_ce0       | out |    1|  ap_memory | layer3_kernel_V_25 |     array    |
+|layer3_kernel_V_25_we0       | out |    1|  ap_memory | layer3_kernel_V_25 |     array    |
+|layer3_kernel_V_25_d0        | out |   18|  ap_memory | layer3_kernel_V_25 |     array    |
+|layer3_kernel_V_26_address0  | out |    6|  ap_memory | layer3_kernel_V_26 |     array    |
+|layer3_kernel_V_26_ce0       | out |    1|  ap_memory | layer3_kernel_V_26 |     array    |
+|layer3_kernel_V_26_we0       | out |    1|  ap_memory | layer3_kernel_V_26 |     array    |
+|layer3_kernel_V_26_d0        | out |   18|  ap_memory | layer3_kernel_V_26 |     array    |
+|layer3_kernel_V_27_address0  | out |    6|  ap_memory | layer3_kernel_V_27 |     array    |
+|layer3_kernel_V_27_ce0       | out |    1|  ap_memory | layer3_kernel_V_27 |     array    |
+|layer3_kernel_V_27_we0       | out |    1|  ap_memory | layer3_kernel_V_27 |     array    |
+|layer3_kernel_V_27_d0        | out |   18|  ap_memory | layer3_kernel_V_27 |     array    |
+|layer3_kernel_V_28_address0  | out |    6|  ap_memory | layer3_kernel_V_28 |     array    |
+|layer3_kernel_V_28_ce0       | out |    1|  ap_memory | layer3_kernel_V_28 |     array    |
+|layer3_kernel_V_28_we0       | out |    1|  ap_memory | layer3_kernel_V_28 |     array    |
+|layer3_kernel_V_28_d0        | out |   18|  ap_memory | layer3_kernel_V_28 |     array    |
+|layer3_kernel_V_29_address0  | out |    6|  ap_memory | layer3_kernel_V_29 |     array    |
+|layer3_kernel_V_29_ce0       | out |    1|  ap_memory | layer3_kernel_V_29 |     array    |
+|layer3_kernel_V_29_we0       | out |    1|  ap_memory | layer3_kernel_V_29 |     array    |
+|layer3_kernel_V_29_d0        | out |   18|  ap_memory | layer3_kernel_V_29 |     array    |
+|layer3_kernel_V_3_address0   | out |    6|  ap_memory |  layer3_kernel_V_3 |     array    |
+|layer3_kernel_V_3_ce0        | out |    1|  ap_memory |  layer3_kernel_V_3 |     array    |
+|layer3_kernel_V_3_we0        | out |    1|  ap_memory |  layer3_kernel_V_3 |     array    |
+|layer3_kernel_V_3_d0         | out |   18|  ap_memory |  layer3_kernel_V_3 |     array    |
+|layer3_kernel_V_30_address0  | out |    6|  ap_memory | layer3_kernel_V_30 |     array    |
+|layer3_kernel_V_30_ce0       | out |    1|  ap_memory | layer3_kernel_V_30 |     array    |
+|layer3_kernel_V_30_we0       | out |    1|  ap_memory | layer3_kernel_V_30 |     array    |
+|layer3_kernel_V_30_d0        | out |   18|  ap_memory | layer3_kernel_V_30 |     array    |
+|layer3_kernel_V_31_address0  | out |    6|  ap_memory | layer3_kernel_V_31 |     array    |
+|layer3_kernel_V_31_ce0       | out |    1|  ap_memory | layer3_kernel_V_31 |     array    |
+|layer3_kernel_V_31_we0       | out |    1|  ap_memory | layer3_kernel_V_31 |     array    |
+|layer3_kernel_V_31_d0        | out |   18|  ap_memory | layer3_kernel_V_31 |     array    |
+|layer3_kernel_V_4_address0   | out |    6|  ap_memory |  layer3_kernel_V_4 |     array    |
+|layer3_kernel_V_4_ce0        | out |    1|  ap_memory |  layer3_kernel_V_4 |     array    |
+|layer3_kernel_V_4_we0        | out |    1|  ap_memory |  layer3_kernel_V_4 |     array    |
+|layer3_kernel_V_4_d0         | out |   18|  ap_memory |  layer3_kernel_V_4 |     array    |
+|layer3_kernel_V_5_address0   | out |    6|  ap_memory |  layer3_kernel_V_5 |     array    |
+|layer3_kernel_V_5_ce0        | out |    1|  ap_memory |  layer3_kernel_V_5 |     array    |
+|layer3_kernel_V_5_we0        | out |    1|  ap_memory |  layer3_kernel_V_5 |     array    |
+|layer3_kernel_V_5_d0         | out |   18|  ap_memory |  layer3_kernel_V_5 |     array    |
+|layer3_kernel_V_6_address0   | out |    6|  ap_memory |  layer3_kernel_V_6 |     array    |
+|layer3_kernel_V_6_ce0        | out |    1|  ap_memory |  layer3_kernel_V_6 |     array    |
+|layer3_kernel_V_6_we0        | out |    1|  ap_memory |  layer3_kernel_V_6 |     array    |
+|layer3_kernel_V_6_d0         | out |   18|  ap_memory |  layer3_kernel_V_6 |     array    |
+|layer3_kernel_V_7_address0   | out |    6|  ap_memory |  layer3_kernel_V_7 |     array    |
+|layer3_kernel_V_7_ce0        | out |    1|  ap_memory |  layer3_kernel_V_7 |     array    |
+|layer3_kernel_V_7_we0        | out |    1|  ap_memory |  layer3_kernel_V_7 |     array    |
+|layer3_kernel_V_7_d0         | out |   18|  ap_memory |  layer3_kernel_V_7 |     array    |
+|layer3_kernel_V_8_address0   | out |    6|  ap_memory |  layer3_kernel_V_8 |     array    |
+|layer3_kernel_V_8_ce0        | out |    1|  ap_memory |  layer3_kernel_V_8 |     array    |
+|layer3_kernel_V_8_we0        | out |    1|  ap_memory |  layer3_kernel_V_8 |     array    |
+|layer3_kernel_V_8_d0         | out |   18|  ap_memory |  layer3_kernel_V_8 |     array    |
+|layer3_kernel_V_9_address0   | out |    6|  ap_memory |  layer3_kernel_V_9 |     array    |
+|layer3_kernel_V_9_ce0        | out |    1|  ap_memory |  layer3_kernel_V_9 |     array    |
+|layer3_kernel_V_9_we0        | out |    1|  ap_memory |  layer3_kernel_V_9 |     array    |
+|layer3_kernel_V_9_d0         | out |   18|  ap_memory |  layer3_kernel_V_9 |     array    |
++-----------------------------+-----+-----+------------+--------------------+--------------+
+

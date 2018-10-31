@@ -38,13 +38,13 @@ int main() {
 	hls::stream<d_int> mean_stream[2];
 	hls::stream<d_int> std_stream[2];
 
-	FILE *fp = fopen("out.cvs", "w");
+	FILE *fp = fopen("out.csv", "w");
 
-	int GENERATE_AMT = 1;
+	int GENERATE_AMT = 25;
 
 	for(int r = 0; r < GENERATE_AMT; r++) {
 		// Input layer
-		set_random(param_input, r, stream_i);
+		set_random(param_input, r+10, stream_i);
 
 		// Hidden Layer 1
 		set_kernel(1, params[0], kernel_stream[0]);
@@ -65,36 +65,12 @@ int main() {
 		// Run Algorithm
 		deconv(params, stream_i, kernel_stream, bias_stream, mean_stream, std_stream, stream_o);
 
-//		// Save result to output file
+		// Save result to output file
 		peak_layer(params[2], stream_o, 1);
-//		save_image(params[2], stream_o, fp);
+		save_image(params[2], stream_o, fp);
 	}
 
 	fclose(fp);
-
-//	printf("Layer 1:\n");
-//	printf("================================================================================\n");
-//	set_streams(hidden1_biases, param_hidden1.O_c, bias_stream[0],
-//				  hidden1_mean, param_hidden1.O_c, mean_stream[0],
-//				   hidden1_std, param_hidden1.O_c,  std_stream[0]);
-//	set_kernel(1, param_hidden1, kernel_stream[0]);
-//	deconv1_preprocess(param_hidden1, stream_i, kernel_stream[0], bias_stream[0], mean_stream[0], std_stream[0], stream_o[0]);
-//	save_images(param_hidden1, stream_o[0], "layer1.csv");
-//
-//	printf("Layer 2:\n");
-//	printf("================================================================================\n");
-//	set_streams(hidden2_biases, param_hidden2.O_c, bias_stream[1],
-//				  hidden2_mean, param_hidden2.O_c, mean_stream[1],
-//				   hidden2_std, param_hidden2.O_c,  std_stream[1]);
-//	set_kernel(2, param_hidden2, kernel_stream[1]);
-//	deconv2_preprocess(param_hidden2, stream_o[0], kernel_stream[1], bias_stream[1], mean_stream[1], std_stream[1], stream_o[1]);
-//	save_images(param_hidden2, stream_o[1], "layer2.csv");
-//
-//	printf("Layer 3:\n");
-//	printf("================================================================================\n");
-//	set_kernel(3, param_output, kernel_stream[2]);
-//	deconv3_preprocess(param_output, stream_o[1], kernel_stream[2], output_biases[0], stream_o[2]);
-//	save_images(param_output, stream_o[2], "out.csv");
 
 	printf("\nGoodbye Test Bench\n");
 	return 0;
@@ -195,10 +171,11 @@ void peak_layer(layer_params param, hls::stream<d_int> &stream_i, int AMT) {
 
 // Write to file
 void save_image(layer_params param, hls::stream<d_int> &stream_i, FILE *fp) {
-	char buf[100];
 	for(int oh = 0; oh < param.O_h; oh++) {
 		for(int ow = 0; ow < param.O_w; ow++) {
-			fprintf(fp,  "%d ", (int)stream_i.read());
+			if(oh + ow == 0) fprintf(fp,  "%d", (int)stream_i.read());
+			else 			 fprintf(fp, ",%d", (int)stream_i.read());
 		}
 	}
+	fprintf(fp, "\n");
 }
