@@ -1,9 +1,9 @@
 
 
 ================================================================
-== Vivado HLS Report for 'Block_proc102'
+== Vivado HLS Report for 'Block_proc100'
 ================================================================
-* Date:           Tue Oct 30 18:59:18 2018
+* Date:           Tue Oct 30 20:44:33 2018
 
 * Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
 * Project:        deconv_fixed
@@ -115,13 +115,13 @@
 +---------------------------+-----+-----+------------+--------------------+--------------+
 |         RTL Ports         | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
 +---------------------------+-----+-----+------------+--------------------+--------------+
-|ap_clk                     |  in |    1| ap_ctrl_hs |   Block__proc102   | return value |
-|ap_rst                     |  in |    1| ap_ctrl_hs |   Block__proc102   | return value |
-|ap_start                   |  in |    1| ap_ctrl_hs |   Block__proc102   | return value |
-|ap_done                    | out |    1| ap_ctrl_hs |   Block__proc102   | return value |
-|ap_continue                |  in |    1| ap_ctrl_hs |   Block__proc102   | return value |
-|ap_idle                    | out |    1| ap_ctrl_hs |   Block__proc102   | return value |
-|ap_ready                   | out |    1| ap_ctrl_hs |   Block__proc102   | return value |
+|ap_clk                     |  in |    1| ap_ctrl_hs |   Block__proc100   | return value |
+|ap_rst                     |  in |    1| ap_ctrl_hs |   Block__proc100   | return value |
+|ap_start                   |  in |    1| ap_ctrl_hs |   Block__proc100   | return value |
+|ap_done                    | out |    1| ap_ctrl_hs |   Block__proc100   | return value |
+|ap_continue                |  in |    1| ap_ctrl_hs |   Block__proc100   | return value |
+|ap_idle                    | out |    1| ap_ctrl_hs |   Block__proc100   | return value |
+|ap_ready                   | out |    1| ap_ctrl_hs |   Block__proc100   | return value |
 |bias_2_V_V_dout            |  in |   18|   ap_fifo  |     bias_2_V_V     |    pointer   |
 |bias_2_V_V_empty_n         |  in |    1|   ap_fifo  |     bias_2_V_V     |    pointer   |
 |bias_2_V_V_read            | out |    1|   ap_fifo  |     bias_2_V_V     |    pointer   |

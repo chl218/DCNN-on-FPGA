@@ -8,7 +8,7 @@
 <unit>ns</unit>
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020clg484-1</Part>
-<TopModelName>Block_proc102</TopModelName>
+<TopModelName>p_wt_kernel_280</TopModelName>
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
 </UserAssignments>
@@ -17,22 +17,30 @@
 <PipelineType>none</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>4.64</EstimatedClockPeriod>
+<EstimatedClockPeriod>8.60</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>0</Best-caseLatency>
-<Average-caseLatency>0</Average-caseLatency>
-<Worst-caseLatency>0</Worst-caseLatency>
-<Interval-min>0</Interval-min>
-<Interval-max>0</Interval-max>
+<Best-caseLatency>36866</Best-caseLatency>
+<Average-caseLatency>36866</Average-caseLatency>
+<Worst-caseLatency>36866</Worst-caseLatency>
+<Interval-min>36866</Interval-min>
+<Interval-max>36866</Interval-max>
 </SummaryOfOverallLatency>
+<SummaryOfLoopLatency>
+<Loop1>
+<TripCount>1152</TripCount>
+<Latency>36864</Latency>
+<PipelineII>32</PipelineII>
+<PipelineDepth>33</PipelineDepth>
+</Loop1>
+</SummaryOfLoopLatency>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<FF>2</FF>
-<LUT>35</LUT>
+<FF>115</FF>
+<LUT>494</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP48E>0</DSP48E>
 </Resources>
@@ -47,7 +55,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -58,7 +66,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -69,7 +77,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -80,7 +88,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -91,7 +99,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_continue</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -102,7 +110,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -113,7 +121,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>Block__proc102</Object>
+<Object>_wt_kernel_280</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -123,8 +131,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>bias_2_V_V_dout</name>
-<Object>bias_2_V_V</Object>
+<name>kernel_i_V_V1_dout</name>
+<Object>kernel_i_V_V1</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -134,8 +142,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>bias_2_V_V_empty_n</name>
-<Object>bias_2_V_V</Object>
+<name>kernel_i_V_V1_empty_n</name>
+<Object>kernel_i_V_V1</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -145,8 +153,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>bias_2_V_V_read</name>
-<Object>bias_2_V_V</Object>
+<name>kernel_i_V_V1_read</name>
+<Object>kernel_i_V_V1</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -156,37 +164,48 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>tmp_V_load_out_out_din</name>
-<Object>tmp_V_load_out_out</Object>
-<Type>pointer</Type>
+<name>layer2_kernel_V_31_address0</name>
+<Object>layer2_kernel_V_31</Object>
+<Type>array</Type>
 <Scope></Scope>
-<IOProtocol>ap_fifo</IOProtocol>
+<IOProtocol>ap_memory</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>11</Bits>
+<Attribute>address</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>layer2_kernel_V_31_ce0</name>
+<Object>layer2_kernel_V_31</Object>
+<Type>array</Type>
+<Scope></Scope>
+<IOProtocol>ap_memory</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>layer2_kernel_V_31_we0</name>
+<Object>layer2_kernel_V_31</Object>
+<Type>array</Type>
+<Scope></Scope>
+<IOProtocol>ap_memory</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>layer2_kernel_V_31_d0</name>
+<Object>layer2_kernel_V_31</Object>
+<Type>array</Type>
+<Scope></Scope>
+<IOProtocol>ap_memory</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
 <Bits>18</Bits>
 <Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>tmp_V_load_out_out_full_n</name>
-<Object>tmp_V_load_out_out</Object>
-<Type>pointer</Type>
-<Scope></Scope>
-<IOProtocol>ap_fifo</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>tmp_V_load_out_out_write</name>
-<Object>tmp_V_load_out_out</Object>
-<Type>pointer</Type>
-<Scope></Scope>
-<IOProtocol>ap_fifo</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
 </RtlPorts>
 </InterfaceSummary>
 

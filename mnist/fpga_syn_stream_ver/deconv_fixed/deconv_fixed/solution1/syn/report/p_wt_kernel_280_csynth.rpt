@@ -1,0 +1,185 @@
+
+
+================================================================
+== Vivado HLS Report for 'p_wt_kernel_280'
+================================================================
+* Date:           Tue Oct 30 20:44:17 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        deconv_fixed
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.60|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+-------+-------+-------+---------+
+    |    Latency    |    Interval   | Pipeline|
+    |  min  |  max  |  min  |  max  |   Type  |
+    +-------+-------+-------+-------+---------+
+    |  36866|  36866|  36866|  36866|   none  |
+    +-------+-------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-------+-------+----------+-----------+-----------+------+----------+
+        |          |    Latency    | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|  min  |  max  |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-------+-------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |  36864|  36864|        33|         32|          1|  1152|    yes   |
+        +----------+-------+-------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|    241|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|      -|       -|      -|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|    253|
+|Register         |        -|      -|     115|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      0|     115|    494|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0  |
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name           | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+    |indvar_flatten_next2_fu_151_p2     |     +    |      0|  0|  18|          11|           1|
+    |indvar_flatten_op_fu_163_p2        |     +    |      0|  0|  16|           9|           1|
+    |kh_V_fu_177_p2                     |     +    |      0|  0|  12|           3|           1|
+    |kw_V_fu_244_p2                     |     +    |      0|  0|  12|           3|           1|
+    |oc_V_fu_299_p2                     |     +    |      0|  0|  15|           6|           1|
+    |tmp_161_fu_275_p2                  |     +    |      0|  0|   8|           7|           7|
+    |tmp_162_fu_293_p2                  |     +    |      0|  0|  19|          12|          12|
+    |tmp_159_fu_221_p2                  |     -    |      0|  0|   8|           7|           7|
+    |ap_block_pp0_stage0_11001          |    and   |      0|  0|   8|           1|           1|
+    |ap_block_pp0_stage10_11001         |    and   |      0|  0|   8|           1|           1|
+    |ap_block_state10_pp0_stage8_iter0  |    and   |      0|  0|   8|           1|           1|
+    |exitcond22_i_mid_fu_238_p2         |    and   |      0|  0|   8|           1|           1|
+    |exitcond22_i_fu_232_p2             |   icmp   |      0|  0|  11|           6|           7|
+    |exitcond_flatten2_fu_145_p2        |   icmp   |      0|  0|  13|          11|          11|
+    |exitcond_flatten9_fu_157_p2        |   icmp   |      0|  0|  13|           9|           8|
+    |ap_block_state1                    |    or    |      0|  0|   8|           1|           1|
+    |tmp_160_fu_250_p2                  |    or    |      0|  0|   8|           1|           1|
+    |indvar_flatten_next_fu_169_p3      |  select  |      0|  0|   9|           1|           1|
+    |p_20_i_mid2_fu_255_p3              |  select  |      0|  0|   6|           1|           1|
+    |p_i_mid_fu_183_p3                  |  select  |      0|  0|   3|           1|           1|
+    |tmp_i_mid2_fu_263_p3               |  select  |      0|  0|   3|           1|           3|
+    |tmp_i_mid2_v_fu_190_p3             |  select  |      0|  0|   3|           1|           3|
+    |ap_enable_pp0                      |    xor   |      0|  0|   8|           1|           2|
+    |ap_enable_reg_pp0_iter1            |    xor   |      0|  0|   8|           1|           2|
+    |not_exitcond_flatten_fu_227_p2     |    xor   |      0|  0|   8|           1|           2|
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                              |          |      0|  0| 241|          98|          78|
+    +-----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+-----+-----------+-----+-----------+
+    |             Name             | LUT | Input Size| Bits| Total Bits|
+    +------------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm                     |  157|         35|    1|         35|
+    |ap_done                       |    9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1       |   15|          3|    1|          3|
+    |indvar_flatten2_phi_fu_91_p4  |    9|          2|   11|         22|
+    |indvar_flatten2_reg_87        |    9|          2|   11|         22|
+    |indvar_flatten_phi_fu_114_p4  |    9|          2|    9|         18|
+    |indvar_flatten_reg_110        |    9|          2|    9|         18|
+    |kernel_i_V_V1_blk_n           |    9|          2|    1|          2|
+    |p_02_i_reg_98                 |    9|          2|    3|          6|
+    |p_20_i_reg_133                |    9|          2|    6|         12|
+    |p_i_reg_121                   |    9|          2|    3|          6|
+    +------------------------------+-----+-----------+-----+-----------+
+    |Total                         |  253|         56|   56|        146|
+    +------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------+----+----+-----+-----------+
+    |             Name             | FF | LUT| Bits| Const Bits|
+    +------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                     |  34|   0|   34|          0|
+    |ap_done_reg                   |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1       |   1|   0|    1|          0|
+    |exitcond_flatten2_reg_309     |   1|   0|    1|          0|
+    |exitcond_flatten9_reg_318     |   1|   0|    1|          0|
+    |indvar_flatten2_reg_87        |  11|   0|   11|          0|
+    |indvar_flatten_next2_reg_313  |  11|   0|   11|          0|
+    |indvar_flatten_next_reg_326   |   9|   0|    9|          0|
+    |indvar_flatten_reg_110        |   9|   0|    9|          0|
+    |oc_V_reg_346                  |   6|   0|    6|          0|
+    |p_02_i_reg_98                 |   3|   0|    3|          0|
+    |p_20_i_reg_133                |   6|   0|    6|          0|
+    |p_i_reg_121                   |   3|   0|    3|          0|
+    |tmp_162_reg_341               |  12|   0|   12|          0|
+    |tmp_i_mid2_reg_336            |   3|   0|    3|          0|
+    |tmp_i_mid2_v_reg_331          |   3|   0|    3|          0|
+    +------------------------------+----+----+-----+-----------+
+    |Total                         | 115|   0|  115|          0|
+    +------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+--------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++-----------------------------+-----+-----+------------+--------------------+--------------+
+|ap_clk                       |  in |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|ap_rst                       |  in |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|ap_start                     |  in |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|ap_done                      | out |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|ap_continue                  |  in |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|ap_idle                      | out |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|ap_ready                     | out |    1| ap_ctrl_hs |   _wt_kernel_280   | return value |
+|kernel_i_V_V1_dout           |  in |   18|   ap_fifo  |    kernel_i_V_V1   |    pointer   |
+|kernel_i_V_V1_empty_n        |  in |    1|   ap_fifo  |    kernel_i_V_V1   |    pointer   |
+|kernel_i_V_V1_read           | out |    1|   ap_fifo  |    kernel_i_V_V1   |    pointer   |
+|layer2_kernel_V_31_address0  | out |   11|  ap_memory | layer2_kernel_V_31 |     array    |
+|layer2_kernel_V_31_ce0       | out |    1|  ap_memory | layer2_kernel_V_31 |     array    |
+|layer2_kernel_V_31_we0       | out |    1|  ap_memory | layer2_kernel_V_31 |     array    |
+|layer2_kernel_V_31_d0        | out |   18|  ap_memory | layer2_kernel_V_31 |     array    |
++-----------------------------+-----+-----+------------+--------------------+--------------+
+

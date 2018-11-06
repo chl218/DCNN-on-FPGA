@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'p_extend_stream_1_1'
 ================================================================
-* Date:           Tue Oct 30 18:59:00 2018
+* Date:           Tue Oct 30 20:44:15 2018
 
 * Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
 * Project:        deconv_fixed
@@ -124,7 +124,7 @@
     |ap_condition_950                   |    and   |      0|  0|   8|           1|           1|
     |ap_condition_956                   |    and   |      0|  0|   8|           1|           1|
     |ap_condition_962                   |    and   |      0|  0|   8|           1|           1|
-    |exitcond2_fu_449_p2                |   icmp   |      0|  0|  11|           5|           6|
+    |exitcond3_fu_449_p2                |   icmp   |      0|  0|  11|           5|           6|
     |exitcond_fu_273_p2                 |   icmp   |      0|  0|  11|           6|           7|
     |ap_block_state1                    |    or    |      0|  0|   8|           1|           1|
     |ap_enable_pp0                      |    xor   |      0|  0|   8|           1|           2|
@@ -143,7 +143,7 @@
     |ap_done                  |    9|          2|    1|          2|
     |ap_enable_reg_pp0_iter1  |   15|          3|    1|          3|
     |ap_enable_reg_pp1_iter1  |   15|          3|    1|          3|
-    |p_2_reg_251              |    9|          2|    6|         12|
+    |p_3_reg_251              |    9|          2|    6|         12|
     |p_s_phi_fu_266_p4        |    9|          2|    5|         10|
     |p_s_reg_262              |    9|          2|    5|         10|
     |stream_i_V_V_blk_n       |    9|          2|    1|          2|
@@ -163,11 +163,11 @@
     |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
     |ap_enable_reg_pp1_iter0  |   1|   0|    1|          0|
     |ap_enable_reg_pp1_iter1  |   1|   0|    1|          0|
-    |exitcond2_reg_794        |   1|   0|    1|          0|
-    |p_2_reg_251              |   6|   0|    6|          0|
+    |exitcond3_reg_794        |   1|   0|    1|          0|
+    |p_3_reg_251              |   6|   0|    6|          0|
     |p_s_reg_262              |   5|   0|    5|          0|
     |rep_amt_V_reg_798        |   5|   0|    5|          0|
-    |tmp_222_reg_790          |   5|   0|    5|          0|
+    |tmp_133_reg_790          |   5|   0|    5|          0|
     |tmp_V_100_fu_206         |  18|   0|   18|          0|
     |tmp_V_101_fu_202         |  18|   0|   18|          0|
     |tmp_V_102_fu_198         |  18|   0|   18|          0|

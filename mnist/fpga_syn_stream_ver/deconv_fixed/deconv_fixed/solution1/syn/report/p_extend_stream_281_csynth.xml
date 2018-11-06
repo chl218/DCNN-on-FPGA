@@ -8,7 +8,7 @@
 <unit>ns</unit>
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020clg484-1</Part>
-<TopModelName>p_extend_stream_181</TopModelName>
+<TopModelName>p_extend_stream_281</TopModelName>
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
 </UserAssignments>
@@ -21,31 +21,31 @@
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>548</Best-caseLatency>
-<Average-caseLatency>548</Average-caseLatency>
-<Worst-caseLatency>548</Worst-caseLatency>
-<Interval-min>548</Interval-min>
-<Interval-max>548</Interval-max>
+<Best-caseLatency>4644</Best-caseLatency>
+<Average-caseLatency>4644</Average-caseLatency>
+<Worst-caseLatency>4644</Worst-caseLatency>
+<Interval-min>4644</Interval-min>
+<Interval-max>4644</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<L_RD>
+<Loop1>
 <TripCount>32</TripCount>
 <Latency>32</Latency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>2</PipelineDepth>
-</L_RD>
-<L_REP>
-<TripCount>16</TripCount>
-<Latency>512</Latency>
+</Loop1>
+<Loop2>
+<TripCount>144</TripCount>
+<Latency>4608</Latency>
 <PipelineII>32</PipelineII>
 <PipelineDepth>33</PipelineDepth>
-</L_REP>
+</Loop2>
 </SummaryOfLoopLatency>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<FF>639</FF>
+<FF>645</FF>
 <LUT>778</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP48E>0</DSP48E>
@@ -61,7 +61,7 @@
 <InterfaceSummary>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -72,7 +72,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -83,7 +83,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -94,7 +94,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_done</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -105,7 +105,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_continue</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -116,7 +116,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_idle</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -127,7 +127,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_ready</name>
-<Object>_extend_stream_181</Object>
+<Object>_extend_stream_281</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -137,8 +137,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>stream_i_V_V_dout</name>
-<Object>stream_i_V_V</Object>
+<name>stream_i_V_V1_dout</name>
+<Object>stream_i_V_V1</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -148,8 +148,8 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>stream_i_V_V_empty_n</name>
-<Object>stream_i_V_V</Object>
+<name>stream_i_V_V1_empty_n</name>
+<Object>stream_i_V_V1</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
@@ -159,8 +159,8 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>stream_i_V_V_read</name>
-<Object>stream_i_V_V</Object>
+<name>stream_i_V_V1_read</name>
+<Object>stream_i_V_V1</Object>
 <Type>pointer</Type>
 <Scope></Scope>
 <IOProtocol>ap_fifo</IOProtocol>
