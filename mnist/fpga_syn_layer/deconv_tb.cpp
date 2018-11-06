@@ -2,7 +2,9 @@
 #include "util.h"
 #include "deconv.h"
 
-// Mimicking the ARM Processor
+void set_random(d_int in[10], int r);
+void save_image(d_int out[28][28], FILE *fp);
+
 int main(int argc, char* arvg[]) {
 
 	printf("SHIFT_AMT:   %d\n", SHIFT_AMOUNT);
@@ -27,11 +29,11 @@ int main(int argc, char* arvg[]) {
 	d_int std_1[32];
 	d_int std_2[32];
 
-	int rand_size = 10;
+	int rand_size = 25;
 
 	FILE *fp = fopen("out.csv", "w");
 	for(int r = 0; r < rand_size; r++) {
-		set_random(in, r);
+		set_random(in, r+10);
 
 		deconv(in,
 			   hidden1_weights,
@@ -60,11 +62,11 @@ void set_random(d_int in[10], int r) {
 }
 
 // Write to file
-void save_image(d_int out, FILE *fp) {
+void save_image(d_int out[28][28], FILE *fp) {
 	for(int oh = 0; oh < 28; oh++) {
 		for(int ow = 0; ow < 28; ow++) {
-			if(oh + ow == 0) fprintf(fp,  "%d",  out[oh][ow]);
-			else 			 fprintf(fp, ",%d",  out[oh][ow]);
+			if(oh + ow == 0) fprintf(fp,  "%d",  (int)out[oh][ow]);
+			else 			 fprintf(fp, ",%d",  (int)out[oh][ow]);
 		}
 	}
 	fprintf(fp, "\n");
