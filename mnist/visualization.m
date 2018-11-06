@@ -2,14 +2,14 @@
 clear; clc;
 
 %%
-expectedFilePath = 'C:\Users\Jack\Desktop\DCNN-on-FPGA\mnist\fpga_syn\fpga_syn\solution1\csim\build\out.csv';
-streamedFilePath = 'C:\Users\Jack\Desktop\DCNN-on-FPGA\mnist\fpga_syn_stream_ver\deconv_fixed\deconv_fixed\solution1\csim\build\out.csv';
-layeredFilePath = 'C:\Users\Jack\Desktop\DCNN-on-FPGA\mnist\fpga_syn_layer\deconv\solution1\csim\build\out.csv';
+expectedFilePath = 'C:\Users\Jack\Desktop\repos\DCNN-on-FPGA\mnist\fpga_syn\fpga_syn\solution1\csim\build\out.csv';
+streamedFilePath = 'C:\Users\Jack\Desktop\repos\DCNN-on-FPGA\mnist\fpga_syn_stream_ver\deconv_fixed\deconv_fixed\solution1\csim\build\out.csv';
+layeredFilePath = 'C:\Users\Jack\Desktop\repos\DCNN-on-FPGA\mnist\fpga_syn_layer\deconv\solution1\csim\build\out.csv';
 
 %%
 expected = csvread(expectedFilePath);
 streamed = csvread(streamedFilePath);
-layered  = csvread(layeredFilePath);
+% layered  = csvread(layeredFilePath);
 
 %%
 figure(1);

@@ -35,7 +35,7 @@ int main(void) {
 	d_int deconv3[output.O_h][output.O_w][output.O_c];
 	d_int rand_[input.O_h][input.O_w][input.O_c];
 
-	rand_size = 25;
+	rand_size = 1;
 	//scanf("%d",&rand_size);
 
 	printf("\nSaving in out.csv... ");

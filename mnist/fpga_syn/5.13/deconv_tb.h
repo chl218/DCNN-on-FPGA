@@ -59,7 +59,10 @@ void deconv_( layer_params x,
 
 //							if(oh == 0 && ow == 2 && oc == 0) printf("(%5d ", temp[oh][ow]);
 
+							if(oh == 1 && ow == 27) printf("%7d [%3d %3d %3d]:%7d %7d --> ", in[ih][iw][ic], kh, kw, ic, w[kh][kw][oc][ic], temp[oh][ow]);
 							temp[oh][ow] += multiply_(in[ih][iw][ic],w[kh][kw][oc][ic]);
+
+							if(oh == 1 && ow == 27) printf("%7d\n", temp[oh][ow]);
 
 //							if(oh == 0 && ow == 2 && oc == 0) printf("%5d ", multiply_(in[ih][iw][ic],w[kh][kw][oc][ic]));
 

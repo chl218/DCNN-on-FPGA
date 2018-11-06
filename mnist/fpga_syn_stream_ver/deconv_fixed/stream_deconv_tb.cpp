@@ -40,7 +40,7 @@ int main() {
 
 	FILE *fp = fopen("out.csv", "w");
 
-	int GENERATE_AMT = 25;
+	int GENERATE_AMT = 1;
 
 	for(int r = 0; r < GENERATE_AMT; r++) {
 		// Input layer

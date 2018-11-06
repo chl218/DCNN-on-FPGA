@@ -270,6 +270,13 @@ void stream_deconv_3(//layer_params param,
 	d_int layer3_matrix[30][30];
 #pragma HLS ARRAY_PARTITION variable=layer3_matrix block factor=30 dim=1
 
+	for(d_int oh = 0; oh < 30; oh++) {
+		for(d_int ow = 0; ow < 30; ow++) {
+			layer3_matrix[oh][ow] = bias;
+		}
+	}
+
+
 	L_IH: for(d_int ih = 0; ih < 25; ih++) {
 		L_IW: for(d_int iw = 0; iw < 25; iw++) {
 
@@ -285,7 +292,11 @@ void stream_deconv_3(//layer_params param,
 #pragma HLS PIPELINE II=1
 					L_IC: for(d_int ic = 0; ic < 32; ic++) {
 
+
+						if(ih+kh == 1 && iw+kw == 28) printf("%7d [%3d %3d %3d]:%7d %7d --> ", (int)in_buf[ic],  (int)kh, (int)kw, (int)ic, (int)layer3_kernel[kh][kw][1][ic], (int)layer3_matrix[ih+kh][iw+kw]);
 						layer3_matrix[ih+kh][iw+kw] +=  multiply_(in_buf[ic], layer3_kernel[kh][kw][1][ic]);
+
+						if(ih+kh == 1 && iw+kw == 28) printf("%7d\n", (int)layer3_matrix[ih+kh][iw+kw]);
 
 						if(layer3_matrix[ih+kh][iw+kw]> UPPER_BOUND)       layer3_matrix[ih+kh][iw+kw] = UPPER_BOUND;
 						else if(layer3_matrix[ih+kh][iw+kw] < LOWER_BOUND) layer3_matrix[ih+kh][iw+kw] = LOWER_BOUND;
@@ -298,12 +309,12 @@ void stream_deconv_3(//layer_params param,
 	for(d_int oh = 1; oh < 29; oh++) {
 		for(d_int ow = 1; ow < 29; ow++) {
 #pragma HLS PIPELINE II=1
-//			stream_o.write(layer3_matrix[oh][ow]);
+			stream_o.write(layer3_matrix[oh][ow]);
 
-			d_int val = layer3_matrix[oh][ow] + bias;
-			if(val  > UPPER_BOUND)     stream_o.write(UPPER_BOUND);
-			else if(val < LOWER_BOUND) stream_o.write(LOWER_BOUND);
-			else 					   stream_o.write(val);
+//			d_int val = layer3_matrix[oh][ow] + bias;
+//			if(val  > UPPER_BOUND)     stream_o.write(UPPER_BOUND);
+//			else if(val < LOWER_BOUND) stream_o.write(LOWER_BOUND);
+//			else 					   stream_o.write(val);
 
 		}
 	}
@@ -316,6 +327,45 @@ void stream_deconv_3(//layer_params param,
 //=============================================================================
 // Top-Level
 //=============================================================================
+void _peak_layer(layer_params param, hls::stream<d_int> &stream_i, int AMT) {
+	// Copy stream values
+	//==========================================================================
+	d_int *arr = (d_int*) malloc(sizeof(d_int) * (unsigned int)param.O_h*(unsigned int)param.O_w*(unsigned int)param.O_c);
+	for(int oh = 0; oh < param.O_h; oh++) {
+		for(int ow = 0; ow < param.O_w; ow++) {
+			for(int oc = 0; oc < param.O_c; oc++) {
+				arr[(oc*param.O_h*param.O_w)+(oh*param.O_h)+ow] = stream_i.read();
+			}
+		}
+	}
+
+	// Peak layer
+	//==========================================================================
+	printf("Peak Channel: OH = %d, OW = %d\n", (int)param.O_h, (int)param.O_w);
+	for(int oc = 0; oc < AMT; oc++) {
+		for(int oh = param.S-1; oh < param.O_h; oh += param.S) {
+			for(int ow = param.S-1; ow < param.O_w; ow += param.S) {
+				printf("%7d ", (int)arr[(oc*param.O_h*param.O_w)+oh*param.O_h+ow]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+	}
+
+	// Restore stream values
+	//==========================================================================
+	for(int oh = 0; oh < param.O_h; oh++) {
+		for(int ow = 0; ow < param.O_w; ow++) {
+			for(int oc = 0; oc < param.O_c; oc++) {
+				stream_i.write((d_int)arr[(oc*param.O_h*param.O_w)+(oh*param.O_h)+ow]);
+			}
+		}
+	}
+
+	// free buffer
+	free(arr);
+}
+
 void deconv(layer_params param[3],
 			hls::stream<d_int> &stream_i,
 			hls::stream<d_int> (&kernel)[3],
@@ -348,323 +398,27 @@ void deconv(layer_params param[3],
 	// deconvolution
 	// =========================================================================
 	stream_deconv_1(stream_i, kernel[0], bias0, mean0, std0, stream_res[0]);
+
+	layer_params tmp_param;
+	tmp_param.O_h = 9;
+	tmp_param.O_w = 9;
+	tmp_param.O_c = 32;
+	tmp_param.S   = 2;
+	_peak_layer(tmp_param, stream_res[0], 1);
 	stream_deconv_2(stream_res[0], bias[1], mean1, std1, stream_res[1]);
+	tmp_param.O_h = 25;
+	tmp_param.O_w = 25;
+	tmp_param.O_c = 32;
+	tmp_param.S   = 2;
+	_peak_layer(tmp_param, stream_res[1], 32);
+
 	stream_deconv_3(stream_res[1], bias[2].read(), stream_o);
+	tmp_param.O_h = 28;
+	tmp_param.O_w = 28;
+	tmp_param.O_c = 1;
+	tmp_param.S   = 1;
+	_peak_layer(tmp_param, stream_o, 1);
+
 
 }
 
-//==============================================================================
-// Depricated
-//==============================================================================
-
-
-//==============================================================================
-// Helper functions to modify streaming interface
-//==============================================================================
-
-/**
-// Fill input stream with AMT of zeros
-inline void _pad_zeros(int AMT, hls::stream<d_int> &stream) {
-	for(d_int i = 0; i < AMT; i++) {
-#pragma HLS loop_tripcount min=32 max=2048
-#pragma HLS PIPELINE II=1
-		stream.write(0);
-	}
-}
-
-// Reshape layer into desinated dimensions with zero paddings
-void _expand(layer_params param, hls::stream<d_int> &stream_i, hls::stream<d_int> &stream_o) {
-
-	// New matrix width
-	d_int newW = param.I_w + ((param.I_w-1)*(param.S-1)) + 2;
-
-	// Number of row(s) of zeros to pad per original row
-	d_int numZerosToPadRow = (int)newW * (int)param.I_c * (int)(param.S-1);
-	// Number of col(s) of zeros to pad per original col
-	d_int numZerosToPadCol = (int)param.I_c * (int)(param.S-1);
-
-	// Pad first row with zeros
-	_pad_zeros(newW * param.I_c, stream_o);
-
-	d_int ih = 0;
-	p_bool toggle = 0;
-
-	L_IH: while(ih < param.I_h) {
-#pragma HLS loop_tripcount max=28
-		// Pad row with zeros
-		if(toggle) {
-			_pad_zeros(numZerosToPadRow, stream_o);
-			toggle = 0;
-		}
-		else { // Alternate column expansion between input stream and zero(s)
-
-			// Pad one zero for first column
-			_pad_zeros(param.I_c, stream_o);
-
-			L_IW: for(d_int iw = 0; iw < param.I_w; iw++) {
-#pragma HLS loop_tripcount max=14
-				L_IC: for(d_int ic = 0; ic < param.I_c; ic++) {
-#pragma HLS loop_tripcount max=32
-#pragma HLS PIPELINE II=1
-					stream_o.write(stream_i.read());
-				}
-
-				// Pad one zero for last column
-				if(iw == param.I_w-1) {
-					_pad_zeros(param.I_c, stream_o);
-				}
-				else { // Pad (stride-1) amount of zeros
-					_pad_zeros(numZerosToPadCol, stream_o);
-				}
-			}
-
-			ih++;
-			toggle = 1;
-		}
-	} // end L_IH
-
-	// Pad last row with zeros
-	_pad_zeros(newW * param.I_c, stream_o);
-}
-
-// Replicate input stream with REP_AMT
-// Assumes depth is less than 100
-void _extend_stream(int OC, int REP_AMT, hls::stream<d_int> &stream_i, hls::stream<d_int> &stream_o) {
-	d_int buffer[32];
-	for(d_int oc = 0; oc < OC; oc++) {
-#pragma HLS loop_tripcount max=32
-#pragma HLS PIPELINE II=1
-		buffer[oc] = stream_i.read();
-	}
-
-	for(d_int rep_amt = 0; rep_amt < REP_AMT; rep_amt++) {
-#pragma HLS loop_tripcount avg=256
-		for(d_int oc = 0; oc < OC; oc++) {
-#pragma HLS loop_tripcount max=32
-#pragma HLS PIPELINE II=1
-			stream_o.write(buffer[oc]);
-		}
-	}
-}
-
-// Save kernels to memory
-static d_int layer2_kernel[6][6][32][32];
-void _wt_kernel_2(layer_params param, hls::stream<d_int> &kernel_i) {
-	for(d_int kh = 0; kh < param.K; kh++) {
-#pragma HLS loop_tripcount max=6
-		for(d_int kw = 0; kw < param.K; kw++) {
-#pragma HLS loop_tripcount max=6
-			for(d_int oc = 0; oc < param.O_c; oc++) {
-#pragma HLS loop_tripcount max=32
-				for(d_int ic = 0; ic < param.I_c; ic++) {
-#pragma HLS loop_tripcount max=32
-#pragma HLS PIPELINE II=1
-					layer2_kernel[kh][kw][oc][ic] = kernel_i.read();
-				}
-			}
-		}
-	}
-}
-
-// Save kernels to memory
-static d_int layer3_kernel[6][6][32][32];
-void _wt_kernel_3(layer_params param, hls::stream<d_int> &kernel_i) {
-	for(d_int kh = 0; kh < param.K; kh++) {
-#pragma HLS loop_tripcount avg=6
-		for(d_int kw = 0; kw < param.K; kw++) {
-#pragma HLS loop_tripcount avg=6
-			for(d_int oc = 0; oc < param.O_c; oc++) {
-#pragma HLS loop_tripcount avg=32
-				for(d_int ic = 0; ic < param.I_c; ic++) {
-#pragma HLS loop_tripcount avg=32
-#pragma HLS PIPELINE II=1
-					layer3_kernel[kh][kw][oc][ic] = kernel_i.read();
-				}
-			}
-		}
-	}
-}
-**/
-
-
-
-/**
-void deconv1_preprocess(layer_params param,
-					hls::stream<d_int> &stream_i,
-					hls::stream<d_int> &kernel,
-					hls::stream<d_int> &bias,
-					hls::stream<d_int> &mean,
-					hls::stream<d_int> &std,
-					hls::stream<d_int> &stream_o) {
-#pragma HLS DATAFLOW
-
-	printf("preprocess 1\n");
-	hls::stream<d_int> extended_bias;
-	hls::stream<d_int> extended_mean;
-	hls::stream<d_int> extended_std;
-
-	_extend_stream_1(bias, extended_bias);
-	_extend_stream_1(mean, extended_mean);
-	_extend_stream_1(std,  extended_std);
-
-	stream_deconv1(param, stream_i, kernel, extended_bias, extended_mean, extended_std, stream_o);
-}
-**/
-
-
-
-/**
-// Reshape layer into designated dimensions with zero paddings
-void _expand_2(hls::stream<d_int> &stream_i, hls::stream<d_int> &stream_o) {
-
-	// New matrix width
-	const d_int newW = 12;
-
-	// Number of row(s) of zeros to pad per original row
-	const d_int numZerosToPadRow = 384;
-
-	// Number of col(s) of zeros to pad per original col
-	const d_int numZerosToPadCol = 32;
-
-	// first row of zeros
-	for(d_int i = 0; i < numZerosToPadRow; i++) {
-#pragma HLS PIPELINE II=1
-		stream_o.write(0);
-	}
-
-	L_IH: for(int ih = 0; ih < 4; ih++) {
-#pragma HLS PIPELINE II=1
-		// first col of zero
-		for(d_int ic = 0; ic < 32; ic++) {
-				stream_o.write(0);
-		}
-
-		L_IW: for(d_int iw = 0; iw < 4; iw++) {
-#pragma HLS PIPELINE II=1
-
-			// in stream
-			for(d_int ic = 0; ic < 32; ic++) {
-				stream_o.write(stream_i.read());
-			}
-
-			// zero
-			for(d_int ic = 0; ic < 32; ic++) {
-					stream_o.write(0);
-			}
-		} // end L_IW
-
-		for(d_int i = 0; i < numZerosToPadRow; i++) {
-#pragma HLS PIPELINE II=1
-				stream_o.write(0);
-		}
-	} // end L_IH
-
-}
-**/
-
-
-/**
-//layer_params hidden2 = {4,4,32, 12,12,32, 6,2,0, 1,0};
-void deconv2_preprocess(layer_params param,
-						hls::stream<d_int> &stream_i,
-						hls::stream<d_int> &kernel,
-						hls::stream<d_int> &bias,
-						hls::stream<d_int> &mean,
-						hls::stream<d_int> &std,
-						hls::stream<d_int> &stream_o) {
-#pragma HLS DATAFLOW
-
-	hls::stream<d_int> expanded_istream;
-
-	hls::stream<d_int> extended_bias;
-	hls::stream<d_int> extended_mean;
-	hls::stream<d_int> extended_std;
-
-	//_expand_2(stream_i, expanded_istream);
-
-	layer_params new_param = param;
-	new_param.I_h = param.I_w + ((param.I_w-1)*(param.S-1)) + 2;
-	new_param.I_w = new_param.I_h;
-	new_param.S   = 1;
-	new_param.O_h = param.O_h+2;
-	new_param.O_w = param.O_w+2;
-
-	_wt_kernel_2(new_param, kernel);
-
-	_extend_stream(param.O_c, (int)param.O_h * (int)(param.O_w), mean, extended_mean);
-
-	_extend_stream(param.O_c, (int)(param.O_h) * (int)(param.O_w), std,  extended_std);
-
-	stream_deconv2(new_param, stream_i, bias, extended_mean, extended_std, stream_o);
-
-}
-**/
-
-/**
-//layer_params hidden2 = {4,4,32, 12,12,32, 6,2,0, 1,0};
-void deconv3_preprocess(layer_params param,
-						hls::stream<d_int> &stream_i,
-						hls::stream<d_int> &kernel,
-						d_int bias,
-						hls::stream<d_int> &stream_o) {
-#pragma HLS DATAFLOW
-
-	layer_params new_param = param;
-	new_param.I_h = param.I_w + ((param.I_w-1)*(param.S-1)) + 2;
-	new_param.I_w = new_param.I_h;
-	new_param.S   = 1;
-	new_param.O_h = param.O_h+2;
-	new_param.O_w = param.O_w+2;
-
-	_wt_kernel_3(new_param, kernel);
-
-	stream_deconv3(new_param, stream_i, bias, stream_o);
-
-}
-**/
-
-/**
-void _expand_3(hls::stream<d_int> &stream_i, hls::stream<d_int> &stream_o) {
-
-	// New matrix width
-	const d_int newW = 25;
-	// Number of row(s) of zeros to pad per original row
-	const d_int numZerosToPadRow = 800;
-	// Number of col(s) of zeros to pad per original col
-	const d_int numZerosToPadCol = 32;
-
-	// first row of zeros
-	for(d_int i = 0; i < numZerosToPadRow; i++) {
-#pragma HLS PIPELINE II=1
-		stream_o.write(0);
-	}
-
-	L_IH: for(int ih = 0; ih < 12; ih++) {
-#pragma HLS PIPELINE II=1
-		// first col of zero
-		for(d_int ic = 0; ic < 32; ic++) {
-				stream_o.write(0);
-		}
-
-		L_IW: for(d_int iw = 0; iw < 12; iw++) {
-#pragma HLS PIPELINE II=1
-
-			// in stream
-			for(d_int ic = 0; ic < 32; ic++) {
-				stream_o.write(stream_i.read());
-			}
-
-			// zero
-			for(d_int ic = 0; ic < 32; ic++) {
-					stream_o.write(0);
-			}
-		} // end L_IW
-
-		for(d_int i = 0; i < numZerosToPadRow; i++) {
-#pragma HLS PIPELINE II=1
-				stream_o.write(0);
-		}
-	} // end L_IH
-
-}
-**/
