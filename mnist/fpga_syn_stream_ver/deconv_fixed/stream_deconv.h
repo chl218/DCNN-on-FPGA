@@ -58,7 +58,8 @@ void deconv2_preprocess(layer_params param,
 						hls::stream<d_int> &std,
 						hls::stream<d_int> &stream_o);
 
-//layer_params hidden2 = {4,4,32, 12,12,32, 6,2,0, 1,0};
+//layer_params hidden2 			= {4,4,32, 12,12,32, 6,2,0, 1,0};
+//layer_params hidden2_expanded = {9,9,32, 12,12,32, 6,2,0, 1,0};
 void stream_deconv2(layer_params param,
 				 	hls::stream<d_int> &stream_i,
 					hls::stream<d_int> &kernel,
@@ -67,13 +68,32 @@ void stream_deconv2(layer_params param,
                     hls::stream<d_int> &std,
                     hls::stream<d_int> &stream_o);
 
+
+//layer_params output  			= {12,12,32, 28,28,1, 6,2,0, 0,1};
+//layer_params output_expanded  = {25,25,32, 28,28,1, 6,2,0, 0,1};
+
+#define L3IH 25
+#define L3IW 25
+#define L3IC 32
+
+#define L3OH 25
+#define L3OW 25
+#define L3OC 25
+
+#define L3KH   6
+#define L3KW   6
+#define L3KOC  1
+#define L3KIC 32
+
+#define L3BUFH 30
+#define L3BUFW 30
+
 void deconv3_preprocess(layer_params param,
 						hls::stream<d_int> &stream_i,
 						hls::stream<d_int> &kernel,
 						d_int bias,
 						hls::stream<d_int> &stream_o);
 
-//layer_params output  = {12,12,32, 28,28,1, 6,2,0, 0,1};
 void stream_deconv3(layer_params param,
 					hls::stream<d_int> &stream_i,
 					hls::stream<d_int> &kernel,

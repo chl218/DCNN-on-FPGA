@@ -250,13 +250,13 @@ void stream_deconv_2(//layer_params param,
 //
 //=============================================================================
 
-static d_int layer3_kernel[6][6][1][32];
+static d_int layer3_kernel[L3KH][L3KW][L3KOC][L3KIC];
 void _wt_kernel_3(layer_params param, hls::stream<d_int> &kernel_i) {
-	for(d_int kh = 0; kh < 6; kh++) {
-		for(d_int kw = 0; kw < 6; kw++) {
+	for(d_int kh = 0; kh < L3KH; kh++) {
+		for(d_int kw = 0; kw < L3KW; kw++) {
 #pragma HLS PIPELINE II=1
-			for(d_int ic = 0; ic < 32; ic++) {
-				layer3_kernel[kh][kw][1][ic] = kernel_i.read();
+			for(d_int ic = 0; ic < L3KIC; ic++) {
+				layer3_kernel[kh][kw][L3KOC][ic] = kernel_i.read();
 			}
 		}
 	}
@@ -267,28 +267,28 @@ void stream_deconv_3(//layer_params param,
 					 d_int bias,
 					 hls::stream<d_int> &stream_o) {
 
-	d_int layer3_matrix[30][30];
+	d_int layer3_matrix[L3BUFH][L3BUFW];
 #pragma HLS ARRAY_PARTITION variable=layer3_matrix block factor=30 dim=1
 
-	for(d_int oh = 0; oh < 30; oh++) {
-		for(d_int ow = 0; ow < 30; ow++) {
+	for(d_int oh = 0; oh < L3BUFH; oh++) {
+		for(d_int ow = 0; ow < L3BUFW; ow++) {
 			layer3_matrix[oh][ow] = bias;
 		}
 	}
 
 
-	L_IH: for(d_int ih = 0; ih < 25; ih++) {
-		L_IW: for(d_int iw = 0; iw < 25; iw++) {
+	L_IH: for(d_int ih = 0; ih < L3IH; ih++) {
+		L_IW: for(d_int iw = 0; iw < L3IW; iw++) {
 
 			d_int in_buf[32];
 #pragma HLS ARRAY_PARTITION variable=in_buf complete dim=1
-			L_BUF: for(d_int ic = 0; ic < 32; ic++) {
+			L_BUF: for(d_int ic = 0; ic < L3IC; ic++) {
 #pragma HLS PIPELINE II=1
 				in_buf[ic] = stream_i.read();
 			} // END L_BUF
 
-			L_KH: for(d_int kh = 0; kh < 6; kh++) {
-				L_KW: for(d_int kw = 0; kw < 6; kw++) {
+			L_KH: for(d_int kh = 0; kh < L3KH; kh++) {
+				L_KW: for(d_int kw = 0; kw < L3KW; kw++) {
 #pragma HLS PIPELINE II=1
 					L_IC: for(d_int ic = 0; ic < 32; ic++) {
 
@@ -306,8 +306,8 @@ void stream_deconv_3(//layer_params param,
 		} //end L_IW
 	} // end L_IH
 
-	for(d_int oh = 1; oh < 29; oh++) {
-		for(d_int ow = 1; ow < 29; ow++) {
+	for(d_int oh = 1; oh < L3BUFH-1; oh++) {
+		for(d_int ow = 1; ow < L3BUFW-1; ow++) {
 #pragma HLS PIPELINE II=1
 			stream_o.write(layer3_matrix[oh][ow]);
 
