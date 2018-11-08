@@ -276,7 +276,7 @@ void stream_deconv_3(//layer_params param,
 			}
 
 			// Compute deconvolution
-				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		 // Kernel height
+				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		   // Kernel height
 					L2_KW: for(d_int kw = 0; kw < 6; kw++) { 	 // Kernel width
 						L2_IC: for(d_int ic = 0; ic < 32; ic++) { // Input channel
 
