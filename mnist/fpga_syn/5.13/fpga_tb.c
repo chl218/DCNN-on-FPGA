@@ -63,7 +63,7 @@ int main(void) {
 
 		deconv_(hidden2,deconv1,deconv2,hidden2_weights,hidden2_biases,hidden2_mean,hidden2_std);
 		save_images(hidden2, deconv2, r, f_layer2);
-		peak_channels(hidden2, 1, deconv2);
+		peak_channels(hidden2, 32, deconv2);
 
 		deconv_(output,deconv2,deconv3,output_weights,output_biases,0,0);
 		peak_channels(output, 1, deconv3);

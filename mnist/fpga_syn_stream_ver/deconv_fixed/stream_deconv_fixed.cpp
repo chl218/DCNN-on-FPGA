@@ -159,14 +159,11 @@ void stream_deconv_2(//layer_params param,
 					hls::stream<d_int> &std,
 					hls::stream<d_int> &stream_o) {
 	d_int layer2_bias[32];
-#pragma HLS ARRAY_PARTITION variable=layer2_bias complete dim=1
 
 	d_int layer2_matrix[14][14][32];
-#pragma HLS ARRAY_PARTITION variable=layer2_matrix complete factor=196 dim=3
 
 
 	L2_BUF_BIAS: for(d_int oc = 0; oc < 32; oc++) {
-#pragma HLS PIPELINE II=1
 		layer2_bias[oc] = bias.read();
 	}
 
@@ -176,15 +173,12 @@ void stream_deconv_2(//layer_params param,
 
 			// save (i, j) depth
 			d_int in_buf[32];
-#pragma HLS ARRAY_PARTITION variable=in_buf complete dim=1
 			L2_BUF_INSTREAM: for(d_int ic = 0; ic < 32; ic++) {
-#pragma HLS PIPELINE II=1
 				in_buf[ic] = stream_i.read();
 			}
 
 			// Compute deconvolution
 			L2_OC: for(d_int oc = 0; oc < 32; oc++) { 			 // Output channel
-#pragma HLS PIPELINE II=1
 				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		 // Kernel height
 					L2_KW: for(d_int kw = 0; kw < 6; kw++) { 	 // Kernel width
 						L2_IC: for(d_int ic = 0; ic < 32; ic++) { // Input channel
@@ -202,7 +196,6 @@ void stream_deconv_2(//layer_params param,
 	// Stream out layer matrix, displace first and last row, and fist and last column
 
 	for(d_int ow = 0; ow < 25; ow++) {
-#pragma HLS PIPELINE II=1
 		for(d_int oc = 0; oc < 32; oc++) {
 			stream_o.write(0);
 		}
@@ -210,13 +203,11 @@ void stream_deconv_2(//layer_params param,
 
 	for(d_int oh = 1; oh < 13; oh++) {
 		for(d_int oc = 0; oc < 32; oc++) {
-#pragma HLS PIPELINE II=1
 			stream_o.write(0);
 		}
 
 		for(d_int ow = 1; ow < 13; ow++) {
 			for(d_int oc = 0; oc < 32; oc++) {
-#pragma HLS PIPELINE II=1
 
 				d_int val = layer2_matrix[oh][ow][oc] + layer2_bias[oc];
 				if(val  > UPPER_BOUND)     val = UPPER_BOUND;
@@ -229,13 +220,11 @@ void stream_deconv_2(//layer_params param,
 			}
 
 			for(d_int oc = 0; oc < 32; oc++) {
-#pragma HLS PIPELINE II=1
 				stream_o.write(0);
 			}
 		}
 
 		for(d_int ow = 0; ow < 25; ow++) {
-#pragma HLS PIPELINE II=1
 			for(d_int oc = 0; oc < 32; oc++) {
 				stream_o.write(0);
 			}
@@ -250,13 +239,13 @@ void stream_deconv_2(//layer_params param,
 //
 //=============================================================================
 
-static d_int layer3_kernel[L3KH][L3KW][L3KOC][L3KIC];
+static d_int layer3_kernel[6][6][32];
 void _wt_kernel_3(layer_params param, hls::stream<d_int> &kernel_i) {
 	for(d_int kh = 0; kh < L3KH; kh++) {
 		for(d_int kw = 0; kw < L3KW; kw++) {
 #pragma HLS PIPELINE II=1
 			for(d_int ic = 0; ic < L3KIC; ic++) {
-				layer3_kernel[kh][kw][L3KOC][ic] = kernel_i.read();
+				layer3_kernel[kh][kw][ic] = kernel_i.read();
 			}
 		}
 	}
@@ -267,55 +256,54 @@ void stream_deconv_3(//layer_params param,
 					 d_int bias,
 					 hls::stream<d_int> &stream_o) {
 
-	d_int layer3_matrix[L3BUFH][L3BUFW];
-#pragma HLS ARRAY_PARTITION variable=layer3_matrix block factor=30 dim=1
+	d_int layer3_matrix[30][30];
 
-	for(d_int oh = 0; oh < L3BUFH; oh++) {
-		for(d_int ow = 0; ow < L3BUFW; ow++) {
+	for(d_int oh = 0; oh < 30; oh++) {
+		for(d_int ow = 0; ow < 30; ow++) {
 			layer3_matrix[oh][ow] = bias;
 		}
 	}
 
 
-	L_IH: for(d_int ih = 0; ih < L3IH; ih++) {
-		L_IW: for(d_int iw = 0; iw < L3IW; iw++) {
+	// For each input row and column
+	L2_IH: for(d_int ih = 0; ih < 25; ih++) {
+		L2_IW: for(d_int iw = 0; iw < 25; iw++) {
 
+			// save (i, j) depth
 			d_int in_buf[32];
-#pragma HLS ARRAY_PARTITION variable=in_buf complete dim=1
-			L_BUF: for(d_int ic = 0; ic < L3IC; ic++) {
-#pragma HLS PIPELINE II=1
+			L2_BUF_INSTREAM: for(d_int ic = 0; ic < 32; ic++) {
 				in_buf[ic] = stream_i.read();
-			} // END L_BUF
+			}
 
-			L_KH: for(d_int kh = 0; kh < L3KH; kh++) {
-				L_KW: for(d_int kw = 0; kw < L3KW; kw++) {
-#pragma HLS PIPELINE II=1
-					L_IC: for(d_int ic = 0; ic < 32; ic++) {
+			// Compute deconvolution
+				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		 // Kernel height
+					L2_KW: for(d_int kw = 0; kw < 6; kw++) { 	 // Kernel width
+						L2_IC: for(d_int ic = 0; ic < 32; ic++) { // Input channel
 
+							if(ih+kh == 2 && iw+kw == 14) {
+								printf("in = [%2d %2d %2d]:%6d\tkernel = [%2d %2d %2d]:%6d\tout = %7d --> ",
+										(int)ih, (int)iw, (int)ic, (int)in_buf[ic],
+										(int)kh, (int)kw, (int)ic, (int)layer3_kernel[kh][kw][ic],
+										(int)layer3_matrix[ih+kh][iw+kw]);
+							}
+							layer3_matrix[ih+kh][iw+kw] += multiply_(in_buf[ic], layer3_kernel[kh][kw][ic]);
 
-						if(ih+kh == 1 && iw+kw == 28) printf("%7d [%3d %3d %3d]:%7d %7d --> ", (int)in_buf[ic],  (int)kh, (int)kw, (int)ic, (int)layer3_kernel[kh][kw][1][ic], (int)layer3_matrix[ih+kh][iw+kw]);
-						layer3_matrix[ih+kh][iw+kw] +=  multiply_(in_buf[ic], layer3_kernel[kh][kw][1][ic]);
+							if(layer3_matrix[ih+kh][iw+kw]> UPPER_BOUND)       layer3_matrix[ih+kh][iw+kw] = UPPER_BOUND;
+							else if(layer3_matrix[ih+kh][iw+kw] < LOWER_BOUND) layer3_matrix[ih+kh][iw+kw] = LOWER_BOUND;
 
-						if(ih+kh == 1 && iw+kw == 28) printf("%7d\n", (int)layer3_matrix[ih+kh][iw+kw]);
-
-						if(layer3_matrix[ih+kh][iw+kw]> UPPER_BOUND)       layer3_matrix[ih+kh][iw+kw] = UPPER_BOUND;
-						else if(layer3_matrix[ih+kh][iw+kw] < LOWER_BOUND) layer3_matrix[ih+kh][iw+kw] = LOWER_BOUND;
+							if(ih+kh == 2 && iw+kw == 14) {
+								printf("%7d\n", (int)layer3_matrix[ih+kh][iw+kw]);
+							}
+						}
 					}
 				}
-			}
-		} //end L_IW
-	} // end L_IH
+		} // end width
+	} // end height
 
-	for(d_int oh = 1; oh < L3BUFH-1; oh++) {
-		for(d_int ow = 1; ow < L3BUFW-1; ow++) {
-#pragma HLS PIPELINE II=1
+
+	for(d_int oh = 1; oh < 29; oh++) {
+		for(d_int ow = 1; ow < 29; ow++) {
 			stream_o.write(layer3_matrix[oh][ow]);
-
-//			d_int val = layer3_matrix[oh][ow] + bias;
-//			if(val  > UPPER_BOUND)     stream_o.write(UPPER_BOUND);
-//			else if(val < LOWER_BOUND) stream_o.write(LOWER_BOUND);
-//			else 					   stream_o.write(val);
-
 		}
 	}
 }
@@ -352,6 +340,16 @@ void _peak_layer(layer_params param, hls::stream<d_int> &stream_i, int AMT) {
 		printf("\n");
 	}
 
+//	printf("Peak Channel: OH = %d, OW = %d\n", (int)param.O_h, (int)param.O_w);
+//	for(int oc = 0; oc < AMT; oc++) {
+//		for(int oh = 0; oh < param.O_h; oh++) {
+//			for(int ow = 0; ow < param.O_w; ow++) {
+//				printf("%7d ", (int)arr[(oc*param.O_h*param.O_w)+oh*param.O_h+ow]);
+//			}
+//			printf("\n");
+//		}
+//		printf("\n");
+//	}
 	// Restore stream values
 	//==========================================================================
 	for(int oh = 0; oh < param.O_h; oh++) {
@@ -410,7 +408,7 @@ void deconv(layer_params param[3],
 	tmp_param.O_w = 25;
 	tmp_param.O_c = 32;
 	tmp_param.S   = 2;
-	_peak_layer(tmp_param, stream_res[1], 32);
+	_peak_layer(tmp_param, stream_res[1], 1);
 
 	stream_deconv_3(stream_res[1], bias[2].read(), stream_o);
 	tmp_param.O_h = 28;

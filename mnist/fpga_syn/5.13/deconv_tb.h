@@ -59,20 +59,17 @@ void deconv_( layer_params x,
 
 //							if(oh == 0 && ow == 2 && oc == 0) printf("(%5d ", temp[oh][ow]);
 
-							if(oh == 1 && ow == 27) printf("%7d [%3d %3d %3d]:%7d %7d --> ", in[ih][iw][ic], kh, kw, ic, w[kh][kw][oc][ic], temp[oh][ow]);
+							if(oh == 1 && ow == 13)
+								printf("in = [%2d %2d %2d]:%5d kernel = [%2d %2d %2d]:%5d out = %7d --> ", ih, iw, ic, in[ih][iw][ic], kh, kw, ic, w[kh][kw][oc][ic], temp[oh][ow]);
 							temp[oh][ow] += multiply_(in[ih][iw][ic],w[kh][kw][oc][ic]);
-
-							if(oh == 1 && ow == 27) printf("%7d\n", temp[oh][ow]);
-
-//							if(oh == 0 && ow == 2 && oc == 0) printf("%5d ", multiply_(in[ih][iw][ic],w[kh][kw][oc][ic]));
 
 							// Handling overflow (truncate at 18 bits)
 							if(temp[oh][ow] > UPPER_BOUND) temp[oh][ow] = UPPER_BOUND;
 							else if(temp[oh][ow] < LOWER_BOUND) temp[oh][ow] = LOWER_BOUND;
 
-//							if(oh == 0 && ow == 2 && oc == 0){
-//								printf("%5d %5d ", (int)temp[oh][ow], (int)in[ih][iw][ic]);
-//								printf("%5d : (%2d %2d %2d %2d))\n", (int)w[kh][kw][oc][ic], kh, kw, oc, ic);
+//
+							if(oh == 1 && ow == 13) printf("%7d\n", temp[oh][ow]);
+
 //
 //							}
 						}
