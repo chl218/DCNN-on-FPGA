@@ -33,13 +33,13 @@ void deconv1(d_int in[10],
 			 d_int mean[32],
 			 d_int std[32]) {
 
-	d_int temp[4][4];
+	d_temp temp[4][4];
 
 	for(p_int oc = 0; oc < 32; oc++) {
 
 		// Set bias
 		for(p_int i = 0; i < 4; i++) {
-			for(p_int j=0; j < 4; j++) {
+			for(p_int j = 0; j < 4; j++) {
 				temp[i][j] = bias[oc];
 			}
 		} // end-bias
@@ -50,11 +50,15 @@ void deconv1(d_int in[10],
 				for (p_int kw = 0; kw < 4; kw++) {
 					p_int oh = kh;
 					p_int ow = kw;
+
+//					if(oh == 0 && ow == 0 && oc == 0) printf("%5d, %5d, %5d ---> ", (int)in[ic], (int)kernel[kh][kw][oc][ic], (int)temp[oh][ow]);
 					temp[oh][ow] += _multiply(in[ic], kernel[kh][kw][oc][ic]);
 
 					// Handling overflow (truncate at 18 bits)
 					if(temp[oh][ow] > UPPER_BOUND) 		temp[oh][ow] = UPPER_BOUND;
 					else if(temp[oh][ow] < LOWER_BOUND) temp[oh][ow] = LOWER_BOUND;
+
+//					if(oh == 0 && ow == 0 && oc == 0) printf("%5d\n", (int)temp[oh][ow]);
 				}
 			}
 
@@ -64,11 +68,12 @@ void deconv1(d_int in[10],
 		for(p_int oh = 0; oh < 4; oh++) {
 			for(p_int ow = 0; ow < 4; ow++) {
 				d_int norm = _divide((temp[oh][ow] - mean[oc]), std[oc]);
-				out[oh][ow][oc] = _max(0,norm);
+				out[oh][ow][oc] = _max(0, norm);
 			}
 		} // end-normalized-and-ReLu
 
 	} // end-out-channel
+
 
 }
 
@@ -80,7 +85,7 @@ void deconv2(d_int in[4][4][32],
 			 d_int mean[32],
 			 d_int std[32]) {
 
-	d_int temp[12][12];
+	d_temp temp[12][12];
 
 	for(p_int oc = 0; oc < 32; oc++) {
 
@@ -129,6 +134,8 @@ void deconv3(d_int in[12][12][32],
 			 d_int kernel[6][6][32],
 			 d_int bias) {
 
+	d_temp temp[28][28];
+
 	// Set bias
 	for(p_int i = 0; i < 4; i++) {
 		for(p_int j=0; j < 4; j++) {
@@ -144,16 +151,22 @@ void deconv3(d_int in[12][12][32],
 					for (p_int kw = 0; kw < 6; kw++) {
 						p_int oh = 2*ih + kh;
 						p_int ow = 2*iw + kw;
-						out[oh][ow] += _multiply(in[ih][iw][ic], kernel[kh][kw][ic]);
+						temp[oh][ow] += _multiply(in[ih][iw][ic], kernel[kh][kw][ic]);
 
 						// Handling overflow (truncate at 18 bits)
-						if(out[oh][ow] > UPPER_BOUND) 		out[oh][ow] = UPPER_BOUND;
-						else if(out[oh][ow] < LOWER_BOUND) out[oh][ow] = LOWER_BOUND;
+						if(temp[oh][ow] > UPPER_BOUND) 		temp[oh][ow] = UPPER_BOUND;
+						else if(temp[oh][ow] < LOWER_BOUND) temp[oh][ow] = LOWER_BOUND;
 					}
 				}
 			}
 		}
 	} // end deconv
+
+	for(p_int oh = 0; oh < 28; oh++) {
+		for(p_int ow = 0; ow < 28; ow++) {
+			out[oh][ow] = temp[oh][ow];
+		}
+	}
 }
 
 void deconv(d_int in[10],
@@ -173,7 +186,38 @@ void deconv(d_int in[10],
 	d_int out2[12][12][32];
 
 	deconv1(in,   out1, kernel_1, bias_1, mean_1, std_1);
+
+	for(p_int oc = 0; oc < 1; oc++) {
+		for(p_int oh = 0; oh < 4; oh++) {
+			for(p_int ow = 0; ow < 4; ow++) {
+				printf("%7d ", (int)out1[oh][ow][oc]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+	}
+
 	deconv2(out1, out2, kernel_2, bias_2, mean_2, std_2);
+
+	for(p_int oc = 0; oc < 1; oc++) {
+		for(p_int oh = 0; oh < 12; oh++) {
+			for(p_int ow = 0; ow < 12; ow++) {
+				printf("%7d ", (int)out2[oh][ow][oc]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+	}
+
 	deconv3(out2,  out, kernel_3, bias_3);
+
+	for(p_int oh = 0; oh < 28; oh++) {
+		for(p_int ow = 0; ow < 28; ow++) {
+			printf("%7d ", (int)out[oh][ow]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+
 
 }

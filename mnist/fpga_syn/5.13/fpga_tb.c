@@ -57,13 +57,18 @@ int main(void) {
 
 		set_random(input,rand_,r+10);
 
+		for(int i = 0; i < 10; i++) {
+			printf("%5d ", rand_[0][0][i]);
+		}
+		printf("\n");
+
 		deconv_(hidden1,rand_,deconv1,hidden1_weights,hidden1_biases,hidden1_mean,hidden1_std);
 		save_images(hidden1, deconv1, r, f_layer1);
 		peak_channels(hidden1, 1, deconv1);
 
 		deconv_(hidden2,deconv1,deconv2,hidden2_weights,hidden2_biases,hidden2_mean,hidden2_std);
 		save_images(hidden2, deconv2, r, f_layer2);
-		peak_channels(hidden2, 32, deconv2);
+		peak_channels(hidden2, 1, deconv2);
 
 		deconv_(output,deconv2,deconv3,output_weights,output_biases,0,0);
 		peak_channels(output, 1, deconv3);

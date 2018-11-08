@@ -29,7 +29,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1937722124" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
@@ -47,7 +46,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.884198544" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
@@ -115,7 +113,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.616701938" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -128,7 +125,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.167858129" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>

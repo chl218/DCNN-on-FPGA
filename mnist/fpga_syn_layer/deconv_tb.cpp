@@ -49,7 +49,7 @@ int main(int argc, char* arvg[]) {
 			   hidden2_std,
 			   out);
 
-		peak_layer(out);
+//		peak_layer(out);
 //		save_image(out, fp);
 	}
 	fclose(fp);
@@ -59,7 +59,7 @@ int main(int argc, char* arvg[]) {
 // Initialize input layer
 void set_random(d_int in[10], int r) {
 	for(p_int k = 0; k < 10; k++) {
-		in[k] = random_1000[r][1][1][k];
+		in[k] = random_1000[r][0][0][k];
 	}
 }
 
