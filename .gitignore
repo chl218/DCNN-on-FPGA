@@ -34,8 +34,8 @@
 # Vivado HLS Project
 .apc/
 .settings/
-.cproject
-.project
+# .cproject
+# .project
 .vivado_hls_log_all.xml
 
 # Vivado HLS Solution
