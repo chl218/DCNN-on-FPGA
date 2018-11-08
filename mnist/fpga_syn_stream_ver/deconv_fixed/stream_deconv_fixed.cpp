@@ -3,24 +3,24 @@
 //==============================================================================
 // Fixed point arithmetics
 //==============================================================================
-d_int max_ ( p_bool x, d_int y) {
+d_int _max (p_bool x, d_int y) {
 	if(x > y) return (d_int)x;
 	else return y;
 }
 
-p_int min_ ( p_int x, p_int y) {
+p_int _min (p_int x, p_int y) {
 	if (x < y) return x;
 	else return y;
 }
 
-d_int multiply_ ( d_int a, d_int b) {
+d_int _multiply (d_int a, d_int b) {
 	d_long c=0;
 	c = (d_long)a * (d_long)b;
 	c >>= SHIFT_AMOUNT;
 	return (d_int)c;
 }
 
-d_int divide_ ( d_int a, d_int b ) {
+d_int _divide (d_int a, d_int b ) {
 	d_long c=0;
 	c = (d_long)a << SHIFT_AMOUNT;
 	c /= b;
@@ -84,13 +84,13 @@ void stream_deconv_1(hls::stream<d_int> &stream_i,
 			L_OC: for(d_int oc = 0; oc < 32; oc++) {
 #pragma HLS PIPELINE II=1
 				// Bias
-				d_int acc = bias.read();
+				d_temp acc = bias.read();
 				L_IC: for(d_int ic = 0; ic < 10; ic++) {
-					acc += multiply_(in_buf[ic],  kernel.read());
+					acc += _multiply(in_buf[ic],  kernel.read());
 					if(acc > UPPER_BOUND)      acc = UPPER_BOUND;
 					else if(acc < LOWER_BOUND) acc = LOWER_BOUND;
 				}
-				stream_o.write(max_(0, divide_(acc - mean.read(), std.read())));
+				stream_o.write(_max(0, _divide(acc - mean.read(), std.read())));
 			} // end L_OC
 
 			for(d_int oc = 0; oc < 32; oc++) {
@@ -160,7 +160,7 @@ void stream_deconv_2(//layer_params param,
 					hls::stream<d_int> &stream_o) {
 	d_int layer2_bias[32];
 
-	d_int layer2_matrix[14][14][32];
+	d_temp layer2_matrix[14][14][32];
 
 
 	L2_BUF_BIAS: for(d_int oc = 0; oc < 32; oc++) {
@@ -182,7 +182,7 @@ void stream_deconv_2(//layer_params param,
 				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		 // Kernel height
 					L2_KW: for(d_int kw = 0; kw < 6; kw++) { 	 // Kernel width
 						L2_IC: for(d_int ic = 0; ic < 32; ic++) { // Input channel
-							layer2_matrix[ih+kh][iw+kw][oc] += multiply_(in_buf[ic], layer2_kernel[kh][kw][oc][ic]);
+							layer2_matrix[ih+kh][iw+kw][oc] += _multiply(in_buf[ic], layer2_kernel[kh][kw][oc][ic]);
 
 							if(layer2_matrix[ih+kh][iw+kw][oc]> UPPER_BOUND)       layer2_matrix[ih+kh][iw+kw][oc] = UPPER_BOUND;
 							else if(layer2_matrix[ih+kh][iw+kw][oc] < LOWER_BOUND) layer2_matrix[ih+kh][iw+kw][oc] = LOWER_BOUND;
@@ -209,14 +209,14 @@ void stream_deconv_2(//layer_params param,
 		for(d_int ow = 1; ow < 13; ow++) {
 			for(d_int oc = 0; oc < 32; oc++) {
 
-				d_int val = layer2_matrix[oh][ow][oc] + layer2_bias[oc];
+				d_temp val = layer2_matrix[oh][ow][oc] + layer2_bias[oc];
 				if(val  > UPPER_BOUND)     val = UPPER_BOUND;
 				else if(val < LOWER_BOUND) val = LOWER_BOUND;
 
 				// Normalization
-				d_int norm = divide_(val - mean.read(), std.read());
+				d_int norm = _divide(val - mean.read(), std.read());
 				// ReLu
-				stream_o.write(max_(0, norm));
+				stream_o.write(_max(0, norm));
 			}
 
 			for(d_int oc = 0; oc < 32; oc++) {
@@ -256,7 +256,7 @@ void stream_deconv_3(//layer_params param,
 					 d_int bias,
 					 hls::stream<d_int> &stream_o) {
 
-	d_int layer3_matrix[30][30];
+	d_temp layer3_matrix[30][30];
 
 	for(d_int oh = 0; oh < 30; oh++) {
 		for(d_int ow = 0; ow < 30; ow++) {
@@ -276,24 +276,24 @@ void stream_deconv_3(//layer_params param,
 			}
 
 			// Compute deconvolution
-				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		   // Kernel height
-					L2_KW: for(d_int kw = 0; kw < 6; kw++) { 	 // Kernel width
-						L2_IC: for(d_int ic = 0; ic < 32; ic++) { // Input channel
+				L2_KH: for(d_int kh = 0; kh < 6; kh++) { 		 	// Kernel height
+					L2_KW: for(d_int kw = 0; kw < 6; kw++) { 	 	// Kernel width
+						L2_IC: for(d_int ic = 0; ic < 32; ic++) { 	// Input channel
 
-							if(ih+kh == 2 && iw+kw == 14) {
-								printf("in = [%2d %2d %2d]:%6d\tkernel = [%2d %2d %2d]:%6d\tout = %6d --> ",
-										(int)ih, (int)iw, (int)ic, (int)in_buf[ic],
-										(int)kh, (int)kw, (int)ic, (int)layer3_kernel[kh][kw][ic],
-										(int)layer3_matrix[ih+kh][iw+kw]);
-							}
-							layer3_matrix[ih+kh][iw+kw] += multiply_(in_buf[ic], layer3_kernel[kh][kw][ic]);
+//							if(ih+kh == 2 && iw+kw == 14) {
+//								printf("in = [%2d %2d %2d]:%6d\tkernel = [%2d %2d %2d]:%6d\tout = %6d --> ",
+//										(int)ih, (int)iw, (int)ic, (int)in_buf[ic],
+//										(int)kh, (int)kw, (int)ic, (int)layer3_kernel[kh][kw][ic],
+//										(int)layer3_matrix[ih+kh][iw+kw]);
+//							}
+							layer3_matrix[ih+kh][iw+kw] += _multiply(in_buf[ic], layer3_kernel[kh][kw][ic]);
 
 							if(layer3_matrix[ih+kh][iw+kw]> UPPER_BOUND)       layer3_matrix[ih+kh][iw+kw] = UPPER_BOUND;
 							else if(layer3_matrix[ih+kh][iw+kw] < LOWER_BOUND) layer3_matrix[ih+kh][iw+kw] = LOWER_BOUND;
 
-							if(ih+kh == 2 && iw+kw == 14) {
-								printf("%6d\n", (int)layer3_matrix[ih+kh][iw+kw]);
-							}
+//							if(ih+kh == 2 && iw+kw == 14) {
+//								printf("%6d\n", (int)layer3_matrix[ih+kh][iw+kw]);
+//							}
 						}
 					}
 				}
@@ -315,54 +315,54 @@ void stream_deconv_3(//layer_params param,
 //=============================================================================
 // Top-Level
 //=============================================================================
-void _peak_layer(layer_params param, hls::stream<d_int> &stream_i, int AMT) {
-	// Copy stream values
-	//==========================================================================
-	d_int *arr = (d_int*) malloc(sizeof(d_int) * (unsigned int)param.O_h*(unsigned int)param.O_w*(unsigned int)param.O_c);
-	for(int oh = 0; oh < param.O_h; oh++) {
-		for(int ow = 0; ow < param.O_w; ow++) {
-			for(int oc = 0; oc < param.O_c; oc++) {
-				arr[(oc*param.O_h*param.O_w)+(oh*param.O_h)+ow] = stream_i.read();
-			}
-		}
-	}
-
-	// Peak layer
-	//==========================================================================
-	printf("Peak Channel: OH = %d, OW = %d\n", (int)param.O_h, (int)param.O_w);
-	for(int oc = 0; oc < AMT; oc++) {
-		for(int oh = param.S-1; oh < param.O_h; oh += param.S) {
-			for(int ow = param.S-1; ow < param.O_w; ow += param.S) {
-				printf("%7d ", (int)arr[(oc*param.O_h*param.O_w)+oh*param.O_h+ow]);
-			}
-			printf("\n");
-		}
-		printf("\n");
-	}
-
+//void _peak_layer(layer_params param, hls::stream<d_int> &stream_i, int AMT) {
+//	// Copy stream values
+//	//==========================================================================
+//	d_int *arr = (d_int*) malloc(sizeof(d_int) * (unsigned int)param.O_h*(unsigned int)param.O_w*(unsigned int)param.O_c);
+//	for(int oh = 0; oh < param.O_h; oh++) {
+//		for(int ow = 0; ow < param.O_w; ow++) {
+//			for(int oc = 0; oc < param.O_c; oc++) {
+//				arr[(oc*param.O_h*param.O_w)+(oh*param.O_h)+ow] = stream_i.read();
+//			}
+//		}
+//	}
+//
+//	// Peak layer
+//	//==========================================================================
 //	printf("Peak Channel: OH = %d, OW = %d\n", (int)param.O_h, (int)param.O_w);
 //	for(int oc = 0; oc < AMT; oc++) {
-//		for(int oh = 0; oh < param.O_h; oh++) {
-//			for(int ow = 0; ow < param.O_w; ow++) {
+//		for(int oh = param.S-1; oh < param.O_h; oh += param.S) {
+//			for(int ow = param.S-1; ow < param.O_w; ow += param.S) {
 //				printf("%7d ", (int)arr[(oc*param.O_h*param.O_w)+oh*param.O_h+ow]);
 //			}
 //			printf("\n");
 //		}
 //		printf("\n");
 //	}
-	// Restore stream values
-	//==========================================================================
-	for(int oh = 0; oh < param.O_h; oh++) {
-		for(int ow = 0; ow < param.O_w; ow++) {
-			for(int oc = 0; oc < param.O_c; oc++) {
-				stream_i.write((d_int)arr[(oc*param.O_h*param.O_w)+(oh*param.O_h)+ow]);
-			}
-		}
-	}
-
-	// free buffer
-	free(arr);
-}
+//
+////	printf("Peak Channel: OH = %d, OW = %d\n", (int)param.O_h, (int)param.O_w);
+////	for(int oc = 0; oc < AMT; oc++) {
+////		for(int oh = 0; oh < param.O_h; oh++) {
+////			for(int ow = 0; ow < param.O_w; ow++) {
+////				printf("%7d ", (int)arr[(oc*param.O_h*param.O_w)+oh*param.O_h+ow]);
+////			}
+////			printf("\n");
+////		}
+////		printf("\n");
+////	}
+//	// Restore stream values
+//	//==========================================================================
+//	for(int oh = 0; oh < param.O_h; oh++) {
+//		for(int ow = 0; ow < param.O_w; ow++) {
+//			for(int oc = 0; oc < param.O_c; oc++) {
+//				stream_i.write((d_int)arr[(oc*param.O_h*param.O_w)+(oh*param.O_h)+ow]);
+//			}
+//		}
+//	}
+//
+//	// free buffer
+//	free(arr);
+//}
 
 void deconv(layer_params param[3],
 			hls::stream<d_int> &stream_i,
@@ -397,25 +397,26 @@ void deconv(layer_params param[3],
 	// =========================================================================
 	stream_deconv_1(stream_i, kernel[0], bias0, mean0, std0, stream_res[0]);
 
-	layer_params tmp_param;
-	tmp_param.O_h = 9;
-	tmp_param.O_w = 9;
-	tmp_param.O_c = 32;
-	tmp_param.S   = 2;
-	_peak_layer(tmp_param, stream_res[0], 1);
+//	layer_params tmp_param;
+//	tmp_param.O_h = 9;
+//	tmp_param.O_w = 9;
+//	tmp_param.O_c = 32;
+//	tmp_param.S   = 2;
+//	_peak_layer(tmp_param, stream_res[0], 1);
+
 	stream_deconv_2(stream_res[0], bias[1], mean1, std1, stream_res[1]);
-	tmp_param.O_h = 25;
-	tmp_param.O_w = 25;
-	tmp_param.O_c = 32;
-	tmp_param.S   = 2;
-	_peak_layer(tmp_param, stream_res[1], 1);
+//	tmp_param.O_h = 25;
+//	tmp_param.O_w = 25;
+//	tmp_param.O_c = 32;
+//	tmp_param.S   = 2;
+//	_peak_layer(tmp_param, stream_res[1], 1);
 
 	stream_deconv_3(stream_res[1], bias[2].read(), stream_o);
-	tmp_param.O_h = 28;
-	tmp_param.O_w = 28;
-	tmp_param.O_c = 1;
-	tmp_param.S   = 1;
-	_peak_layer(tmp_param, stream_o, 1);
+//	tmp_param.O_h = 28;
+//	tmp_param.O_w = 28;
+//	tmp_param.O_c = 1;
+//	tmp_param.S   = 1;
+//	_peak_layer(tmp_param, stream_o, 1);
 
 
 }
