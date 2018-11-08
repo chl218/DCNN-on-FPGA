@@ -13,27 +13,16 @@ int main(int argc, char* arvg[]) {
 	printf("UPPER_BOUND: %d\n", UPPER_BOUND);
 	printf("LOWER_BOUND: %d\n", LOWER_BOUND);
 
-	d_int in[10];
-	d_int out[28][28];
 
-	d_int kernel_1[4][4][32][10];
-	d_int kernel_2[6][6][32][32];
-	d_int kernel_3[6][6][32];
 
-	d_int bias_1[32];
-	d_int bias_2[32];
-	d_int bias_3;
-
-	d_int mean_1[32];
-	d_int mean_2[32];
-
-	d_int std_1[32];
-	d_int std_2[32];
-
-	int rand_size = 1;
+	int rand_size = 25;
 
 	FILE *fp = fopen("out.csv", "w");
 	for(int r = 0; r < rand_size; r++) {
+
+		d_int in[10];
+		d_int out[28][28];
+
 		set_random(in, r+10);
 
 		deconv(in,
@@ -49,8 +38,7 @@ int main(int argc, char* arvg[]) {
 			   hidden2_std,
 			   out);
 
-//		peak_layer(out);
-//		save_image(out, fp);
+		save_image(out, fp);
 	}
 	fclose(fp);
 

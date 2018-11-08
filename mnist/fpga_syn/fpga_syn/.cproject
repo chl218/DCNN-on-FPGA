@@ -30,7 +30,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1097083691" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="AESL_TB"/>
@@ -48,7 +47,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1956958032" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="AESL_TB"/>
@@ -116,7 +114,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.919708116" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -129,7 +126,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado_HLS/2017.1/include/etc"/>
-									<listOptionValue builtIn="false" value="C:/Users/cli2/source/repos/DCNN-on-FPGA/mnist/fpga_syn"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.348969352" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
