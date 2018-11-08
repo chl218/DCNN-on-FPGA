@@ -281,7 +281,7 @@ void stream_deconv_3(//layer_params param,
 						L2_IC: for(d_int ic = 0; ic < 32; ic++) { // Input channel
 
 							if(ih+kh == 2 && iw+kw == 14) {
-								printf("in = [%2d %2d %2d]:%6d\tkernel = [%2d %2d %2d]:%6d\tout = %7d --> ",
+								printf("in = [%2d %2d %2d]:%6d\tkernel = [%2d %2d %2d]:%6d\tout = %6d --> ",
 										(int)ih, (int)iw, (int)ic, (int)in_buf[ic],
 										(int)kh, (int)kw, (int)ic, (int)layer3_kernel[kh][kw][ic],
 										(int)layer3_matrix[ih+kh][iw+kw]);
@@ -292,7 +292,7 @@ void stream_deconv_3(//layer_params param,
 							else if(layer3_matrix[ih+kh][iw+kw] < LOWER_BOUND) layer3_matrix[ih+kh][iw+kw] = LOWER_BOUND;
 
 							if(ih+kh == 2 && iw+kw == 14) {
-								printf("%7d\n", (int)layer3_matrix[ih+kh][iw+kw]);
+								printf("%6d\n", (int)layer3_matrix[ih+kh][iw+kw]);
 							}
 						}
 					}
