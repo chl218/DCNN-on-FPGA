@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>deconv_fixed</name>
+	<name>deconv_generalized</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -29,52 +29,52 @@
 		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/deconv_fixed/.apc/.src</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/deconv_generalized/.apc/.src</location>
 		</link>
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/deconv_fixed/.apc/.tb</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/deconv_generalized/.apc/.tb</location>
 		</link>
 		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/deconv_fixed/solution1/.tcls</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/deconv_generalized/solution1/.tcls</location>
+		</link>
+		<link>
+			<name>source/stream_deconv.cpp</name>
+			<type>1</type>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/stream_deconv.cpp</location>
 		</link>
 		<link>
 			<name>source/stream_deconv.h</name>
 			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/stream_deconv.h</location>
-		</link>
-		<link>
-			<name>source/stream_deconv_fixed.cpp</name>
-			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/stream_deconv_fixed.cpp</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/stream_deconv.h</location>
 		</link>
 		<link>
 			<name>source/util.h</name>
 			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/util.h</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/util.h</location>
 		</link>
 		<link>
 			<name>testbench/stream_deconv_tb.cpp</name>
 			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/stream_deconv_tb.cpp</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/stream_deconv_tb.cpp</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/deconv_fixed/solution1/solution1.directive</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/deconv_generalized/solution1/solution1.directive</location>
 		</link>
 		<link>
 			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/deconv_fixed/solution1/directives.tcl</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/deconv_generalized/solution1/directives.tcl</location>
 		</link>
 		<link>
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>C:/Users/Jack/Desktop/repos/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_fixed/deconv_fixed/solution1/script.tcl</location>
+			<location>C:/Users/Jack/Desktop/DCNN-on-FPGA/mnist/fpga_syn_stream_ver/deconv_generalized/deconv_generalized/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>
